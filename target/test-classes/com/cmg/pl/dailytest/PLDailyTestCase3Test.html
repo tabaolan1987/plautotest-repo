@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="https://plw1-int.bppensions.com/content/pl" />
+<title>PLDailyTestCase3Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">PLDailyTestCase3Test</td></tr>
+</thead><tbody>
+<!--Begin to load #3 member BPF-0103360(PP)!-->
+<tr>
+	<td>echo</td>
+	<td>Begin to load #3 member BPF-0103360(PP)!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/content/pl</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=_request_username</td>
+	<td>superuser</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=_request_password</td>
+	<td>P3nsions</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=doauth</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=crefno</td>
+	<td>0103360</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=doauth</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=My details</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--ensure that only 'This is me' under 'My details' available for this member-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'This is me')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My benefits')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Benefits')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My retirement')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'Redundancy')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Annual Allowance')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Accrual Rate')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Carry Forward')]</td>
+	<td></td>
+</tr>
+<!--Access 'This is me' details-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=This is me</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>15000</td>
+	<td></td>
+</tr>
+<!--Ensure that the page is loaded normally: there should be not any 'null' value or java tags started with '[['-->
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>NULL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>[[</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>]]</td>
+	<td></td>
+</tr>
+<!--May take a snapshot here-->
+<!--Finish!-->
+<tr>
+	<td>echo</td>
+	<td>Loading #3 member BPF-0103360(PP) PASS!</td>
+	<td></td>
+</tr>
+<!-------------------------------------------->
+</tbody></table>
+</body>
+</html>
