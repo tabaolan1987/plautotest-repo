@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.thoughtworks.selenium.Selenium;
 
 public class PLDailyTestCase7Test {
@@ -20,6 +21,7 @@ public class PLDailyTestCase7Test {
 		WebDriver driver = new FirefoxDriver();
 		String baseUrl = "https://pensionline.bp.com/content/pl";
 		selenium = new WebDriverBackedSelenium(driver, baseUrl);
+		TakeScreenShot.init(driver);
 	}
 
 	@Test
@@ -185,6 +187,7 @@ public class PLDailyTestCase7Test {
 		assertFalse(selenium.isTextPresent("]]"));
 		selenium.click("//div[@id='salary_modelling_balloon' and @class='aa_popup_show']/div[1]/img");
 		// May take a snapshot here
+		TakeScreenShot.takeScreenshoot();
 		// Finish
 		System.out.println("Loading #7 member BPF-0001341(Security lock-out in place) PASS!");
 		// ----------------------------------------

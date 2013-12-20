@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.thoughtworks.selenium.Selenium;
 
 public class PLDailyTestCase9Test {
@@ -20,6 +21,7 @@ public class PLDailyTestCase9Test {
 		WebDriver driver = new FirefoxDriver();
 		String baseUrl = "https://pensionline.bp.com/content/pl";
 		selenium = new WebDriverBackedSelenium(driver, baseUrl);
+		TakeScreenShot.init(driver);
 	}
 
 	@Test
@@ -303,6 +305,7 @@ public class PLDailyTestCase9Test {
 		assertTrue(selenium.isElementPresent("//div[@id='coin_info']/b[contains(text(),'£0')]"));
 		assertTrue(selenium.isElementPresent("//div[@id='info1'] /b[contains(text(),'65th')]"));
 		// May take a snapshot here
+		TakeScreenShot.takeScreenshoot();
 		// Finish
 		System.out.println("Loading #9 member BPF-0122398(active member) PASS!");
 		// ----------------------------------------

@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.thoughtworks.selenium.Selenium;
 
 public class PLDailyTestCase2Test {
@@ -18,6 +19,7 @@ public class PLDailyTestCase2Test {
 		WebDriver driver = new FirefoxDriver();
 		String baseUrl = "https://pensionline.bp.com/content/pl";
 		selenium = new WebDriverBackedSelenium(driver, baseUrl);
+		TakeScreenShot.init(driver);
 	}
 
 	@Test
@@ -49,6 +51,7 @@ public class PLDailyTestCase2Test {
 		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'Scheme pays')]"));
 		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Carry Forward')]"));
 		// May take a snapshot here
+		TakeScreenShot.takeScreenshoot();
 		// Finish
 		System.out.println("Loading #2 member BPF-0059699(WALL'ed) PASS!");
 		// ----------------------------------------

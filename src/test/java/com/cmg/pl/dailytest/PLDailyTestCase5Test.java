@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.thoughtworks.selenium.Selenium;
 
 public class PLDailyTestCase5Test {
@@ -19,6 +20,7 @@ public class PLDailyTestCase5Test {
 		WebDriver driver = new FirefoxDriver();
 		String baseUrl = "https://pensionline.bp.com/content/pl";
 		selenium = new WebDriverBackedSelenium(driver, baseUrl);
+		TakeScreenShot.init(driver);
 	}
 
 	@Test
@@ -74,6 +76,7 @@ public class PLDailyTestCase5Test {
 		assertTrue(selenium.isElementPresent("//input[@id='PreviousTaxYear' and @class='goButton']"));
 		assertTrue(selenium.isElementPresent("//table[@id='tblFiscalyears' and @class='datatable']"));
 		// May take a snapshot here
+		TakeScreenShot.takeScreenshoot();
 		// Finish
 		System.out.println("Loading #5 member BPF-0100027(Pensioner) PASS!");
 		// ----------------------------------------

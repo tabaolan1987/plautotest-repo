@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.thoughtworks.selenium.Selenium;
 
 public class PLDailyTestCase3Test {
@@ -19,6 +20,7 @@ public class PLDailyTestCase3Test {
 		WebDriver driver = new FirefoxDriver();
 		String baseUrl = "https://pensionline.bp.com/content/pl";
 		selenium = new WebDriverBackedSelenium(driver, baseUrl);
+		TakeScreenShot.init(driver);
 	}
 
 	@Test
@@ -59,6 +61,7 @@ public class PLDailyTestCase3Test {
 		assertFalse(selenium.isTextPresent("[["));
 		assertFalse(selenium.isTextPresent("]]"));
 		// May take a snapshot here
+		TakeScreenShot.takeScreenshoot();
 		// Finish!
 		System.out.println("Loading #3 member BPF-0103360(PP) PASS!");
 		// ----------------------------------------

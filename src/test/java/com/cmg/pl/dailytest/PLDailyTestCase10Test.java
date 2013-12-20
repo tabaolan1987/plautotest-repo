@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.thoughtworks.selenium.Selenium;
 
 public class PLDailyTestCase10Test {
@@ -18,6 +19,7 @@ public class PLDailyTestCase10Test {
 		WebDriver driver = new FirefoxDriver();
 		String baseUrl = "https://pensionline.bp.com/content/pl";
 		selenium = new WebDriverBackedSelenium(driver, baseUrl);
+		TakeScreenShot.init(driver);
 	}
 
 	@Test
@@ -47,6 +49,7 @@ public class PLDailyTestCase10Test {
 		assertTrue(selenium.isElementPresent("//div[@id='content']/h1[contains(text(),'Report generation completed')]"));
 		// May take a snapshot here
 		// Finish
+		TakeScreenShot.takeScreenshoot();
 		System.out.println("Generate report \"Checking connection to all data source\" successfully!");
 	}
 
