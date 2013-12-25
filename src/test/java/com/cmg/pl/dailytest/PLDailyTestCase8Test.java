@@ -45,7 +45,7 @@ public class PLDailyTestCase8Test {
 		// Ensure this member only has 'This is me' and 'My benefits' under 'My details' left menu
 		Thread.sleep(3000);
 		assertTrue(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'This is me')]"));
-		assertTrue(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Benefits')]"));
+		assertTrue(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My  Benefits')]"));
 		assertTrue(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Annual Allowance')]"));
 		assertTrue(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Accrual Rate')]"));
 		assertTrue(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Carry Forward')]"));
@@ -96,7 +96,7 @@ public class PLDailyTestCase8Test {
 		selenium.waitForPageToLoad("30000");
 		Thread.sleep(3000);
 		// Ensure that user cannot access 'My Projection' under 'My Annual Allowance'
-		assertTrue(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Projection')]"));
+		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Projection')]"));
 		// Access 'My Carry Forward' page
 		selenium.click("link=My Carry Forward");
 		selenium.waitForPageToLoad("30000");

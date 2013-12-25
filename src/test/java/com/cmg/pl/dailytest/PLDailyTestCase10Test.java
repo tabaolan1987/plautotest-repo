@@ -32,20 +32,20 @@ public class PLDailyTestCase10Test {
 		selenium.type("id=_request_username", "auto_daily_checker");
 		selenium.type("id=_request_password", "P3nsions");
 		selenium.click("id=doauth");
-		selenium.waitForPageToLoad("30000");
+		selenium.waitForPageToLoad("40000");
 		Thread.sleep(5000);
 		selenium.click("link=Reporting Tool");
 		selenium.waitForPageToLoad("30000");
 		Thread.sleep(2000);
-		assertTrue(selenium.isElementPresent("//div[@id='content']/div[@class='ws_report_list']/div[@class='ws_report']/div[2][@class='ws_report_text']/h2//a[contains(text(),'Checking connection to all data source')]"));
-		selenium.click("link=Checking connection to all data source");
+		assertTrue(selenium.isElementPresent("//div[@id='content']/div[@class='ws_report_list']/div[@class='ws_report']/div[2][@class='ws_report_text']/h2//a[contains(text(),'Checking connection to all data sources')]"));
+		selenium.click("link=Checking connection to all data sources");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("id=_add_report");
 		Thread.sleep(2000);
 		selenium.click("id=_run_report_confirm");
 		// Check if the report is generated successfully...
-		Thread.sleep(60000);
-		selenium.selectWindow("run_report_complete");
+		Thread.sleep(20000);
+		selenium.selectWindow("Report_Complete");
 		assertTrue(selenium.isElementPresent("//div[@id='content']/h1[contains(text(),'Report generation completed')]"));
 		// May take a snapshot here
 		// Finish
