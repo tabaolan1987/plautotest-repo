@@ -11,9 +11,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.thoughtworks.selenium.Selenium;
+import com.thoughtworks.selenium.SeleniumException;
 
 public class PLDailyTestCase3Test {
 	private Selenium selenium;
+	private int retried;
 
 	@Before
 	public void setUp() throws Exception {
@@ -26,45 +28,59 @@ public class PLDailyTestCase3Test {
 	@Test
 	public void testPLDailyTestCase3() throws Exception {
 		// Begin to load #3 member BPF-0103360(PP)!
-		System.out.println("Begin to load #3 member BPF-0103360(PP)!");
-		selenium.open("/content/pl");
-		selenium.click("link=Login");
-		selenium.waitForPageToLoad("30000");
-		selenium.type("id=_request_username", "superuser");
-		selenium.type("id=_request_password", "P3nsions");
-		selenium.click("id=doauth");
-		selenium.waitForPageToLoad("30000");
-		Thread.sleep(2000);
-		selenium.type("id=crefno", "0103360");
-		selenium.click("id=doauth");
-		Thread.sleep(2000);
-		selenium.click("link=My details");
-		selenium.waitForPageToLoad("30000");
-		Thread.sleep(3000);
-		// ensure that only 'This is me' under 'My details' available for this member
-		assertTrue(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'This is me')]"));
-		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My benefits')]"));
-		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Benefits')]"));
-		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My retirement')]"));
-		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'Redundancy')]"));
-		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Annual Allowance')]"));
-		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Accrual Rate')]"));
-		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Carry Forward')]"));
-		// Access 'This is me' details
-		selenium.click("link=This is me");
-		selenium.waitForPageToLoad("30000");
-		Thread.sleep(15000);
-		// Ensure that the page is loaded normally: there should be not any 'null' value or java tags started with '[['
-		assertFalse(selenium.isTextPresent("null"));
-		assertFalse(selenium.isTextPresent("Null"));
-		assertFalse(selenium.isTextPresent("NULL"));
-		assertFalse(selenium.isTextPresent("[["));
-		assertFalse(selenium.isTextPresent("]]"));
-		// May take a snapshot here
-		TakeScreenShot.takeScreenshoot();
-		// Finish!
-		System.out.println("Loading #3 member BPF-0103360(PP) PASS!");
-		// ----------------------------------------
+		System.out.println("Case #3: Begin to load #3 member BPF-0103360(PP)!");
+		try {
+			selenium.open("/content/pl");
+			selenium.click("link=Login");
+			selenium.waitForPageToLoad("30000");
+			selenium.type("id=_request_username", "superuser");
+			selenium.type("id=_request_password", "P3nsions");
+			selenium.click("id=doauth");
+			selenium.waitForPageToLoad("30000");
+			Thread.sleep(2000);
+			selenium.type("id=crefno", "0103360");
+			selenium.click("id=doauth");
+			Thread.sleep(2000);
+			selenium.click("link=My details");
+			selenium.waitForPageToLoad("30000");
+			Thread.sleep(3000);
+			// ensure that only 'This is me' under 'My details' available for this member
+			assertTrue(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'This is me')]"));
+			assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My benefits')]"));
+			assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Benefits')]"));
+			assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My retirement')]"));
+			assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'Redundancy')]"));
+			assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Annual Allowance')]"));
+			assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Accrual Rate')]"));
+			assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Carry Forward')]"));
+			// Access 'This is me' details
+			selenium.click("link=This is me");
+			selenium.waitForPageToLoad("30000");
+			Thread.sleep(15000);
+			// Ensure that the page is loaded normally: there should be not any 'null' value or java tags started with '[['
+			assertFalse(selenium.isTextPresent("null"));
+			assertFalse(selenium.isTextPresent("Null"));
+			assertFalse(selenium.isTextPresent("NULL"));
+			assertFalse(selenium.isTextPresent("[["));
+			assertFalse(selenium.isTextPresent("]]"));
+			// Finish!
+			System.out.println("Case #3: Loading #3 member BPF-0103360(PP) PASS!");
+			// ----------------------------------------
+			// May take a snapshot here
+			TakeScreenShot.takeScreenshoot();
+
+		} catch (SeleniumException se) {
+			retried++;
+			System.out.println("retried case3:" + retried);
+			System.out.println(se.getMessage());
+			if (retried < 5) {
+				testPLDailyTestCase3();
+			} else {
+				System.out.println("Case #3: Loading #3 member BPF-0103360(PP) FAILURE!");
+			}
+		}
+		
+		
 	}
 
 	@After
