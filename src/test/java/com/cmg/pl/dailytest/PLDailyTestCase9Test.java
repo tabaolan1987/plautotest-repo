@@ -245,7 +245,7 @@ public class PLDailyTestCase9Test {
 			assertFalse(selenium.isTextPresent("NULL"));
 			assertFalse(selenium.isTextPresent("[["));
 			assertFalse(selenium.isTextPresent("]]"));
-			assertTrue(selenium.isElementPresent("//div[@id='modelled_accrual_flag']"));
+			//assertTrue(selenium.isElementPresent("//div[@id='modelled_accrual_flag']"));
 			// Check Salary Change pop-up...
 			selenium.click("id=salary_plus_img");
 			Thread.sleep(5000);
