@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="https://plw1-int.bppensions.com/content/pl" />
+<link rel="selenium.base" href="https://pensionline.bp.com/content/pl/" />
 <title>PLDailyTestCase1Test</title>
 </head>
 <body>
@@ -11,10 +11,10 @@
 <thead>
 <tr><td rowspan="1" colspan="3">PLDailyTestCase1Test</td></tr>
 </thead><tbody>
-<!--Begin to load #1 member BPF- 0103603(WALL'ed)!-->
+<!--Begin to load member BPF- 0103603(WALL'ed)!-->
 <tr>
 	<td>echo</td>
-	<td>Begin to load #1 member BPF- 0103603(WALL'ed)!</td>
+	<td>Begin to load member BPF- 0103603(WALL'ed)!</td>
 	<td></td>
 </tr>
 <tr>
@@ -59,7 +59,7 @@
 </tr>
 <tr>
 	<td>pause</td>
-	<td>2000</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
@@ -69,7 +69,7 @@
 </tr>
 <tr>
 	<td>pause</td>
-	<td>3000</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <!--ensure that there is not any sub-menus under 'My details' available for this member-->
@@ -119,10 +119,35 @@
 	<td></td>
 </tr>
 <!--May take a snapshot here-->
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//input[@class='goButton'] </td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@class='goButton'] </td>
+	<td></td>
+</tr>
 <!--Finish-->
 <tr>
 	<td>echo</td>
-	<td>Loading #1 member BPF- 0103603(WALL'ed) PASS!</td>
+	<td>Loading member BPF- 0103603(WALL'ed) PASS!</td>
 	<td></td>
 </tr>
 <!-------------------------------------------->

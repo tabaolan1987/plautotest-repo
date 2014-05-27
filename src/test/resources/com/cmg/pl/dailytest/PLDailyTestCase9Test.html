@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="https://plw1-int.bppensions.com/content/pl" />
+<link rel="selenium.base" href="https://pensionline.bp.com/content/pl/" />
 <title>PLDailyTestCase9Test</title>
 </head>
 <body>
@@ -11,10 +11,10 @@
 <thead>
 <tr><td rowspan="1" colspan="3">PLDailyTestCase9Test</td></tr>
 </thead><tbody>
-<!--Begin to load #9 member BPF-0122398(active member)!-->
+<!--Begin to load member BPF-0122398(active member)!-->
 <tr>
 	<td>echo</td>
-	<td>Begin to load #9 member BPF-0122398(active member)!</td>
+	<td>Begin to load member BPF-0122398(active member)!</td>
 	<td></td>
 </tr>
 <tr>
@@ -64,7 +64,7 @@
 </tr>
 <tr>
 	<td>pause</td>
-	<td>2000</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
@@ -72,10 +72,10 @@
 	<td>link=My details</td>
 	<td></td>
 </tr>
-<!--Ensure this member only has 'This is me' and 'My benefits' under 'My details' left menu-->
+<!--Ensure this member only has 'This is me' and 'My Benefits', 'My retirement', 'Redundancy', 'My Annual Allowance' & 'My Carry Forward' under 'My details' left menu-->
 <tr>
 	<td>pause</td>
-	<td>3000</td>
+	<td>5000</td>
 	<td></td>
 </tr>
 <tr>
@@ -85,7 +85,7 @@
 </tr>
 <tr>
 	<td>assertElementPresent</td>
-	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Benefits')]</td>
+	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My&nbsp;&nbsp;Benefits')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -94,7 +94,7 @@
 	<td></td>
 </tr>
 <tr>
-	<td>assertElementPresent</td>
+	<td>assertElementNotPresent</td>
 	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Accrual Rate')]</td>
 	<td></td>
 </tr>
@@ -526,6 +526,71 @@
 	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Projection')]</td>
 	<td></td>
 </tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My AA Statement')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'AA Pension savings')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My AA Statement')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>60000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>[[</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>]]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>NULL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=AA Pension savings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>60000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>[[</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>]]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>null</td>
+	<td></td>
+</tr>
 <!--Access 'My Carry Forward' page-->
 <tr>
 	<td>clickAndWait</td>
@@ -564,245 +629,9 @@
 	<td></td>
 </tr>
 <!--May take a snapshot here-->
-<!--Access 'My Accrual Rate' page-->
 <tr>
 	<td>clickAndWait</td>
-	<td>link=My Accrual Rate</td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>60000</td>
-	<td></td>
-</tr>
-<!--Ensure that the page is loaded normally: there should be not any 'null' value or java tags started with '[['-->
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>Null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>NULL</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>[[</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>]]</td>
-	<td></td>
-</tr>
-<!--Check some objects' visibility -->
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='info1']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='info2']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='coin_info'] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//img[@id='flag1Img']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='journey_container']/div/img[1] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='road'] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='car']/img </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='coins']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='pipyear_marker']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='accrual_flag']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='salary_flag']</td>
-	<td></td>
-</tr>
-<!--Check the pop-ups-->
-<!--Check Pension at chosen Retirement Age pop-up...-->
-<tr>
-	<td>click</td>
-	<td>id=info_PensionInfo</td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>10000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='pension_info_balloon' and @class='aa_popup_show']</td>
-	<td></td>
-</tr>
-<!--Check no invalid data displayed in the pop-up...-->
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>Null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>NULL</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>[[</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>]]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>//div[@id='pension_info_balloon' and @class='aa_popup_show']/div[1]/img</td>
-	<td></td>
-</tr>
-<!--Check AA Taxable Amount pop-up...-->
-<tr>
-	<td>click</td>
-	<td>id=info_TaxInfo</td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>10000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='tax_info_balloon' and @class='aa_popup_show']</td>
-	<td></td>
-</tr>
-<!--Check no invalid data displayed in the pop-up...-->
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>Null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>NULL</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>[[</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>]]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>//div[@id='tax_info_balloon' and @class='aa_popup_show']/div[1]/img</td>
-	<td></td>
-</tr>
-<!--Check Cash Lump Sum pop-up...-->
-<tr>
-	<td>click</td>
-	<td>id=info_CashInfo</td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>10000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='cash_info_balloon' and @class='aa_popup_show']</td>
-	<td></td>
-</tr>
-<!--Check no invalid data displayed in the pop-up...-->
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>Null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>NULL</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>[[</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>]]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>//div[@id='cash_info_balloon' and @class='aa_popup_show']/div[1]/img</td>
-	<td></td>
-</tr>
-<!--Check Accrual Rate Change pop-up...-->
-<tr>
-	<td>click</td>
-	<td>id=accrual_plus_img</td>
+	<td>link=Logout</td>
 	<td></td>
 </tr>
 <tr>
@@ -812,376 +641,23 @@
 </tr>
 <tr>
 	<td>assertElementPresent</td>
-	<td>//div[@id='accrual_modelling_balloon' and @class='aa_popup_show']</td>
-	<td></td>
-</tr>
-<!--Check no invalid data displayed in the pop-up...-->
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>Null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>NULL</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>[[</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>]]</td>
-	<td></td>
-</tr>
-<!--Try to model an accrual rate ...-->
-<tr>
-	<td>click</td>
-	<td>id=accrual_select</td>
-	<td></td>
-</tr>
-<tr>
-	<td>select</td>
-	<td>id=accrual_select</td>
-	<td>label=54th</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>//div[@id='accrual_modelling_balloon' and @class='aa_popup_show']/div[2]/div/div/p/input[@class='goButton']</td>
+	<td>//input[@class='goButton'] </td>
 	<td></td>
 </tr>
 <tr>
 	<td>pause</td>
-	<td>10000</td>
+	<td>3000</td>
 	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>Null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>NULL</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>[[</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>]]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='modelled_accrual_flag'] </td>
-	<td></td>
-</tr>
-<!--Check Salary Change pop-up...-->
-<tr>
-	<td>click</td>
-	<td>id=salary_plus_img</td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>5000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='salary_modelling_balloon' and @class='aa_popup_show']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>//input[@id='salary_select' and @class='slider_value']</td>
-	<td>90000</td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//div[@id='salary_modelling_balloon' and @class='aa_popup_show']/div[2]/div/div/table/tbody/tr[2]/td/div/input[2][@class='goButton'] </td>
+	<td>//input[@class='goButton'] </td>
 	<td></td>
 </tr>
-<tr>
-	<td>pause</td>
-	<td>10000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>Null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>NULL</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>[[</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>]]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='modelled_salary_flag'] </td>
-	<td></td>
-</tr>
-<!--Model cash lump sum-->
-<tr>
-	<td>click</td>
-	<td>id=coins</td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>10000</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='coin_info']/b</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementNotPresent</td>
-	<td>//div[@id='coin_info']/b[contains(text(),'£0')]</td>
-	<td></td>
-</tr>
-<!--Check the whole page again...-->
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>Null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>NULL</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>[[</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>]]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='info1']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='info2']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='coin_info'] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//img[@id='flag1Img']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='journey_container']/div/img[1] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='road'] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='car']/img </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='coins']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='pipyear_marker']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='accrual_flag']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='salary_flag']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='modelled_accrual_flag'] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='modelled_salary_flag'] </td>
-	<td></td>
-</tr>
-<!--Reset modelling-->
-<tr>
-	<td>click</td>
-	<td>//div[@id='journey_container']/div/img[1] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>pause</td>
-	<td>10000</td>
-	<td></td>
-</tr>
-<!--Check the whole page again-->
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>Null</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>NULL</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>[[</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextNotPresent</td>
-	<td>]]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='info1']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='info2']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='coin_info'] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//img[@id='flag1Img']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='journey_container']/div/img[1] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='road'] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='car']/img </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='coins']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='pipyear_marker']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='accrual_flag']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='salary_flag']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementNotPresent</td>
-	<td>//div[@id='modelled_accrual_flag'] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementNotPresent</td>
-	<td>//div[@id='modelled_salary_flag'] </td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='coin_info']/b[contains(text(),'£0')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>//div[@id='info1'] /b[contains(text(),'65th')]</td>
-	<td></td>
-</tr>
-<!--May take a snapshot here-->
 <!--Finish-->
 <tr>
 	<td>echo</td>
-	<td>Loading #9 member BPF-0122398(active member) PASS!</td>
+	<td>Loading member BPF-0122398(active member) PASS!</td>
 	<td></td>
 </tr>
 <!-------------------------------------------->
