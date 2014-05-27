@@ -15,7 +15,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		PLDailyTestCase7Test.class,
 		PLDailyTestCase8Test.class,
 		PLDailyTestCase9Test.class,
-		PLDailyTestCase10Test.class 
+		PLDailyTestCase10Test.class,
+		PLDailyTestCase11Test.class
 		})
 public class AllTests {
 }
