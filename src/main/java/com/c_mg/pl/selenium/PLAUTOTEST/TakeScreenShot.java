@@ -52,7 +52,7 @@ public class TakeScreenShot {
 			output = ((TakesScreenshot) driver)
 					.getScreenshotAs(OutputType.FILE);
 			file = new File(screenshootDir, name + ".png");
-			FileUtils.moveFile(output, file);
+			FileUtils.copyFile(output, file);
 		} catch (IOException e) {
 
 		}

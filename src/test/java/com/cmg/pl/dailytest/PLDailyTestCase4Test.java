@@ -50,6 +50,7 @@ public class PLDailyTestCase4Test {
 		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Annual Allowance')]"));
 		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Accrual Rate')]"));
 		assertFalse(selenium.isElementPresent("//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Carry Forward')]"));
+		takeScreenshoot();
 		// Access 'This is me' details
 		selenium.click("link=This is me");
 		selenium.waitForPageToLoad("30000");
