@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="319225" started-at="2014-06-17T05:24:28Z" finished-at="2014-06-17T05:29:47Z">
+    <groups>
+    </groups>
+    <test name="IETest" duration-ms="319225" started-at="2014-06-17T05:24:28Z" finished-at="2014-06-17T05:29:47Z">
+      <class name="com.cmg.pl.dailytest.LoadMember_BPF_0122398">
+        <test-method status="PASS" signature="dailyTest()[pri:0, instance:com.cmg.pl.dailytest.LoadMember_BPF_0122398@39b8d6f7]" name="dailyTest" duration-ms="142077" started-at="2014-06-17T12:24:34Z" finished-at="2014-06-17T12:26:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- dailyTest -->
+      </class> <!-- com.cmg.pl.dailytest.LoadMember_BPF_0122398 -->
+      <class name="com.cmg.pl.dailytest.LoadMember_BPF_0100027">
+        <test-method status="PASS" signature="beforeTest(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.cmg.pl.dailytest.LoadMember_BPF_0100027@5d5bdc50]" name="beforeTest" is-config="true" duration-ms="3120" started-at="2014-06-17T12:24:28Z" finished-at="2014-06-17T12:24:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[ie]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[superuser]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[P3nsions]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="beforeTest(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.cmg.pl.dailytest.LoadMember_BPF_0122398@39b8d6f7]" name="beforeTest" is-config="true" duration-ms="2517" started-at="2014-06-17T12:24:31Z" finished-at="2014-06-17T12:24:34Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[ie]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[superuser]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[P3nsions]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="dailytest()[pri:0, instance:com.cmg.pl.dailytest.LoadMember_BPF_0100027@5d5bdc50]" name="dailytest" duration-ms="135147" started-at="2014-06-17T12:26:56Z" finished-at="2014-06-17T12:29:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- dailytest -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.cmg.pl.dailytest.LoadMember_BPF_0100027@5d5bdc50]" name="afterTest" is-config="true" duration-ms="35324" started-at="2014-06-17T12:29:11Z" finished-at="2014-06-17T12:29:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.cmg.pl.dailytest.LoadMember_BPF_0122398@39b8d6f7]" name="afterTest" is-config="true" duration-ms="1026" started-at="2014-06-17T12:29:46Z" finished-at="2014-06-17T12:29:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- com.cmg.pl.dailytest.LoadMember_BPF_0100027 -->
+    </test> <!-- IETest -->
+  </suite> <!-- Suite -->
+</testng-results>
