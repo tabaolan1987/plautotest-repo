@@ -5,10 +5,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.AfterTest;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
 import com.cmg.pl.action.Authenticate;
@@ -29,14 +29,14 @@ public class LoadMember_BPF_0100027 {
 
 	private static String usernamePass;
 
-	private static String refno = "0100027";
+	private static String refno;
 
 	private static String group = "BPF";
 
-	@Parameters({ "browser", "super_user_name", "super_user_pass" })
-	@BeforeTest
-	public void beforeTest(String browser, String super_user_name,
-			String super_user_pass) {
+	@Parameters({ "browser", "super_user_name", "super_user_pass" ,"ref_no_0100027"})
+	@BeforeMethod
+	public void beforeMethod(String browser, String super_user_name,
+			String super_user_pass, String ref_no_0100027) {
 		if (browser.equalsIgnoreCase("firefox")) {
 			driver = new FirefoxDriver();
 		} else if (browser.equalsIgnoreCase("chrome")) {
@@ -50,9 +50,11 @@ public class LoadMember_BPF_0100027 {
 
 		usernameLogin = super_user_name;
 		usernamePass = super_user_pass;
+		refno = ref_no_0100027;
 
 	}
-
+	
+	
 	@Test
 	public void dailytest() {
 		LoginPage.LoadPage(driver);
@@ -92,8 +94,8 @@ public class LoadMember_BPF_0100027 {
 
 	}
 
-	@AfterTest
-	public void afterTest() {
+	@AfterMethod
+	public void afterMethod() {
 		driver.quit();
 	}
 

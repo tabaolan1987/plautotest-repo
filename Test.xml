@@ -3,35 +3,44 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Suite" parallel="none">
-
-
-	<test name="IETest">
-		<parameter name="browser" value="ie" />
-		<parameter name="super_user_name" value="superuser" />
-		<parameter name="super_user_pass" value="P3nsions" />
-		<classes>
-			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0122398" />
-			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0100027" />
-		</classes>
-	</test>
-
-	<!-- <test name="FirefoxTest">
+	<test name="FirefoxTest">
 		<parameter name="browser" value="firefox" />
 		<parameter name="super_user_name" value="superuser" />
+		<parameter name="ref_no_0122398" value="0122398" />
+		<parameter name="ref_no_0100027" value="0100029" />
 		<parameter name="super_user_pass" value="P3nsions" />
 		<classes>
 			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0122398" />
 			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0100027" />
 		</classes>
 	</test>
-
+	
 	<test name="ChromeTest">
 		<parameter name="browser" value="chrome" />
 		<parameter name="super_user_name" value="superuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
+		<parameter name="ref_no_0122398" value="0122398" />
+		<parameter name="ref_no_0100027" value="0100029" />
 		<classes>
 			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0122398" />
 			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0100027" />
 		</classes>
-	</test> -->
+	</test>
+	
+	<test name="IETest">
+		<parameter name="browser" value="ie" />
+		<parameter name="super_user_name" value="superuser" />
+		<parameter name="super_user_pass" value="P3nsions" />
+		<parameter name="ref_no_0122398" value="0122398" />
+		<parameter name="ref_no_0100027" value="0100029" />
+		<parameter name="AC" value="0100027" />
+		<classes>
+			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0122398" />
+			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0100027" />
+		</classes>
+	</test>
+
+
+
+	
 </suite>

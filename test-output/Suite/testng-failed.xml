@@ -1,25 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Suite]" parallel="none">
+  <parameter name="AC" value="0100027"/>
   <parameter name="super_user_name" value="superuser"/>
   <parameter name="browser" value="ie"/>
   <parameter name="super_user_pass" value="P3nsions"/>
-  <test name="IETest(failed)" parallel="none">
+  <parameter name="ref_no_0100027" value="0100029"/>
+  <parameter name="ref_no_0122398" value="0122398"/>
+  <test name="FirefoxTest(failed)" parallel="none">
     <parameter name="super_user_name" value="superuser"/>
-    <parameter name="browser" value="ie"/>
+    <parameter name="browser" value="firefox"/>
     <parameter name="super_user_pass" value="P3nsions"/>
+    <parameter name="ref_no_0100027" value="0100029"/>
+    <parameter name="ref_no_0122398" value="0122398"/>
     <classes>
       <class name="com.cmg.pl.dailytest.LoadMember_BPF_0122398">
         <methods>
           <include name="beforeTest"/>
+          <include name="beforeTest"/>
+          <include name="beforeTest"/>
+          <include name="afterTest"/>
+          <include name="afterTest"/>
           <include name="afterTest"/>
           <include name="dailyTest"/>
         </methods>
       </class> <!-- com.cmg.pl.dailytest.LoadMember_BPF_0122398 -->
       <class name="com.cmg.pl.dailytest.LoadMember_BPF_0100027">
         <methods>
-          <include name="dailytest"/>
           <include name="beforeTest"/>
+          <include name="beforeTest"/>
+          <include name="beforeTest"/>
+          <include name="afterTest"/>
+          <include name="afterTest"/>
+          <include name="afterTest"/>
+        </methods>
+      </class> <!-- com.cmg.pl.dailytest.LoadMember_BPF_0100027 -->
+    </classes>
+  </test> <!-- FirefoxTest(failed) -->
+  <test name="IETest(failed)" parallel="none">
+    <parameter name="AC" value="0100027"/>
+    <parameter name="super_user_name" value="superuser"/>
+    <parameter name="browser" value="ie"/>
+    <parameter name="super_user_pass" value="P3nsions"/>
+    <parameter name="ref_no_0100027" value="0100029"/>
+    <parameter name="ref_no_0122398" value="0122398"/>
+    <classes>
+      <class name="com.cmg.pl.dailytest.LoadMember_BPF_0122398">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="beforeTest"/>
+          <include name="beforeTest"/>
+          <include name="afterTest"/>
+          <include name="afterTest"/>
+          <include name="afterTest"/>
+          <include name="dailyTest"/>
+        </methods>
+      </class> <!-- com.cmg.pl.dailytest.LoadMember_BPF_0122398 -->
+      <class name="com.cmg.pl.dailytest.LoadMember_BPF_0100027">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="beforeTest"/>
+          <include name="beforeTest"/>
+          <include name="afterTest"/>
+          <include name="afterTest"/>
           <include name="afterTest"/>
         </methods>
       </class> <!-- com.cmg.pl.dailytest.LoadMember_BPF_0100027 -->

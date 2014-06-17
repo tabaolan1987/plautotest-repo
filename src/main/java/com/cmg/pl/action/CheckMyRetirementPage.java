@@ -48,7 +48,7 @@ public class CheckMyRetirementPage {
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.xpath(MyRetirementPage.XPATH_BTT_GO_CASHLUMSUM)));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By
 				.id(MyRetirementPage.ID_SLIDER_CASHLUMSUM)));
 		System.out.println("wait okay");
 		
