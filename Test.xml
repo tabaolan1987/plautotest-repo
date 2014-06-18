@@ -15,7 +15,7 @@
 		</classes>
 	</test>
 	
-	<test name="ChromeTest">
+	<!-- <test name="ChromeTest">
 		<parameter name="browser" value="chrome" />
 		<parameter name="super_user_name" value="superuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
@@ -38,7 +38,7 @@
 			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0122398" />
 			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0100027" />
 		</classes>
-	</test>
+	</test> -->
 
 
 

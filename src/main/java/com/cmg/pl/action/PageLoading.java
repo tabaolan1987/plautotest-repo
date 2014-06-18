@@ -66,4 +66,21 @@ public class PageLoading {
 		}
 		return size;
 	}
+	
+	
+	public static void waitForElementExistedInDomVisiable(WebElement el , int timeout){
+		int count = 0 ;
+		while(!el.isDisplayed()){
+			try {
+				count++;
+				System.out.println(count + "-" + timeout);
+				Thread.sleep(1000);
+				if(count > timeout){
+					break;
+				}
+			} catch (Exception e) {
+				
+			}
+		}
+	}
 }
