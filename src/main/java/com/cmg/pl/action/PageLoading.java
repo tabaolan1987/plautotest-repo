@@ -13,6 +13,7 @@ public class PageLoading {
 
 	private static String XPATH_IMAGE_SPINNING = "//img[@alt='waiting']";
 	
+	private static String XPATH_ERROR_SPAN = "//span[contains(., '[[')]";
 	
 	public static void waitForTitle(String title , WebDriver driver , int timeout){
 		int size = 0 ;
@@ -82,5 +83,15 @@ public class PageLoading {
 				
 			}
 		}
+	}
+	
+	public static boolean checkDataErrorExisted(WebDriver driver){
+		boolean check = false;
+		List<WebElement> els = driver.findElements(By.xpath(XPATH_ERROR_SPAN));
+		if(els!=null && els.size() >0 ){
+			System.out.println("list error size " + els.size());
+			check  = true;
+		}
+		return check;
 	}
 }
