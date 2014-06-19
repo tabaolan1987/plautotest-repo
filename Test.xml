@@ -7,7 +7,6 @@
 		<parameter name="browser" value="firefox" />
 		<parameter name="super_user_name" value="superuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
-		
 		<parameter name="walled_ref_no01" value="0103603" />
 		<parameter name="deferred_ref_no01" value="0103360" />
 		<parameter name="deferred_ref_no02" value="0001794" />
@@ -16,9 +15,9 @@
 		<parameter name="pensioner_ref_no03" value="0090597" />
 		<parameter name="securitylock_ref_no01" value="0001341" />
 		<parameter name="active_ref_no01" value="0122398" />
-		
+
 		<classes>
-			<class name="com.cmg.pl.dailytest.LoadMember01_Walled" /> 
+			<class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
 			<class name="com.cmg.pl.dailytest.LoadMember02_Deferred" />
 			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" />
 			<class name="com.cmg.pl.dailytest.LoadMember04_Pensioner" />
@@ -28,12 +27,12 @@
 			<class name="com.cmg.pl.dailytest.LoadMember08_Active" />
 		</classes>
 	</test>
-	
+
 	<test name="ChromeTest">
 		<parameter name="browser" value="chrome" />
 		<parameter name="super_user_name" value="superuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
-		
+
 		<parameter name="walled_ref_no01" value="0103603" />
 		<parameter name="deferred_ref_no01" value="0103360" />
 		<parameter name="deferred_ref_no02" value="0001794" />
@@ -42,9 +41,9 @@
 		<parameter name="pensioner_ref_no03" value="0090597" />
 		<parameter name="securitylock_ref_no01" value="0001341" />
 		<parameter name="active_ref_no01" value="0122398" />
-		
+
 		<classes>
-			<class name="com.cmg.pl.dailytest.LoadMember01_Walled" /> 
+			<class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
 			<class name="com.cmg.pl.dailytest.LoadMember02_Deferred" />
 			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" />
 			<class name="com.cmg.pl.dailytest.LoadMember04_Pensioner" />
@@ -53,14 +52,14 @@
 			<class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" />
 			<class name="com.cmg.pl.dailytest.LoadMember08_Active" />
 		</classes>
-		
+
 	</test>
-	
+
 	<test name="IETest">
 		<parameter name="browser" value="ie" />
 		<parameter name="super_user_name" value="superuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
-		
+
 		<parameter name="walled_ref_no01" value="0103603" />
 		<parameter name="deferred_ref_no01" value="0103360" />
 		<parameter name="deferred_ref_no02" value="0001794" />
@@ -69,9 +68,9 @@
 		<parameter name="pensioner_ref_no03" value="0090597" />
 		<parameter name="securitylock_ref_no01" value="0001341" />
 		<parameter name="active_ref_no01" value="0122398" />
-		
+
 		<classes>
-			<class name="com.cmg.pl.dailytest.LoadMember01_Walled" /> 
+			<class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
 			<class name="com.cmg.pl.dailytest.LoadMember02_Deferred" />
 			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" />
 			<class name="com.cmg.pl.dailytest.LoadMember04_Pensioner" />
@@ -84,5 +83,5 @@
 
 
 
-	
+
 </suite>
