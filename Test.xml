@@ -3,42 +3,74 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Suite" parallel="none">
-	<test name="FirefoxTest">
+	<!-- <test name="FirefoxTest">
 		<parameter name="browser" value="firefox" />
 		<parameter name="super_user_name" value="superuser" />
-		<parameter name="ref_no_0122398" value="0122398" />
-		<parameter name="ref_no_0100027" value="0100029" />
 		<parameter name="super_user_pass" value="P3nsions" />
+		
+		<parameter name="walled_ref_no01" value="0103603" />
+		<parameter name="deferred_ref_no01" value="0103360" />
+		<parameter name="deferred_ref_no02" value="0001794" />
+		<parameter name="pensioner_ref_no01" value="0001532" />
+		<parameter name="pensioner_ref_no02" value="0100027" />
+		<parameter name="pensioner_ref_no03" value="0090597" />
+		<parameter name="securitylock_ref_no01" value="0001341" />
+		<parameter name="active_ref_no01" value="0122398" />
+		
 		<classes>
-			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0122398" />
-			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0100027" />
+			<class name="com.cmg.pl.dailytest.LoadMember01_Walled" /> 
+			<class name="com.cmg.pl.dailytest.LoadMember02_Deferred" />
+			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" />
+			<class name="com.cmg.pl.dailytest.LoadMember04_Pensioner" />
+			<class name="com.cmg.pl.dailytest.LoadMember05_Pensioner" />
+			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner" />
+			<class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" />
+			<class name="com.cmg.pl.dailytest.LoadMember08_Active" />
 		</classes>
-	</test>
+	</test> -->
 	
-	<!-- <test name="ChromeTest">
+<!-- 	<test name="ChromeTest">
 		<parameter name="browser" value="chrome" />
 		<parameter name="super_user_name" value="superuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
-		<parameter name="ref_no_0122398" value="0122398" />
-		<parameter name="ref_no_0100027" value="0100029" />
+		
+		<parameter name="walled_ref_no01" value="0103603" />
+		<parameter name="deferred_ref_no01" value="0103360" />
+		<parameter name="deferred_ref_no02" value="0001794" />
+		<parameter name="pensioner_ref_no01" value="0001532" />
+		<parameter name="pensioner_ref_no02" value="0100027" />
+		<parameter name="pensioner_ref_no03" value="0090597" />
+		<parameter name="securitylock_ref_no01" value="0001341" />
+		<parameter name="active_ref_no01" value="0122398" />
+		
 		<classes>
-			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0122398" />
-			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0100027" />
+			<class name="com.cmg.pl.dailytest.LoadMember01_Walled" /> 
+			<class name="com.cmg.pl.dailytest.LoadMember02_Deferred" />
+			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" />
 		</classes>
-	</test>
+		
+	</test> -->
 	
 	<test name="IETest">
 		<parameter name="browser" value="ie" />
 		<parameter name="super_user_name" value="superuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
-		<parameter name="ref_no_0122398" value="0122398" />
-		<parameter name="ref_no_0100027" value="0100029" />
-		<parameter name="AC" value="0100027" />
+		
+		<parameter name="walled_ref_no01" value="0103603" />
+		<parameter name="deferred_ref_no01" value="0103360" />
+		<parameter name="deferred_ref_no02" value="0001794" />
+		<parameter name="pensioner_ref_no01" value="0001532" />
+		<parameter name="pensioner_ref_no02" value="0100027" />
+		<parameter name="pensioner_ref_no03" value="0090597" />
+		<parameter name="securitylock_ref_no01" value="0001341" />
+		<parameter name="active_ref_no01" value="0122398" />
+		
 		<classes>
-			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0122398" />
-			<class name="com.cmg.pl.dailytest.LoadMember_BPF_0100027" />
+			<class name="com.cmg.pl.dailytest.LoadMember01_Walled" /> 
+			<class name="com.cmg.pl.dailytest.LoadMember02_Deferred" />
+			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" />
 		</classes>
-	</test> -->
+	</test> 
 
 
 

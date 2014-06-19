@@ -1,5 +1,6 @@
 package com.cmg.pl.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.Alert;
@@ -45,7 +46,7 @@ public class PageLoading {
 			while(getAllElementVisiable(images) > 0){
 				Thread.sleep(1000);
 				count++;
-				System.out.println(count+ "-" + timeout);
+				//System.out.println(count+ "-" + timeout);
 				if(count > timeout){
 					break;
 				}
@@ -71,12 +72,12 @@ public class PageLoading {
 	}
 	
 	
-	public static void waitForElementExistedInDomVisiable(WebElement el , int timeout){
+	public static void waitForElementExistedInDomVisible(WebElement el , int timeout){
 		int count = 0 ;
 		while(!el.isDisplayed()){
 			try {
 				count++;
-				System.out.println(count + "-" + timeout);
+				//System.out.println(count + "-" + timeout);
 				Thread.sleep(1000);
 				if(count > timeout){
 					break;
@@ -87,12 +88,20 @@ public class PageLoading {
 		}
 	}
 	
-	public static boolean checkDataErrorExisted(WebDriver driver){
+
+	public static boolean checkDataError(WebDriver driver){
 		boolean check = false;
-		List<WebElement> els = driver.findElements(By.xpath(XPATH_ERROR_SPAN));
-		if(els!=null && els.size() >0 ){
-			System.out.println("list error size " + els.size());
-			check  = true;
+		try {
+			List<WebElement> els = driver.findElements(By.xpath(XPATH_ERROR_SPAN));
+			if(els!=null && els.size() >0 ){
+				for(WebElement el : els){
+					if(el.isDisplayed()){
+						check = true;
+						break;
+					}
+				}
+			}
+		} catch (Exception e) {
 		}
 		
 		Actions complex = new Actions(driver);

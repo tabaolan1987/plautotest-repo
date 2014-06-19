@@ -1,104 +1,81 @@
 package com.cmg.pl.action;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.cmg.pl.pageObject.MyRetirementPage;
 
 public class CheckMyRetirementPage {
 
 	public static void modelRetirementAge(WebDriver driver, int movePixel) {
-		System.out.println("coming model retirement");
-		// click link retirementAge
+		
+		// click link 'Retirement age'
 		MyRetirementPage.linkRetirementAge(driver).click();
-		System.out.println("click link in table");
-		// wait for button and slider show-up
-	/*	WebDriverWait wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By
-				.xpath(MyRetirementPage.XPATH_BTT_GO_RETIREMENT)));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By
-				.id(MyRetirementPage.ID_SLIDER_RETIREMENT)));*/
 		
-		PageLoading.waitForElementExistedInDomVisiable(MyRetirementPage.modelBttRetirementAge(driver), 20);
-		PageLoading.waitForElementExistedInDomVisiable(MyRetirementPage.modelSliderRetirementAge(driver), 20);
+		// wait for model button and slider show-up
+	 		
+		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelBttRetirementAge(driver), 20);
+		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelSliderRetirementAge(driver), 20);
 		
-		System.out.println("wait okay");
-		// slide the slider
+		//slide the slider
 		Actions dragger = new Actions(driver);
-		dragger.dragAndDropBy(
-				MyRetirementPage.modelSliderRetirementAge(driver), movePixel, 0);
+		dragger.dragAndDropBy(MyRetirementPage.modelSliderRetirementAge(driver), movePixel, 0);
 		dragger.build().perform();
-		System.out.println("slide okay");
+		
 		// click button to model
 		MyRetirementPage.modelBttRetirementAge(driver).click();
-		System.out.println("click button model okay");
+		
 		// wait for spinning visible then invisible
 		PageLoading.waitForImageVisible(driver, 10);
-		System.out.println("all image visible");
 		PageLoading.waitForImageInvisible(driver, 20);
-		System.out.println("all image invisible");
+		Assert.assertFalse(PageLoading.checkDataError(driver));
 	}
 
 	public static void modelCashLumpSum(WebDriver driver, int movePixel) {
 		
-		System.out.println("coming model cash");
+		//click link 'Cash lump sum'
 		MyRetirementPage.linkCashLumpSum(driver).click();
-		System.out.println("click link cash");
+		
 		// wait for button and slider show-up
-	/*	WebDriverWait wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By
-				.xpath(MyRetirementPage.XPATH_BTT_GO_CASHLUMSUM)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By
-				.id(MyRetirementPage.ID_SLIDER_CASHLUMSUM)));*/
-		
-		PageLoading.waitForElementExistedInDomVisiable(MyRetirementPage.modelBttGoCashLum(driver), 20);
-		PageLoading.waitForElementExistedInDomVisiable(MyRetirementPage.modelSliderCashLumSum(driver), 20);
-		
-		System.out.println("wait okay");
+			
+		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelBttGoCashLum(driver), 20);
+		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelSliderCashLumSum(driver), 20);
 		
 		// slide the slider
 		Actions dragger = new Actions(driver);
-		dragger.dragAndDropBy(MyRetirementPage.modelSliderCashLumSum(driver),
-				movePixel, 0);
+		dragger.dragAndDropBy(MyRetirementPage.modelSliderCashLumSum(driver),movePixel, 0);
 		dragger.build().perform();
 		
 		// click button to model
 		MyRetirementPage.modelBttGoCashLum(driver).click();
-		System.out.println("click button model okay");
+		
 		// wait for spinning visible then invisible
 		PageLoading.waitForImageVisible(driver, 10);
-		System.out.println("all image visible");
 		PageLoading.waitForImageInvisible(driver, 20);
-		System.out.println("all image invisible");
+		Assert.assertFalse(PageLoading.checkDataError(driver));
 		
 		
 	}
 
 	public static void modelContributoryOptions(WebDriver driver,int timeout, int index) {
-		//click on link contribution
-		MyRetirementPage.linkContribu(driver).click();
+		//click on link 'Contributory option'
+		MyRetirementPage.linkContributoryOption(driver).click();
 		
 		//wait for element model present
-		/*WebDriverWait wait = new WebDriverWait(driver,timeout);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(MyRetirementPage.ID_SELECT_CONTRIBU)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(MyRetirementPage.XPATH_BTT_GO_CONTRIBU)));*/
-		
-		PageLoading.waitForElementExistedInDomVisiable(MyRetirementPage.modelBttContribu(driver), 20);
-		PageLoading.waitForElementExistedInDomVisiable(MyRetirementPage.SelectContriBu(driver), 20);
+				
+		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelBttContributoryOption(driver), 20);
+		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.SelectContributoryOption(driver), 20);
 		
 		//select option by index and model
-		Select selectContri = new Select(MyRetirementPage.SelectContriBu(driver));
+		Select selectContri = new Select(MyRetirementPage.SelectContributoryOption(driver));
 		selectContri.selectByIndex(index);
-		MyRetirementPage.modelBttContribu(driver).click();
+		MyRetirementPage.modelBttContributoryOption(driver).click();
 		
 		PageLoading.waitForImageVisible(driver, 10);
-		System.out.println("all image visible");
 		PageLoading.waitForImageInvisible(driver, 20);
-		System.out.println("all image invisible");
+		Assert.assertFalse(PageLoading.checkDataError(driver));
 		
 	}
 
