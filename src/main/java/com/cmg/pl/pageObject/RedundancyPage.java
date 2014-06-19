@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.cmg.pl.action.PageLoading;
+
 public class RedundancyPage {
 	
 	private static String URL = "https://pensionline.bp.com/content/pl/mydetails/redundancy_planner_ac/";
@@ -18,6 +20,9 @@ public class RedundancyPage {
 	
 	public static WebDriver loadPage(WebDriver driver){
 		driver.get(URL);
+		PageLoading.waitForImageVisible(driver, 10);
+		PageLoading.waitForImageInvisible(driver, 20);
+		PageLoading.checkDataError(driver);
 		return driver;
 	}
 	

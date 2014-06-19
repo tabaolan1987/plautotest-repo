@@ -14,7 +14,8 @@ public class StateBenefitsPage {
 	public static WebDriver loadPage(WebDriver driver){
 		driver.get(URL);
 		PageLoading.waitForImageVisible(driver, 20);
-		PageLoading.waitForImageInvisible(driver, 50);
+		PageLoading.waitForImageInvisible(driver, 30);
+		PageLoading.checkDataError(driver);
 		return driver;
 	}
 	

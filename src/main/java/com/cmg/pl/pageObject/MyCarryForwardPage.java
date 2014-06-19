@@ -11,7 +11,8 @@ public class MyCarryForwardPage {
 	public static WebDriver loadPage(WebDriver driver){
 		driver.get(URL);
 		PageLoading.waitForImageVisible(driver, 20);
-		PageLoading.waitForImageVisible(driver, 50);
+		PageLoading.waitForImageInvisible(driver, 20);
+		PageLoading.checkDataError(driver);
 		return driver;
 	}
 }

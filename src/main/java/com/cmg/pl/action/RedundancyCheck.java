@@ -37,9 +37,8 @@ public class RedundancyCheck {
 		RedundancyPage.bttModel(driver).click();
 		//check page loading
 		PageLoading.waitForImageVisible(driver, 10);
-		System.out.println("all image visible");
 		PageLoading.waitForImageInvisible(driver, 20);
-		System.out.println("all image invisible");
+		PageLoading.checkDataError(driver);
 	}
 	
 	private static void waitForCalendar(WebDriver driver , int timeout){

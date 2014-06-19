@@ -32,7 +32,7 @@ import com.cmg.pl.pageObject.SchemeBenefitsPage;
 import com.cmg.pl.pageObject.StateBenefitsPage;
 import com.cmg.pl.pageObject.ThisIsMePage;
 
-public class LoadMember_BPF_0122398 {
+public class LoadMember08_Active {
 	
   private static WebDriver driver;
   
@@ -40,14 +40,15 @@ public class LoadMember_BPF_0122398 {
   
   private static String usernamePass;
   
-  private static String refno = "0122398";
+  private static String refno;
   
   private static String group = "BPF";
   
   
-  @Parameters({"browser","super_user_name","super_user_pass"})
+  @Parameters({"browser","super_user_name","super_user_pass","active_ref_no01"})
   @BeforeMethod
-  public void beforeMethod(String browser , String super_user_name , String super_user_pass) {
+  public void beforeMethod(String browser , String super_user_name , String super_user_pass, String active_ref_no01) 
+  {
 	  if(browser.equalsIgnoreCase("firefox")){
 		  driver = new FirefoxDriver();
 	  }else if(browser.equalsIgnoreCase("chrome")){
@@ -60,6 +61,7 @@ public class LoadMember_BPF_0122398 {
 	  
 	  usernameLogin = super_user_name;
 	  usernamePass = super_user_pass;
+	  refno = active_ref_no01;
 			  
   }
 
@@ -67,66 +69,65 @@ public class LoadMember_BPF_0122398 {
   public void dailyTest() throws InterruptedException {
 	  LoginPage.LoadPage(driver);
 	  Authenticate.Login(driver, usernameLogin, usernamePass);
-	  SuperUser.loadMember(driver, 50 , group, refno);
+	  SuperUser.loadMember(driver, 30 , group, refno);
 	  
-	  //link need show up in submenu
+	  //check for links available under 'My details'
 	  MyDetailPage.loadPage(driver);
-	  Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 10));
-	  Assert.assertTrue(MyDetailCheck.checkMyBenefitsLink(driver, 10));
-	  Assert.assertTrue(MyDetailCheck.checkMyRetirementLink(driver, 10));
-	  Assert.assertTrue(MyDetailCheck.checkRedundacyLink(driver, 10));
-	  Assert.assertTrue(MyDetailCheck.checkMyAnnualAllowance(driver, 10));
-	  Assert.assertTrue(MyDetailCheck.checkMyCarryForward(driver, 10));
-	  Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 10));
+	  Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
+	  Assert.assertTrue(MyDetailCheck.checkMyBenefitsLink(driver, 5));
+	  Assert.assertTrue(MyDetailCheck.checkMyRetirementLink(driver, 5));
+	  Assert.assertTrue(MyDetailCheck.checkRedundacyLink(driver, 5));
+	  Assert.assertTrue(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
+	  Assert.assertTrue(MyDetailCheck.checkMyCarryForward(driver, 5));
+	  Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 5));
 	  
-	  //link need do not show up in submenu
-	  Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 10));
-	  Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 10));
-	  Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, 10));
+	  //check for links unavailable under 'My details'
+	  Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));
+	  Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 5));
+	  Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, 5));
 	  
-	  //check this is me page
+	  //check 'This is me' page
 	  ThisIsMePage.loadPage(driver);
-	  CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 20);
+	  CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
 	  CheckThisIsMePage.checkMembershipExisted(driver, refno);
 	  
-	  //check MyBenefit page and link existed
+	  //check 'My Benefits' page and its sub-menus
 	  MyBenefitPage.loadPage(driver);
-	  Assert.assertTrue(CheckMyBenefitPage.checkLinkSchemeBenefits(driver, 20));
-	  Assert.assertTrue(CheckMyBenefitPage.checkLinkStateBenefits(driver, 20));
+	  Assert.assertTrue(CheckMyBenefitPage.checkLinkSchemeBenefits(driver, 10));
+	  Assert.assertTrue(CheckMyBenefitPage.checkLinkStateBenefits(driver, 10));
 	  
-	  //check SchemeBenefits
+	  //check 'Scheme Benefits' page
 	  SchemeBenefitsPage.loadPage(driver);
-	  Assert.assertTrue(CheckSchemeBenefitsPage.checkTablePersonalDetailsExisted(driver, 20));
+	  Assert.assertTrue(CheckSchemeBenefitsPage.checkTablePersonalDetailsExisted(driver, 10));
 	  Assert.assertTrue(CheckSchemeBenefitsPage.checkMemberRefNumberExisted(driver, refno));
 	  Assert.assertTrue(CheckSchemeBenefitsPage.checkNinoNumberExisted(driver));
 	  
-	  //check state benefits
+	  //check 'State Benefits' page
 	  StateBenefitsPage.loadPage(driver);
-	  Assert.assertTrue(CheckStateBenefitsPage.checkTablePersonalDetailExisted(driver, 20));
+	  Assert.assertTrue(CheckStateBenefitsPage.checkTablePersonalDetailExisted(driver, 10));
 	  Assert.assertTrue(CheckStateBenefitsPage.checkDateOfBirth(driver));
 	  Assert.assertTrue(CheckStateBenefitsPage.checkNinoNumber(driver));
 	  
-	  //check My Retirement Page and model 3 option
+	  //check 'My Retirement' page and model 3 options
 	  MyRetirementPage.loadPage(driver);
 	  CheckMyRetirementPage.modelRetirementAge(driver, -30);
 	  CheckMyRetirementPage.modelCashLumpSum(driver, 20);
 	  CheckMyRetirementPage.modelContributoryOptions(driver, 10 , 2);
 	  
-	  
-	  //Check Redundancy Page and model future date
+	   //Check 'Redundancy' page and model a future redundancy date
 	  RedundancyPage.loadPage(driver);
 	  RedundancyCheck.modelRedundancy(driver);
 	  
-	  //Check My Annual Allowance Page
+	  //Check 'My Annual Allowance' Page and its sub-menus
 	  MyAnnualAllowancePage.loadPage(driver);
-	  Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAPensionSavings(driver, 10));
-	  Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAStatementLink(driver, 10));
+	  Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAPensionSavings(driver, 5));
+	  Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAStatementLink(driver, 5));
 	  Assert.assertFalse(CheckMyAnnualAllowancePage.checkAAProjection(driver, 5));
 	  
-	  //Check My Carry Forward loading
+	  //Check 'My Carry Forward' page
 	  MyCarryForwardPage.loadPage(driver);
 	  
-	  //logout system
+	  //logout
 	  Authenticate.LogOut(driver, 10);
 	  
 	  

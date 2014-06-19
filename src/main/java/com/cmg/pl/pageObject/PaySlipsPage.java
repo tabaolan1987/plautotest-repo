@@ -24,6 +24,7 @@ public class PaySlipsPage {
 		driver.get(URL);
 		PageLoading.waitForImageVisible(driver, 10);
 		PageLoading.waitForImageInvisible(driver, 200);
+		PageLoading.checkDataError(driver);
 		return driver;
 	}
 	

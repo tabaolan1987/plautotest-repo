@@ -15,6 +15,7 @@ public class ThisIsMePage {
 		driver.get(URL);
 		PageLoading.waitForImageVisible(driver, 20);
 		PageLoading.waitForImageInvisible(driver, 30);
+		PageLoading.checkDataError(driver);
 		return driver;
 	}
 	

@@ -21,7 +21,8 @@ import com.cmg.pl.pageObject.MyDetailPage;
 import com.cmg.pl.pageObject.PaySlipsPage;
 import com.cmg.pl.pageObject.ThisIsMePage;
 
-public class LoadMember_BPF_0100027 {
+//check loading of a pensioner member 
+public class LoadMember05_Pensioner {
 
 	private static WebDriver driver;
 
@@ -33,10 +34,10 @@ public class LoadMember_BPF_0100027 {
 
 	private static String group = "BPF";
 
-	@Parameters({ "browser", "super_user_name", "super_user_pass" ,"ref_no_0100027"})
+	@Parameters({ "browser", "super_user_name", "super_user_pass" ,"pensioner_ref_no02"})
 	@BeforeMethod
-	public void beforeMethod(String browser, String super_user_name,
-			String super_user_pass, String ref_no_0100027) {
+	public void beforeMethod(String browser, String super_user_name, String super_user_pass, String pensioner_ref_no02) 
+	{
 		if (browser.equalsIgnoreCase("firefox")) {
 			driver = new FirefoxDriver();
 		} else if (browser.equalsIgnoreCase("chrome")) {
@@ -50,8 +51,8 @@ public class LoadMember_BPF_0100027 {
 
 		usernameLogin = super_user_name;
 		usernamePass = super_user_pass;
-		refno = ref_no_0100027;
-
+		refno = pensioner_ref_no02;
+		
 	}
 	
 	
@@ -59,38 +60,39 @@ public class LoadMember_BPF_0100027 {
 	public void dailytest() {
 		LoginPage.LoadPage(driver);
 		Authenticate.Login(driver, usernameLogin, usernamePass);
-		SuperUser.loadMember(driver, 50, group, refno);
+		SuperUser.loadMember(driver, 30, group, refno);
 
-		// link need show up in submenu
+		//check for links available under 'My details'
 		MyDetailPage.loadPage(driver);
-		Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 10));
-		Assert.assertTrue(MyDetailCheck.checkPaySlips(driver, 10));
-		Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 10));
-		// link need do not show up in submenu
-		Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 10));
-		Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, 10));
-		Assert.assertFalse(MyDetailCheck.checkMyBenefitsLink(driver, 10));
-		Assert.assertFalse(MyDetailCheck.checkMyRetirementLink(driver, 10));
-		Assert.assertFalse(MyDetailCheck.checkRedundacyLink(driver, 10));
-		Assert.assertFalse(MyDetailCheck.checkMyAnnualAllowance(driver, 10));
-		Assert.assertFalse(MyDetailCheck.checkMyCarryForward(driver, 10));
+		Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
+		Assert.assertTrue(MyDetailCheck.checkPaySlips(driver, 5));
+		Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 5));
+		
+		//check for links unavailable under 'My details'
+		Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkMyBenefitsLink(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkMyRetirementLink(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkRedundacyLink(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkMyCarryForward(driver, 5));
 
-		// check this is me page
+		//check 'This is me' page
 		ThisIsMePage.loadPage(driver);
-		ThisIsMePage.loadPage(driver);
-		CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 20);
+		CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
 		CheckThisIsMePage.checkMembershipExisted(driver, refno);
 
-		// check Payslips page
+		//check Payslips page 
 		PaySlipsPage.loadPage(driver);
-		Assert.assertTrue(CheckPaySlipsPage.checkTablePaySlipsExisted(driver,
-				10));
-		Assert.assertTrue(CheckPaySlipsPage.checkTablePersonalDetailExisted(
-				driver, 10));
+		Assert.assertTrue(CheckPaySlipsPage.checkTablePaySlipsExisted(driver,10));
+		Assert.assertTrue(CheckPaySlipsPage.checkTablePersonalDetailExisted(driver, 10));
 		Assert.assertTrue(CheckPaySlipsPage.checkCurrentTaxYear(driver));
 		Assert.assertTrue(CheckPaySlipsPage.checkRefno(driver, refno));
 		Assert.assertTrue(CheckPaySlipsPage.checkNiNo(driver));
 		Assert.assertTrue(CheckPaySlipsPage.checkBttPreviousExisted(driver, 10));
+		
+		//logout
+		Authenticate.LogOut(driver, 10);
 
 	}
 

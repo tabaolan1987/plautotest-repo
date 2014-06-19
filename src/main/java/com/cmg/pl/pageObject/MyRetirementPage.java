@@ -18,11 +18,11 @@ public class MyRetirementPage {
 	public static String ID_SLIDER_RETIREMENT = "sl0slider";
 	
 	
-	public static String LINK_TEXT_CONTRIBU = "Contributory options";
+	public static String LINK_TEXT_CONTRIBUTORY_OPTION = "Contributory options";
 	
-	public static String ID_SELECT_CONTRIBU = "input_co_option";
+	public static String ID_SELECT_CONTRIBUTORY_OPTION = "input_co_option";
 	
-	public static String XPATH_BTT_GO_CONTRIBU = "//div[@id='contrib_option_panel']/div[@class='slider_panel']/input[@class='goButton'] ";
+	public static String XPATH_BTT_GO_CONTRIBUTORY_OPTION = "//div[@id='contrib_option_panel']/div[@class='slider_panel']/input[@class='goButton'] ";
 	
 	
 	
@@ -36,7 +36,8 @@ public class MyRetirementPage {
 	public static WebDriver loadPage(WebDriver driver){
 		driver.get(URL);
 		PageLoading.waitForImageVisible(driver, 10);
-		PageLoading.waitForImageInvisible(driver, 30);
+		PageLoading.waitForImageInvisible(driver, 20);
+		PageLoading.checkDataError(driver);
 		return driver;
 	}
 	
@@ -58,18 +59,18 @@ public class MyRetirementPage {
 	
 	
 	
-	public static WebElement linkContribu(WebDriver driver){
-		WebElement el = driver.findElement(By.linkText(LINK_TEXT_CONTRIBU));
+	public static WebElement linkContributoryOption(WebDriver driver){
+		WebElement el = driver.findElement(By.linkText(LINK_TEXT_CONTRIBUTORY_OPTION));
 		return el;
 	}
 	
-	public static WebElement SelectContriBu(WebDriver driver){
-		WebElement el = driver.findElement(By.id(ID_SELECT_CONTRIBU));
+	public static WebElement SelectContributoryOption(WebDriver driver){
+		WebElement el = driver.findElement(By.id(ID_SELECT_CONTRIBUTORY_OPTION));
 		return el;
 	}
 	
-	public static WebElement modelBttContribu(WebDriver driver){
-		WebElement el = driver.findElement(By.xpath(XPATH_BTT_GO_CONTRIBU));
+	public static WebElement modelBttContributoryOption(WebDriver driver){
+		WebElement el = driver.findElement(By.xpath(XPATH_BTT_GO_CONTRIBUTORY_OPTION));
 		return el;
 	}
 	
