@@ -35,10 +35,12 @@ public class LoadMember01_Walled {
 		if (browser.equalsIgnoreCase("firefox")) {
 			driver = new FirefoxDriver();
 		} else if (browser.equalsIgnoreCase("chrome")) {
+			System.out.println("coming chrome");
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
 			driver = new ChromeDriver();
 		} else if (browser.equalsIgnoreCase("ie")) {
+			System.out.println("coming ie");
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
 			driver = new InternetExplorerDriver();
 		}

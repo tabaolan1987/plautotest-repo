@@ -3,6 +3,7 @@ package com.cmg.pl.pageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import com.cmg.pl.action.PageLoading;
 
@@ -22,7 +23,7 @@ public class RedundancyPage {
 		driver.get(URL);
 		PageLoading.waitForImageVisible(driver, 10);
 		PageLoading.waitForImageInvisible(driver, 20);
-		PageLoading.checkDataError(driver);
+		Assert.assertFalse(PageLoading.checkDataError(driver));
 		return driver;
 	}
 	

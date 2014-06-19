@@ -1,6 +1,7 @@
 package com.cmg.pl.pageObject;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import com.cmg.pl.action.PageLoading;
 
@@ -12,7 +13,7 @@ public class MyCarryForwardPage {
 		driver.get(URL);
 		PageLoading.waitForImageVisible(driver, 20);
 		PageLoading.waitForImageInvisible(driver, 20);
-		PageLoading.checkDataError(driver);
+		Assert.assertFalse(PageLoading.checkDataError(driver));
 		return driver;
 	}
 }

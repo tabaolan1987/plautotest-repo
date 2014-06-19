@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.cmg.pl.pageObject.RedundancyPage;
 
@@ -38,7 +39,7 @@ public class RedundancyCheck {
 		//check page loading
 		PageLoading.waitForImageVisible(driver, 10);
 		PageLoading.waitForImageInvisible(driver, 20);
-		PageLoading.checkDataError(driver);
+		Assert.assertFalse(PageLoading.checkDataError(driver));
 	}
 	
 	private static void waitForCalendar(WebDriver driver , int timeout){

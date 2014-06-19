@@ -3,6 +3,7 @@ package com.cmg.pl.pageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import com.cmg.pl.action.PageLoading;
 
@@ -16,7 +17,7 @@ public class SchemeBenefitsPage {
 		driver.get(URL);
 		PageLoading.waitForImageVisible(driver, 20);
 		PageLoading.waitForImageInvisible(driver, 30);
-		PageLoading.checkDataError(driver);
+		Assert.assertFalse(PageLoading.checkDataError(driver));
 		return driver;
 	}
 	

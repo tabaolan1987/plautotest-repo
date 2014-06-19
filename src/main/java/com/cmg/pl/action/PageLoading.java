@@ -1,5 +1,6 @@
 package com.cmg.pl.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -91,8 +92,12 @@ public class PageLoading {
 		try {
 			List<WebElement> els = driver.findElements(By.xpath(XPATH_ERROR_SPAN));
 			if(els!=null && els.size() >0 ){
-				//System.out.println("list error size " + els.size());
-				check  = true;
+				for(WebElement el : els){
+					if(el.isDisplayed()){
+						check = true;
+						break;
+					}
+				}
 			}
 		} catch (Exception e) {
 		}

@@ -1,6 +1,5 @@
 package com.c_mg.pl.selenium.PLAUTOTEST;
 
-import java.awt.List;
 import java.io.File;
 
 public class DriverUtil {
@@ -13,6 +12,7 @@ public class DriverUtil {
 		try {
 			File driverIe = new File(path);
 			if(driverIe.exists()){
+				System.out.println("ie chrome exist : " + driverIe.getAbsolutePath());
 				return driverIe.getAbsolutePath();
 			}
 		} catch (Exception e) {
@@ -28,6 +28,7 @@ public class DriverUtil {
 		try {
 			File driverChrome = new File(path);
 			if(driverChrome.exists()){
+				System.out.println("driver chrome exist : " + driverChrome.getAbsolutePath());
 				return driverChrome.getAbsolutePath();
 			}
 		} catch (Exception e) {
