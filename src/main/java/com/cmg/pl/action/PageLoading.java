@@ -107,4 +107,17 @@ public class PageLoading {
 		Actions complex = new Actions(driver);
 		return check;
 	}
+	
+	public static boolean checkAlertPresent(WebDriver driver){
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+			System.out.println("alert present");
+			alert.accept();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
+	}
 }

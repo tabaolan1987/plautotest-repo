@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.cmg.pl.action.PageLoading;
+
 public class LoginPage {
 	private static String URL = "https://pensionline.bp.com/content/pl/_login_ask.html";
 	
@@ -15,6 +17,7 @@ public class LoginPage {
 	
 	public static WebDriver LoadPage(WebDriver driver){
 		driver.get(URL);
+		PageLoading.checkAlertPresent(driver);
 		return driver;
 	}
 	
