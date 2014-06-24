@@ -51,6 +51,7 @@ public class LoadMember08_Active {
   {
 	  if(browser.equalsIgnoreCase("firefox")){
 		  driver = new FirefoxDriver();
+		  System.out.println("coming firefox");
 	  }else if(browser.equalsIgnoreCase("chrome")){
 		  System.setProperty("webdriver.chrome.driver", DriverUtil.getChromeDriver());
 		  driver= new ChromeDriver();

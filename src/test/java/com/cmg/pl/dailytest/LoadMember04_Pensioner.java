@@ -38,6 +38,7 @@ public class LoadMember04_Pensioner {
 	{
 		if (browser.equalsIgnoreCase("firefox")) {
 			driver = new FirefoxDriver();
+			System.out.println("coming firefox");
 		} else if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
