@@ -11,6 +11,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
+import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.cmg.pl.action.Authenticate;
 import com.cmg.pl.action.MyDetailCheck;
 import com.cmg.pl.action.SuperUser;
@@ -54,26 +55,31 @@ public class LoadMember01_Walled {
 	
 	@Test
 	public void dailytest() {
-		LoginPage.LoadPage(driver);
-		Authenticate.Login(driver, usernameLogin, usernamePass);
-		SuperUser.loadMember(driver, 30, group, refno);
+		try {
+			LoginPage.LoadPage(driver);
+			Authenticate.Login(driver, usernameLogin, usernamePass);
+			SuperUser.loadMember(driver, 30, group, refno);
 
-		//check for links unavailable under 'My details'
-		MyDetailPage.loadPage(driver);
-		Assert.assertFalse(MyDetailCheck.checkThisIsMeLink(driver, 5));
-		Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));
-		Assert.assertFalse(MyDetailCheck.checkSchemePays(driver, 5));
-				
-		Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 5));
-		Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, 5));
-		Assert.assertFalse(MyDetailCheck.checkMyBenefitsLink(driver, 5));
-		Assert.assertFalse(MyDetailCheck.checkMyRetirementLink(driver, 5));
-		Assert.assertFalse(MyDetailCheck.checkRedundacyLink(driver, 5));
-		Assert.assertFalse(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
-		Assert.assertFalse(MyDetailCheck.checkMyCarryForward(driver, 5));
+			//check for links unavailable under 'My details'
+			MyDetailPage.loadPage(driver);
+			Assert.assertFalse(MyDetailCheck.checkThisIsMeLink(driver, 5));
+			Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));
+			Assert.assertFalse(MyDetailCheck.checkSchemePays(driver, 5));
+					
+			Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 5));
+			Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, 5));
+			Assert.assertFalse(MyDetailCheck.checkMyBenefitsLink(driver, 5));
+			Assert.assertFalse(MyDetailCheck.checkMyRetirementLink(driver, 5));
+			Assert.assertFalse(MyDetailCheck.checkRedundacyLink(driver, 5));
+			Assert.assertFalse(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
+			Assert.assertFalse(MyDetailCheck.checkMyCarryForward(driver, 5));
+			
+			//logout
+			Authenticate.LogOut(driver, 10);
+		} catch (Exception e) {
+			TakeScreenShot.takeScreenshoot();
+		}
 		
-		//logout
-		Authenticate.LogOut(driver, 10);
 	}
 	
 	@AfterMethod

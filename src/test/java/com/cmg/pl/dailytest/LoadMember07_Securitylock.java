@@ -11,6 +11,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
+import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.cmg.pl.action.Authenticate;
 import com.cmg.pl.action.CheckMyAnnualAllowancePage;
 import com.cmg.pl.action.CheckMyBenefitPage;
@@ -63,58 +64,63 @@ public class LoadMember07_Securitylock {
 
 	  @Test
 	  public void dailyTest() throws InterruptedException {
-		  LoginPage.LoadPage(driver);
-		  Authenticate.Login(driver, usernameLogin, usernamePass);
-		  SuperUser.loadMember(driver, 30 , group, refno);
+		  try {
+			  LoginPage.LoadPage(driver);
+			  Authenticate.Login(driver, usernameLogin, usernamePass);
+			  SuperUser.loadMember(driver, 30 , group, refno);
+			  
+			  //check for links available under 'My details'
+			  MyDetailPage.loadPage(driver);
+			  Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
+			  Assert.assertTrue(MyDetailCheck.checkMyBenefitsLink(driver, 5));
+			  Assert.assertTrue(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
+			  Assert.assertTrue(MyDetailCheck.checkMyCarryForward(driver, 5));
+			  Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 5));
+			  
+			  //check for links unavailable under 'My details'
+			  Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));
+			  Assert.assertFalse(MyDetailCheck.checkMyRetirementLink(driver, 5));
+			  Assert.assertFalse(MyDetailCheck.checkRedundacyLink(driver, 5));
+			  Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 5));
+			  Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, 5));
+			  
+			  //check 'This is me' page
+			  ThisIsMePage.loadPage(driver);
+			  CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
+			  CheckThisIsMePage.checkMembershipExisted(driver, refno);
+			  
+			  //check 'My Benefits' page and its sub-menus
+			  MyBenefitPage.loadPage(driver);
+			  Assert.assertTrue(CheckMyBenefitPage.checkLinkSchemeBenefits(driver, 10));
+			  Assert.assertTrue(CheckMyBenefitPage.checkLinkStateBenefits(driver, 10));
+			  
+			  //check 'Scheme Benefits' page
+			  SchemeBenefitsPage.loadPage(driver);
+			  Assert.assertTrue(CheckSchemeBenefitsPage.checkTablePersonalDetailsExisted(driver, 10));
+			  Assert.assertTrue(CheckSchemeBenefitsPage.checkMemberRefNumberExisted(driver, refno));
+			  Assert.assertTrue(CheckSchemeBenefitsPage.checkNinoNumberExisted(driver));
+			  
+			  //check 'State Benefits' page
+			  StateBenefitsPage.loadPage(driver);
+			  Assert.assertTrue(CheckStateBenefitsPage.checkTablePersonalDetailExisted(driver, 10));
+			  Assert.assertTrue(CheckStateBenefitsPage.checkDateOfBirth(driver));
+			  Assert.assertTrue(CheckStateBenefitsPage.checkNinoNumber(driver));
+			  
+			  //Check 'My Annual Allowance' Page and its sub-menus
+			  MyAnnualAllowancePage.loadPage(driver);
+			  Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAPensionSavings(driver, 5));
+			  Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAStatementLink(driver, 5));
+			  Assert.assertFalse(CheckMyAnnualAllowancePage.checkAAProjection(driver, 5));
+			  
+			  //Check 'My Carry Forward' page
+			  MyCarryForwardPage.loadPage(driver);
+			  
+			  //logout
+			  Authenticate.LogOut(driver, 10);
+		} catch (Exception e) {
+			TakeScreenShot.takeScreenshoot();
+		}
 		  
-		  //check for links available under 'My details'
-		  MyDetailPage.loadPage(driver);
-		  Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
-		  Assert.assertTrue(MyDetailCheck.checkMyBenefitsLink(driver, 5));
-		  Assert.assertTrue(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
-		  Assert.assertTrue(MyDetailCheck.checkMyCarryForward(driver, 5));
-		  Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 5));
-		  
-		  //check for links unavailable under 'My details'
-		  Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));
-		  Assert.assertFalse(MyDetailCheck.checkMyRetirementLink(driver, 5));
-		  Assert.assertFalse(MyDetailCheck.checkRedundacyLink(driver, 5));
-		  Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 5));
-		  Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, 5));
-		  
-		  //check 'This is me' page
-		  ThisIsMePage.loadPage(driver);
-		  CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
-		  CheckThisIsMePage.checkMembershipExisted(driver, refno);
-		  
-		  //check 'My Benefits' page and its sub-menus
-		  MyBenefitPage.loadPage(driver);
-		  Assert.assertTrue(CheckMyBenefitPage.checkLinkSchemeBenefits(driver, 10));
-		  Assert.assertTrue(CheckMyBenefitPage.checkLinkStateBenefits(driver, 10));
-		  
-		  //check 'Scheme Benefits' page
-		  SchemeBenefitsPage.loadPage(driver);
-		  Assert.assertTrue(CheckSchemeBenefitsPage.checkTablePersonalDetailsExisted(driver, 10));
-		  Assert.assertTrue(CheckSchemeBenefitsPage.checkMemberRefNumberExisted(driver, refno));
-		  Assert.assertTrue(CheckSchemeBenefitsPage.checkNinoNumberExisted(driver));
-		  
-		  //check 'State Benefits' page
-		  StateBenefitsPage.loadPage(driver);
-		  Assert.assertTrue(CheckStateBenefitsPage.checkTablePersonalDetailExisted(driver, 10));
-		  Assert.assertTrue(CheckStateBenefitsPage.checkDateOfBirth(driver));
-		  Assert.assertTrue(CheckStateBenefitsPage.checkNinoNumber(driver));
-		  
-		  //Check 'My Annual Allowance' Page and its sub-menus
-		  MyAnnualAllowancePage.loadPage(driver);
-		  Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAPensionSavings(driver, 5));
-		  Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAStatementLink(driver, 5));
-		  Assert.assertFalse(CheckMyAnnualAllowancePage.checkAAProjection(driver, 5));
-		  
-		  //Check 'My Carry Forward' page
-		  MyCarryForwardPage.loadPage(driver);
-		  
-		  //logout
-		  Authenticate.LogOut(driver, 10);
 		  
 		  
 	  }
