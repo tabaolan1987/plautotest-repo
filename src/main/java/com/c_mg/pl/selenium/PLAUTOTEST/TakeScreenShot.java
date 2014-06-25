@@ -7,6 +7,9 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 
 public class TakeScreenShot {
@@ -51,6 +54,13 @@ public class TakeScreenShot {
 			}
 			output = ((TakesScreenshot) driver)
 					.getScreenshotAs(OutputType.FILE);
+			if(driver instanceof FirefoxDriver){
+				name = name +"-firefox";
+			}else if(driver instanceof InternetExplorerDriver){
+				name = name + "-ie";
+			}else if(driver instanceof ChromeDriver){
+				name = name + "-chrome";
+			}
 			file = new File(screenshootDir, name + ".png");
 			FileUtils.copyFile(output, file);
 		} catch (IOException e) {
