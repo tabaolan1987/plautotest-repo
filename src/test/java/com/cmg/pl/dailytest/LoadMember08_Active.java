@@ -20,6 +20,7 @@ import com.cmg.pl.action.CheckSchemeBenefitsPage;
 import com.cmg.pl.action.CheckStateBenefitsPage;
 import com.cmg.pl.action.CheckThisIsMePage;
 import com.cmg.pl.action.MyDetailCheck;
+import com.cmg.pl.action.PageLoading;
 import com.cmg.pl.action.RedundancyCheck;
 import com.cmg.pl.action.SuperUser;
 import com.cmg.pl.pageObject.LoginPage;
@@ -60,7 +61,7 @@ public class LoadMember08_Active {
 		  System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
 	      driver = new InternetExplorerDriver();
 	  }
-	  
+	  TakeScreenShot.init(driver);
 	  usernameLogin = super_user_name;
 	  usernamePass = super_user_pass;
 	  refno = active_ref_no01;
@@ -69,13 +70,13 @@ public class LoadMember08_Active {
 
   @Test
   public void dailyTest() throws InterruptedException {
-	  try {
 		  LoginPage.LoadPage(driver);
 		  Authenticate.Login(driver, usernameLogin, usernamePass);
 		  SuperUser.loadMember(driver, 30 , group, refno);
 		  
 		  //check for links available under 'My details'
 		  MyDetailPage.loadPage(driver);
+		  TakeScreenShot.takeScreenshoot();
 		  Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
 		  Assert.assertTrue(MyDetailCheck.checkMyBenefitsLink(driver, 5));
 		  Assert.assertTrue(MyDetailCheck.checkMyRetirementLink(driver, 5));
@@ -114,9 +115,15 @@ public class LoadMember08_Active {
 		  //check 'My Retirement' page and model 3 options
 		  MyRetirementPage.loadPage(driver);
 		  CheckMyRetirementPage.modelRetirementAge(driver, -30);
+		  Thread.sleep(2000);
+		  Assert.assertFalse(PageLoading.checkDataError(driver));
 		  CheckMyRetirementPage.modelCashLumpSum(driver, 20);
+		  Thread.sleep(2000);
+		  Assert.assertFalse(PageLoading.checkDataError(driver));
 		  CheckMyRetirementPage.modelContributoryOptions(driver, 10 , 2);
-		  
+		  Thread.sleep(2000);
+		  Assert.assertFalse(PageLoading.checkDataError(driver));
+		  Thread.sleep(2000);
 		   //Check 'Redundancy' page and model a future redundancy date
 		  RedundancyPage.loadPage(driver);
 		  RedundancyCheck.modelRedundancy(driver);
@@ -132,11 +139,6 @@ public class LoadMember08_Active {
 		  
 		  //logout
 		  Authenticate.LogOut(driver, 10);
-	} catch (Exception e) {
-		TakeScreenShot.init(driver);
-		TakeScreenShot.takeScreenshoot();
-	}
-	
 	  
 	  
   }

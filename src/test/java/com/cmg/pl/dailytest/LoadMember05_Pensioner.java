@@ -50,7 +50,7 @@ public class LoadMember05_Pensioner {
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
 			driver = new InternetExplorerDriver();
 		}
-
+		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;
 		usernamePass = super_user_pass;
 		refno = pensioner_ref_no02;
@@ -60,7 +60,6 @@ public class LoadMember05_Pensioner {
 	
 	@Test
 	public void dailytest() {
-		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);
@@ -96,11 +95,6 @@ public class LoadMember05_Pensioner {
 			
 			//logout
 			Authenticate.LogOut(driver, 10);
-		} catch (Exception e) {
-			TakeScreenShot.init(driver);
-			TakeScreenShot.takeScreenshoot();
-		}
-		
 
 	}
 

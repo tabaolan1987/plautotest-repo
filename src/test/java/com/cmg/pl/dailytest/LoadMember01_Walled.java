@@ -46,7 +46,7 @@ public class LoadMember01_Walled {
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
 			driver = new InternetExplorerDriver();
 		}
-
+		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;
 		usernamePass = super_user_pass;
 		refno = walled_ref_no01;
@@ -55,13 +55,13 @@ public class LoadMember01_Walled {
 	
 	@Test
 	public void dailytest() {
-		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);
 
 			//check for links unavailable under 'My details'
 			MyDetailPage.loadPage(driver);
+			TakeScreenShot.takeScreenshoot();
 			Assert.assertFalse(MyDetailCheck.checkThisIsMeLink(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkSchemePays(driver, 5));
@@ -76,10 +76,6 @@ public class LoadMember01_Walled {
 			
 			//logout
 			Authenticate.LogOut(driver, 10);
-		} catch (Exception e) {
-			TakeScreenShot.init(driver);
-			TakeScreenShot.takeScreenshoot();
-		}
 		
 	}
 	

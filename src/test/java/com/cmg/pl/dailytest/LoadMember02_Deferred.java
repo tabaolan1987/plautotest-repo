@@ -46,7 +46,7 @@ public class LoadMember02_Deferred {
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
 			driver = new InternetExplorerDriver();
 		}
-
+		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;
 		usernamePass = super_user_pass;
 		refno = deferred_ref_no01;
@@ -55,13 +55,13 @@ public class LoadMember02_Deferred {
 	
 	@Test
 	public void dailytest() {
-		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);
 
 			//check for links available under 'My details'
 			MyDetailPage.loadPage(driver);
+			TakeScreenShot.takeScreenshoot();
 			Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
 			Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 5));
 			//check for links unavailable under 'My details'	
@@ -80,11 +80,6 @@ public class LoadMember02_Deferred {
 
 			//logout
 			Authenticate.LogOut(driver, 10);
-		} catch (Exception e) {
-			TakeScreenShot.init(driver);
-			TakeScreenShot.takeScreenshoot();
-		}
-		
 	}
 	
 	@AfterMethod

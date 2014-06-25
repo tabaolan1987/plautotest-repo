@@ -55,7 +55,7 @@ public class LoadMember07_Securitylock {
 			  System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
 		      driver = new InternetExplorerDriver();
 		  }
-		  
+		  TakeScreenShot.init(driver);
 		  usernameLogin = super_user_name;
 		  usernamePass = super_user_pass;
 		  refno = securitylock_ref_no01;
@@ -64,13 +64,13 @@ public class LoadMember07_Securitylock {
 
 	  @Test
 	  public void dailyTest() throws InterruptedException {
-		  try {
 			  LoginPage.LoadPage(driver);
 			  Authenticate.Login(driver, usernameLogin, usernamePass);
 			  SuperUser.loadMember(driver, 30 , group, refno);
 			  
 			  //check for links available under 'My details'
 			  MyDetailPage.loadPage(driver);
+			  TakeScreenShot.init(driver);
 			  Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
 			  Assert.assertTrue(MyDetailCheck.checkMyBenefitsLink(driver, 5));
 			  Assert.assertTrue(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
@@ -117,12 +117,6 @@ public class LoadMember07_Securitylock {
 			  
 			  //logout
 			  Authenticate.LogOut(driver, 10);
-		} catch (Exception e) {
-			TakeScreenShot.init(driver);
-			TakeScreenShot.takeScreenshoot();
-		}
-		  
-		  
 		  
 	  }
 	  
