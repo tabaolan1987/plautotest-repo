@@ -4,9 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
+
 public class LogoutPage {
 	
-	private static String URL = "https://pensionline.bp.com/content/pl/_logout_ask.html";
+	private static String URL =Constant.URL + "content/pl/_logout_ask.html";
 	
 	public static String XPAHT_BTT_LOGOUT = "//div[@id='pagebody']/form/input[@class='goButton']";
 	

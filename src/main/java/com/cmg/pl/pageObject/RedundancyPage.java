@@ -5,11 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.cmg.pl.action.PageLoading;
 
 public class RedundancyPage {
 	
-	private static String URL = "https://pensionline.bp.com/content/pl/mydetails/redundancy_planner_ac/";
+	private static String URL = Constant.URL + "content/pl/mydetails/redundancy_planner_ac/";
 	
 	private static String LINK_TEXT_REDUDANCY_DATE = "Redundancy date";
 	

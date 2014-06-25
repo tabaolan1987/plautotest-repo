@@ -4,9 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
+
 public class MyBenefitPage {
 	
-	private static String URL = "https://pensionline.bp.com/content/pl/mydetails/benefit_statement_ac/";
+	private static String URL = Constant.URL + "content/pl/mydetails/benefit_statement_ac/";
 	
 	public static WebDriver loadPage(WebDriver driver){
 		driver.get(URL);

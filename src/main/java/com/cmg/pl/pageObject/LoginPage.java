@@ -4,10 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.cmg.pl.action.PageLoading;
 
 public class LoginPage {
-	private static String URL = "https://pensionline.bp.com/content/pl/_login_ask.html";
+	
+	private static String URL = Constant.URL + "content/pl/_login_ask.html";
 	
 	private static String ID_TXT_USERNAME = "_request_username";
 	

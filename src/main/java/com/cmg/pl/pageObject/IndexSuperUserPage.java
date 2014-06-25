@@ -4,9 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
+
 public class IndexSuperUserPage {
 	
-	private static String URL = "https://pensionline.bp.com/content/pl/superuser/index.html";
+	private static String URL = Constant.URL + "content/pl/superuser/index.html";
 	
 	public static String ID_SELECT_BGROUP = "bgroup";
 	

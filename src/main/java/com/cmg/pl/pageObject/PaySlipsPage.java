@@ -5,11 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.cmg.pl.action.PageLoading;
 
 public class PaySlipsPage {
 	
-	private static String URL = "https://pensionline.bp.com/content/pl/mydetails/benefit_statement_pn.html";
+	private static String URL = Constant.URL + "content/pl/mydetails/benefit_statement_pn.html";
 	
 	public static String ID_TABLE_PERSONAL_DETAIL = "member_id";
 	

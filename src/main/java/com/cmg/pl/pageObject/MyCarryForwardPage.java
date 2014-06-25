@@ -3,11 +3,12 @@ package com.cmg.pl.pageObject;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.cmg.pl.action.PageLoading;
 
 public class MyCarryForwardPage {
 	
-	private static String URL = "https://pensionline.bp.com/content/pl/mydetails/carryfwd/";
+	private static String URL = Constant.URL + "content/pl/mydetails/carryfwd/";
 	
 	public static WebDriver loadPage(WebDriver driver){
 		driver.get(URL);
