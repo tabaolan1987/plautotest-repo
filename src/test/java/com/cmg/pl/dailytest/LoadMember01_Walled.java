@@ -77,6 +77,7 @@ public class LoadMember01_Walled {
 			//logout
 			Authenticate.LogOut(driver, 10);
 		} catch (Exception e) {
+			TakeScreenShot.init(driver);
 			TakeScreenShot.takeScreenshoot();
 		}
 		

@@ -118,6 +118,7 @@ public class LoadMember07_Securitylock {
 			  //logout
 			  Authenticate.LogOut(driver, 10);
 		} catch (Exception e) {
+			TakeScreenShot.init(driver);
 			TakeScreenShot.takeScreenshoot();
 		}
 		  

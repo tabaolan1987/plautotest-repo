@@ -133,6 +133,7 @@ public class LoadMember08_Active {
 		  //logout
 		  Authenticate.LogOut(driver, 10);
 	} catch (Exception e) {
+		TakeScreenShot.init(driver);
 		TakeScreenShot.takeScreenshoot();
 	}
 	

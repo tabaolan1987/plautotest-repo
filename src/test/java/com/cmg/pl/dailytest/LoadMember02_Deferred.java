@@ -81,6 +81,7 @@ public class LoadMember02_Deferred {
 			//logout
 			Authenticate.LogOut(driver, 10);
 		} catch (Exception e) {
+			TakeScreenShot.init(driver);
 			TakeScreenShot.takeScreenshoot();
 		}
 		
