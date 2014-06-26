@@ -5,7 +5,7 @@
 <suite name="Suite" parallel="none">
 	<test name="FirefoxTest">
 		<parameter name="browser" value="firefox" />
-		<parameter name="super_user_name" value="superuser" />
+		<parameter name="super_user_name" value="AutoSuperuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
 		<parameter name="walled_ref_no01" value="0103603" />
 		<parameter name="deferred_ref_no01" value="0103360" />
