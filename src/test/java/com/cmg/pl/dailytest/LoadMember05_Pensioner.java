@@ -62,6 +62,7 @@ public class LoadMember05_Pensioner {
 	public void dailytest() {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
+			TakeScreenShot.takeScreenshoot();
 			SuperUser.loadMember(driver, 30, group, refno);
 
 			//check for links available under 'My details'
