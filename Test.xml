@@ -6,7 +6,7 @@
 
 	<test name="IETest">
 		<parameter name="browser" value="ie" />
-		<parameter name="super_user_name" value="superuser" />
+		<parameter name="super_user_name" value="AutoSuperuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
 
 		<parameter name="walled_ref_no01" value="0103603" />
@@ -59,7 +59,7 @@
 
 	<test name="ChromeTest">
 		<parameter name="browser" value="chrome" />
-		<parameter name="super_user_name" value="superuser" />
+		<parameter name="super_user_name" value="AutoSuperuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
 
 		<parameter name="walled_ref_no01" value="0103603" />
