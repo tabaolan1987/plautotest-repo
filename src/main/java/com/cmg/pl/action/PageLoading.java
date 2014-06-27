@@ -1,13 +1,13 @@
 package com.cmg.pl.action;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -104,7 +104,6 @@ public class PageLoading {
 		} catch (Exception e) {
 		}
 		
-		Actions complex = new Actions(driver);
 		return check;
 	}
 	
@@ -120,4 +119,28 @@ public class PageLoading {
 		}
 		
 	}
+	
+	public static boolean waitForNewTab(WebDriver driver,int timeout,String tabName){
+		boolean check = false;
+		int count = 0;
+		while(!check){
+			try {
+				for (String handle : driver.getWindowHandles()) {
+						System.out.println("tab handle name : " + handle);
+				    	if(handle.equalsIgnoreCase(tabName)){
+				    		check = true;
+				    		return check;
+				    	}
+				}
+				count++;
+				Thread.sleep(1000);
+				if(count > timeout){
+					return false;
+				}
+			} catch (Exception e) {
+			}
+		}
+		return check;
+	}
+	
 }

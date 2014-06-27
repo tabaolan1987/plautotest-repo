@@ -8,6 +8,9 @@
 		<parameter name="browser" value="ie" />
 		<parameter name="super_user_name" value="AutoSuperuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
+		
+		<parameter name="report_runner_name" value="auto_daily_checker" />
+		<parameter name="report_runner_pass" value="P3nsions" />
 
 		<parameter name="walled_ref_no01" value="0103603" />
 		<parameter name="deferred_ref_no01" value="0103360" />
@@ -27,6 +30,7 @@
 			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner" />
 			<class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" />
 			<class name="com.cmg.pl.dailytest.LoadMember08_Active" />
+			<class name="com.cmg.pl.dailytest.ProduceReport" />
 		</classes>
 	</test>
 
@@ -36,6 +40,10 @@
 		<parameter name="browser" value="firefox" />
 		<parameter name="super_user_name" value="AutoSuperuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
+		
+		<parameter name="report_runner_name" value="auto_daily_checker" />
+		<parameter name="report_runner_pass" value="P3nsions" />
+		
 		<parameter name="walled_ref_no01" value="0103603" />
 		<parameter name="deferred_ref_no01" value="0103360" />
 		<parameter name="deferred_ref_no02" value="0001794" />
@@ -54,6 +62,7 @@
 			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner" />
 			<class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" />
 			<class name="com.cmg.pl.dailytest.LoadMember08_Active" />
+			<class name="com.cmg.pl.dailytest.ProduceReport" />
 		</classes>
 	</test>
 
@@ -61,6 +70,9 @@
 		<parameter name="browser" value="chrome" />
 		<parameter name="super_user_name" value="AutoSuperuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
+		
+		<parameter name="report_runner_name" value="auto_daily_checker" />
+		<parameter name="report_runner_pass" value="P3nsions" />
 
 		<parameter name="walled_ref_no01" value="0103603" />
 		<parameter name="deferred_ref_no01" value="0103360" />
@@ -80,6 +92,7 @@
 			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner" />
 			<class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" />
 			<class name="com.cmg.pl.dailytest.LoadMember08_Active" />
+			<class name="com.cmg.pl.dailytest.ProduceReport" />
 		</classes>
 
 	</test>

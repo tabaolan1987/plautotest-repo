@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.cmg.pl.pageObject.AccessReportsPage;
-import com.cmg.pl.pageObject.IndexSuperUserPage;
+
 import com.cmg.pl.pageObject.ReportingToolPage;
 
 public class RunCheckingConnectionReportGroup {
