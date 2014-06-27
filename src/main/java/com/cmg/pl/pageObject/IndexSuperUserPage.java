@@ -22,6 +22,7 @@ public class IndexSuperUserPage {
 	}
 	
 	public static WebElement SelectBgroup(WebDriver driver){
+		
 		WebElement el = driver.findElement(By.id(ID_SELECT_BGROUP));
 		return el;
 	}

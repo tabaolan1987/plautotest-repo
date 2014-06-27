@@ -97,7 +97,7 @@ public class LoadMember08_Active {
 		  Assert.assertTrue(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
 		  Assert.assertTrue(MyDetailCheck.checkMyCarryForward(driver, 5));
 		  Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 5));
-		  
+		  Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 5));
 		  //check for links unavailable under 'My details'
 		  Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));
 		  Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 5));

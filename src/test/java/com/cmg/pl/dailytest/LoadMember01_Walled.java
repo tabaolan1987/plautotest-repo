@@ -69,7 +69,7 @@ public class LoadMember01_Walled {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);
-
+			
 			//check for links unavailable under 'My details'
 			MyDetailPage.loadPage(driver);
 			TakeScreenShot.takeScreenshoot();
