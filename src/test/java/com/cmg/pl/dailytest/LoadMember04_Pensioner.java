@@ -1,8 +1,10 @@
 package com.cmg.pl.dailytest;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -38,16 +40,27 @@ public class LoadMember04_Pensioner {
 	public void beforeMethod(String browser, String super_user_name, String super_user_pass, String pensioner_ref_no01) 
 	{
 		if (browser.equalsIgnoreCase("firefox")) {
-			driver = new FirefoxDriver();
-			System.out.println("coming firefox");
+			try {
+				System.out.println("Start firefox : LoadMember04_Pensioner");
+				driver = new FirefoxDriver();
+			} catch (WebDriverException e) {
+				System.out.println(e.getMessage());
+				FirefoxProfile profile = new FirefoxProfile();
+				profile.setAcceptUntrustedCertificates(true);
+				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, "7056");
+				driver = new FirefoxDriver(profile);
+			}
 		} else if (browser.equalsIgnoreCase("chrome")) {
+			System.out.println("Start chrome : LoadMember04_Pensioner");
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
 			driver = new ChromeDriver();
 		} else if (browser.equalsIgnoreCase("ie")) {
+			System.out.println("Start ie : LoadMember04_Pensioner");
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
 			driver = new InternetExplorerDriver();
 		}
+		driver.manage().deleteAllCookies();
 		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;
 		usernamePass = super_user_pass;
