@@ -47,7 +47,7 @@ public class LoadMember04_Pensioner {
 				System.out.println(e.getMessage());
 				FirefoxProfile profile = new FirefoxProfile();
 				profile.setAcceptUntrustedCertificates(true);
-				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, "7056");
+				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
 				driver = new FirefoxDriver(profile);
 			}
 		} else if (browser.equalsIgnoreCase("chrome")) {
