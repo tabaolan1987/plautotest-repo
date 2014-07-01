@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import com.cmg.pl.pageObject.InputReportParamPage;
 
@@ -18,7 +17,7 @@ public class ProduceReportWithInputParam {
 		
 		InputReportParamPage.RunButton(driver).click();
 		
-		Assert.assertTrue(PageLoading.waitForNewTab(driver, 60));
+		PageLoading.waitForNewTab(driver, 60);
 		
 		String tabID = PageLoading.getTabIdByTitle(driver, TITLE_DOWNLOAD_REPORT_PAGE);
 		
