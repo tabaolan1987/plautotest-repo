@@ -19,7 +19,7 @@ public class RedundancyCheck {
 	
 	private static String TD_CLASS = "day";
 	
-	public static void modelRedundancy(WebDriver driver){
+	public static void modelRedundancy(WebDriver driver) throws InterruptedException{
 		//Click on link text date
 		RedundancyPage.linkRedudancyDate(driver).click();
 		//wait for all element model present
@@ -35,6 +35,8 @@ public class RedundancyCheck {
 		//click to choose the first date of next month in calendar
 		chooseDateNextMonth(driver);
 		//click model
+		Thread.sleep(2000);
+		
 		RedundancyPage.bttModel(driver).click();
 		//check page loading
 		PageLoading.waitForImageVisible(driver, 10);

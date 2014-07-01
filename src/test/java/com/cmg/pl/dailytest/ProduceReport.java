@@ -62,7 +62,7 @@ public class ProduceReport {
 	}
   
   @Test
-  public void dailytest() {
+  public void dailytest() throws InterruptedException {
 	  LoginPage.LoadPage(driver);
 	  Authenticate.Login(driver, report_runner_username, report_runner_password);
 	  
@@ -74,6 +74,7 @@ public class ProduceReport {
 	 // Thread.sleep(10000);
 	  
 	  CheckAccessReportsPage.RunSelectedReports(driver);
+	  Thread.sleep(2000);
 	  ProduceReportWithInputParam.ProduceReportWithDefaultParam(driver);
 	  
 	  //logout
