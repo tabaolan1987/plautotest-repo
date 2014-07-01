@@ -18,7 +18,6 @@ import com.cmg.pl.action.Authenticate;
 import com.cmg.pl.action.CheckAccessReportsPage;
 import com.cmg.pl.action.ProduceReportWithInputParam;
 import com.cmg.pl.action.RunCheckingConnectionReportGroup;
-import com.cmg.pl.pageObject.AccessReportsPage;
 import com.cmg.pl.pageObject.LoginPage;
 import com.cmg.pl.pageObject.ReportingToolPage;
 
@@ -83,7 +82,7 @@ public class ProduceReport {
 
   @AfterMethod
   public void afterMethod() {
-	  driver.quit();
+	 driver.quit();
   }
 
 }

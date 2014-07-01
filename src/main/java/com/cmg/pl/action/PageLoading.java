@@ -2,12 +2,12 @@ package com.cmg.pl.action;
 
 
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -120,27 +120,38 @@ public class PageLoading {
 		
 	}
 	
-	public static boolean waitForNewTab(WebDriver driver,int timeout,String tabName){
+	public static boolean waitForNewTab(WebDriver driver,int timeout){
 		boolean check = false;
 		int count = 0;
 		while(!check){
 			try {
-				for (String handle : driver.getWindowHandles()) {
-						System.out.println("tab handle name : " + handle);
-				    	if(handle.equalsIgnoreCase(tabName)){
-				    		check = true;
-				    		return check;
-				    	}
+				Set<String> winHandle = driver.getWindowHandles();
+				if(winHandle.size() > 1){
+					check = true;
+					return check;
 				}
-				count++;
 				Thread.sleep(1000);
+				count++;
 				if(count > timeout){
-					return false;
+					return check;
 				}
 			} catch (Exception e) {
 			}
 		}
 		return check;
+	}
+	
+	public static String getTabIdByTitle(WebDriver driver , String title){
+		String tabID="";
+		Set<String> handles = driver.getWindowHandles();
+		for(String handle : handles){
+			driver.switchTo().window(handle);
+			if(driver.getTitle().equals(title)){
+				tabID = handle;
+				break;
+			}
+		}
+		return tabID;
 	}
 	
 }

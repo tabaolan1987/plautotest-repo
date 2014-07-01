@@ -22,7 +22,7 @@
 		<parameter name="active_ref_no01" value="0122398" />
 
 		<classes>
-			<class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
+			 <class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
 			<class name="com.cmg.pl.dailytest.LoadMember02_Deferred" />
 			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" />
 			<class name="com.cmg.pl.dailytest.LoadMember04_Pensioner" />
@@ -36,7 +36,7 @@
 
 
 
-	<test name="FirefoxTest">
+	 <test name="FirefoxTest">
 		<parameter name="browser" value="firefox" />
 		<parameter name="super_user_name" value="AutoSuperuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
