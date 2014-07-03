@@ -12,6 +12,7 @@ public class MyBenefitPage {
 	
 	public static WebDriver loadPage(WebDriver driver){
 		driver.get(URL);
+		System.out.println("Load page : " + URL);
 		return driver;
 	}
 	

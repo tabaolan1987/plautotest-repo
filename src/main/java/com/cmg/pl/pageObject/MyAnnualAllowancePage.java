@@ -12,6 +12,7 @@ public class MyAnnualAllowancePage {
 	
 	public static WebDriver loadPage(WebDriver driver){
 		driver.get(URL);
+		System.out.println("Load page : " + URL);
 		return driver;
 	}
 	

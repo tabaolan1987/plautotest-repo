@@ -20,6 +20,7 @@ public class LoginPage {
 	public static WebDriver LoadPage(WebDriver driver){
 		driver.get(URL);
 		PageLoading.checkAlertPresent(driver);
+		System.out.println("load page : " + URL);
 		return driver;
 	}
 	

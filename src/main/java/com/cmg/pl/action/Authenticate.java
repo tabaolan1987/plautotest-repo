@@ -14,6 +14,7 @@ public class Authenticate {
 		LoginPage.txtUsername(driver).sendKeys(username);
 		LoginPage.txtPassword(driver).sendKeys(password);
 		LoginPage.bttGo(driver).click();
+		System.out.println("click button login");
 	}
 	
 	public static void LogOut(WebDriver driver, int timeout){
@@ -25,6 +26,8 @@ public class Authenticate {
 		LogoutPage.BttLogout(driver).click();
 		
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.linkText("Logout")));
+		
+		System.out.println("log out");
 		
 	}
 	
