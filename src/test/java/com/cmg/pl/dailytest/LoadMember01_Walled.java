@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -54,7 +55,11 @@ public class LoadMember01_Walled {
 		} else if (browser.equalsIgnoreCase("ie")) {
 			System.out.println("Start ie : LoadMember01_Walled");
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
-			driver = new InternetExplorerDriver();
+			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
+			caps.setCapability(
+			    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+			    true);
+			driver = new InternetExplorerDriver(caps);
 		}
 		driver.manage().deleteAllCookies();
 		TakeScreenShot.init(driver);
