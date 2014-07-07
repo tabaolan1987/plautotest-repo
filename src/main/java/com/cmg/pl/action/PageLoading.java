@@ -120,6 +120,11 @@ public class PageLoading {
 		
 	}
 	
+	/**
+	 * @param driver
+	 * @param timeout
+	 * @return
+	 */
 	public static boolean waitForNewTab(WebDriver driver,int timeout){
 		boolean check = false;
 		int count = 0;

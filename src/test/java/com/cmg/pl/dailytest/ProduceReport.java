@@ -70,11 +70,9 @@ public class ProduceReport {
   public void dailytest() throws InterruptedException {
 	  LoginPage.LoadPage(driver);
 	  Authenticate.Login(driver, report_runner_username, report_runner_password);
-	  
 	  ReportingToolPage.loadPage(driver);
 	  RunCheckingConnectionReportGroup.runReportGroupCheckingConnection(driver);
 	  Assert.assertTrue(CheckAccessReportsPage.CheckReportSections(driver));
-	  
 	  CheckAccessReportsPage.CheckSelectAllReports(driver);
 	 // Thread.sleep(10000);
 	  TakeScreenShot.takeScreenshoot();
