@@ -2,6 +2,7 @@ package com.cmg.pl.pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
@@ -18,7 +19,11 @@ public class LoginPage {
 	private static String ID_BTT_GO = "doauth";
 	
 	public static WebDriver LoadPage(WebDriver driver){
-		driver.get(URL);
+		try {
+			driver.get(URL);
+		} catch (WebDriverException e) {
+			driver.get(URL);
+		}
 		PageLoading.checkAlertPresent(driver);
 		System.out.println("load page : " + URL);
 		return driver;
