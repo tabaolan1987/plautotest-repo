@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.Augmenter;
 
 
 public class TakeScreenShot {
@@ -52,15 +53,22 @@ public class TakeScreenShot {
 				name = currentTestMethod.getName()
 						+ (count == 0 ? "" : (" (" + count + ")"));
 			}
-			output = ((TakesScreenshot) driver)
-					.getScreenshotAs(OutputType.FILE);
+			
 			if(driver instanceof FirefoxDriver){
 				name = name +"-firefox";
+				output = ((TakesScreenshot) driver)
+						.getScreenshotAs(OutputType.FILE);
 				file = new File(screenshootDir, name + ".png");
 				FileUtils.copyFile(output, file);
 			}else if(driver instanceof InternetExplorerDriver){
+				WebDriver augmentedDriver = new Augmenter().augment(driver);
+				output = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 				name = name + "-ie";
+				file = new File(screenshootDir, name + ".png");
+				FileUtils.copyFile(output, file);
 			}else if(driver instanceof ChromeDriver){
+				output = ((TakesScreenshot) driver)
+						.getScreenshotAs(OutputType.FILE);
 				name = name + "-chrome";
 				file = new File(screenshootDir, name + ".png");
 				FileUtils.copyFile(output, file);
