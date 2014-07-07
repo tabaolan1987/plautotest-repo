@@ -44,7 +44,7 @@ public class TakeScreenShot {
 				if (files != null && files.length > 0) {
 					for (File fl : files) {
 						if (fl.getName()
-								.startsWith(currentTestMethod.getName())) {
+								.contains(currentTestMethod.getName())) {
 							count++;
 						}
 					}
@@ -56,15 +56,17 @@ public class TakeScreenShot {
 					.getScreenshotAs(OutputType.FILE);
 			if(driver instanceof FirefoxDriver){
 				name = name +"-firefox";
+				file = new File(screenshootDir, name + ".png");
+				FileUtils.copyFile(output, file);
 			}else if(driver instanceof InternetExplorerDriver){
 				name = name + "-ie";
 			}else if(driver instanceof ChromeDriver){
 				name = name + "-chrome";
+				file = new File(screenshootDir, name + ".png");
+				FileUtils.copyFile(output, file);
 			}
-			file = new File(screenshootDir, name + ".png");
-			FileUtils.copyFile(output, file);
 		} catch (IOException e) {
-
+			e.printStackTrace();
 		}
 	}
 
