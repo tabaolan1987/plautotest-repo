@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
 import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.cmg.pl.action.Authenticate;
@@ -64,6 +65,7 @@ public class LoadMember06_Pensioner {
 			    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 			    true);
 			driver = new InternetExplorerDriver(caps);
+			driver.get(Constant.main_url);
 		}
 		driver.manage().deleteAllCookies();
 		TakeScreenShot.init(driver);
