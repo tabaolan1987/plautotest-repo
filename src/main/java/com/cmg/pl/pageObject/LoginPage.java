@@ -22,6 +22,7 @@ public class LoginPage {
 		try {
 			driver.get(URL);
 		} catch (WebDriverException e) {
+			System.out.println("exception webdriver : " + e.getMessage() + " try to load this url once more time");
 			driver.get(URL);
 		}
 		PageLoading.checkAlertPresent(driver);
