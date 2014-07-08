@@ -22,7 +22,6 @@ public class CheckMyRetirementPage {
 		Actions dragger = new Actions(driver);
 		dragger.dragAndDropBy(MyRetirementPage.modelSliderRetirementAge(driver), movePixel, 0);
 		dragger.build().perform();
-		System.out.println("abc");
 		// click button to model
 		MyRetirementPage.modelBttRetirementAge(driver).click();
 		
