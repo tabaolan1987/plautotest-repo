@@ -61,11 +61,11 @@ public class TakeScreenShot {
 				file = new File(screenshootDir, name + ".png");
 				FileUtils.copyFile(output, file);
 			}else if(driver instanceof InternetExplorerDriver){
-				WebDriver augmentedDriver = new Augmenter().augment(driver);
+			/*	WebDriver augmentedDriver = new Augmenter().augment(driver);
 				output = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 				name = name + "-ie";
 				file = new File(screenshootDir, name + ".png");
-				FileUtils.copyFile(output, file);
+				FileUtils.copyFile(output, file);*/
 			}else if(driver instanceof ChromeDriver){
 				output = ((TakesScreenshot) driver)
 						.getScreenshotAs(OutputType.FILE);
