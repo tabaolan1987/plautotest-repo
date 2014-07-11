@@ -59,6 +59,7 @@ public class LoadMember08_Active {
 		  try {
 			  System.out.println("Start firefox : LoadMember08_Active");
 				driver = new FirefoxDriver();
+				driver.manage().deleteAllCookies();
 			} catch (WebDriverException e) {
 				System.out.println(e.getMessage());
 				FirefoxProfile profile = new FirefoxProfile();
@@ -70,6 +71,7 @@ public class LoadMember08_Active {
 		  System.out.println("Start chrome : LoadMember08_Active");
 		  System.setProperty("webdriver.chrome.driver", DriverUtil.getChromeDriver());
 		  driver= new ChromeDriver();
+		  driver.manage().deleteAllCookies();
 	  }else if(browser.equalsIgnoreCase("ie")){
 		  System.out.println("Start ie : LoadMember08_Active");
 		  System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
@@ -78,9 +80,9 @@ public class LoadMember08_Active {
 			    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 			    true);
 			driver = new InternetExplorerDriver(caps);
+			driver.manage().deleteAllCookies();
 			driver.get(Constant.main_url);
 	  }
-	  driver.manage().deleteAllCookies();
 	  TakeScreenShot.init(driver);
 	  usernameLogin = super_user_name;
 	  usernamePass = super_user_pass;

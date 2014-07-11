@@ -38,6 +38,7 @@ public class ProduceReport {
 			try {
 				System.out.println("Start firefox : Report Runner Login");
 				driver = new FirefoxDriver();
+				driver.manage().deleteAllCookies();
 			} catch (WebDriverException e) {
 				System.out.println(e.getMessage());
 				FirefoxProfile profile = new FirefoxProfile();
@@ -50,6 +51,7 @@ public class ProduceReport {
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
 			driver = new ChromeDriver();
+			driver.manage().deleteAllCookies();
 		} else if (browser.equalsIgnoreCase("ie")) {
 			System.out.println("Start ie : Report Runner Login");
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
@@ -58,9 +60,9 @@ public class ProduceReport {
 			    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 			    true);
 			driver = new InternetExplorerDriver(caps);
+			driver.manage().deleteAllCookies();
 			driver.get(Constant.main_url);
 		}
-		driver.manage().deleteAllCookies();
 		TakeScreenShot.init(driver);
 		report_runner_username = report_runner_name;
 		report_runner_password = report_runner_pass;

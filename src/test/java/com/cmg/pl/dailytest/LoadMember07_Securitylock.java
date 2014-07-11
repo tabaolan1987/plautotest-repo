@@ -53,6 +53,7 @@ public class LoadMember07_Securitylock {
 			  try {
 					System.out.println("Start firefox : LoadMember07_Securitylock");
 					driver = new FirefoxDriver();
+					driver.manage().deleteAllCookies();
 				} catch (WebDriverException e) {
 					System.out.println(e.getMessage());
 					FirefoxProfile profile = new FirefoxProfile();
@@ -64,6 +65,7 @@ public class LoadMember07_Securitylock {
 			  System.out.println("Start chrome : LoadMember07_Securitylock");
 			  System.setProperty("webdriver.chrome.driver", DriverUtil.getChromeDriver());
 			  driver= new ChromeDriver();
+			  driver.manage().deleteAllCookies();
 		  }else if(browser.equalsIgnoreCase("ie")){
 			  System.out.println("Start ie : LoadMember07_Securitylock");
 			  System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
@@ -72,6 +74,7 @@ public class LoadMember07_Securitylock {
 				    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 				    true);
 				driver = new InternetExplorerDriver(caps);
+				driver.manage().deleteAllCookies();
 				driver.get(Constant.main_url);
 		  }
 		  driver.manage().deleteAllCookies();

@@ -41,6 +41,7 @@ public class LoadMember01_Walled {
 			try {
 				System.out.println("Start firefox : LoadMember01_Walled");
 				driver = new FirefoxDriver();
+				driver.manage().deleteAllCookies();
 			} catch (WebDriverException e) {
 				System.out.println(e.getMessage());
 				FirefoxProfile profile = new FirefoxProfile();
@@ -53,6 +54,7 @@ public class LoadMember01_Walled {
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
 			driver = new ChromeDriver();
+			driver.manage().deleteAllCookies();
 		} else if (browser.equalsIgnoreCase("ie")) {
 			System.out.println("Start ie : LoadMember01_Walled");
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
@@ -61,10 +63,10 @@ public class LoadMember01_Walled {
 			    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 			    true);
 			driver = new InternetExplorerDriver(caps);
+			driver.manage().deleteAllCookies();
 			driver.get(Constant.main_url);
 		
 		}
-		driver.manage().deleteAllCookies();
 		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;
 		usernamePass = super_user_pass;
