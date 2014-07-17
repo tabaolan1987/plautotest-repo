@@ -95,9 +95,14 @@ public class ProduceReport {
 
 	}
 
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void afterMethod() {
-		driver.quit();
+		try {
+			driver.quit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

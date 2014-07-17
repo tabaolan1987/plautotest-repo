@@ -14,11 +14,13 @@ public class CheckThisIsMePage {
 	
 	
 	public static void checkPersonalDetailTableExisted(WebDriver driver , int timeout){
+		System.out.println("check personal detail table");
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(ThisIsMePage.ID_TABLE_PERSONAL)));
 	}
 	
 	public static boolean checkMembershipExisted(WebDriver driver  , String refNumber){
+		System.out.println("check membership existed");
 		WebElement table = ThisIsMePage.tablePersonalDetail(driver);
 		boolean checkExisted = false;
 		List<WebElement> trs = table.findElements(By.tagName("tr"));

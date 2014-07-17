@@ -100,7 +100,7 @@ public class LoadMember03_Deferred {
 			//check 'This is me' page
 			ThisIsMePage.loadPage(driver);
 			CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
-			CheckThisIsMePage.checkMembershipExisted(driver, refno);
+			Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver, refno));
 
 			//logout
 			Authenticate.LogOut(driver, 10);
@@ -111,9 +111,14 @@ public class LoadMember03_Deferred {
 		
 	}
 	
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void afterMethod() {
-		driver.quit();
+		try {
+			driver.quit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

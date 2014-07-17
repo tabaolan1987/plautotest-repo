@@ -103,8 +103,13 @@ public class LoadMember01_Walled {
 		}
 	}
 	
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void afterMethod() {
-		driver.quit();
+		try {
+			driver.quit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

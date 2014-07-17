@@ -105,7 +105,7 @@ public class LoadMember04_Pensioner {
 			//check 'This is me' page
 			ThisIsMePage.loadPage(driver);
 			CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
-			CheckThisIsMePage.checkMembershipExisted(driver, refno);
+			Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver, refno));
 
 			//check Payslips page 
 			PaySlipsPage.loadPage(driver);
@@ -126,8 +126,13 @@ public class LoadMember04_Pensioner {
 
 	}
 
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void afterMethod() {
-		driver.quit();
+		try {
+			driver.quit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

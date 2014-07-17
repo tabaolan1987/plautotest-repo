@@ -111,7 +111,7 @@ public class LoadMember07_Securitylock {
 			  //check 'This is me' page
 			  ThisIsMePage.loadPage(driver);
 			  CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
-			  CheckThisIsMePage.checkMembershipExisted(driver, refno);
+			  Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver, refno));
 			  
 			  //check 'My Benefits' page and its sub-menus
 			  MyBenefitPage.loadPage(driver);
@@ -148,8 +148,13 @@ public class LoadMember07_Securitylock {
 		  
 	  }
 	  
-	  @AfterMethod
-	  public void afterMethod() {
-		  driver.quit();
-	  }
+	  @AfterMethod(alwaysRun = true)
+		public void afterMethod() {
+			try {
+				driver.quit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
 }
