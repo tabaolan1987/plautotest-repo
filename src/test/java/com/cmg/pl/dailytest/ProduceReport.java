@@ -62,7 +62,7 @@ public class ProduceReport {
 			driver = new InternetExplorerDriver(caps);
 			driver.manage().deleteAllCookies();
 		}
-		driver.manage().timeouts().pageLoadTimeout(200, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
 		TakeScreenShot.init(driver);
 		report_runner_username = report_runner_name;
 		report_runner_password = report_runner_pass;

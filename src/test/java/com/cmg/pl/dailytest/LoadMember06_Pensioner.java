@@ -11,6 +11,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -70,7 +71,7 @@ public class LoadMember06_Pensioner {
 			driver = new InternetExplorerDriver(caps);
 			driver.manage().deleteAllCookies();
 		}
-		driver.manage().timeouts().pageLoadTimeout(200, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
 		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;
 		usernamePass = super_user_pass;
@@ -128,6 +129,10 @@ public class LoadMember06_Pensioner {
 
 	@AfterMethod
 	public void afterMethod() {
+		driver.quit();
+	}
+	@AfterSuite
+	public void afterSuite(){
 		driver.quit();
 	}
 }

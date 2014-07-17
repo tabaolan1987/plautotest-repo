@@ -77,7 +77,7 @@ public class LoadMember07_Securitylock {
 				driver = new InternetExplorerDriver(caps);
 				driver.manage().deleteAllCookies();
 		  }
-			driver.manage().timeouts().pageLoadTimeout(200, TimeUnit.SECONDS);
+		  driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
 		  TakeScreenShot.init(driver);
 		  usernameLogin = super_user_name;
 		  usernamePass = super_user_pass;

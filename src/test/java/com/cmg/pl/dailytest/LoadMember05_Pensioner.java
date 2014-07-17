@@ -72,7 +72,7 @@ public class LoadMember05_Pensioner {
 			driver = new InternetExplorerDriver(caps);
 			driver.manage().deleteAllCookies();
 		}
-		driver.manage().timeouts().pageLoadTimeout(200, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
 		driver.manage().deleteAllCookies();
 		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;
