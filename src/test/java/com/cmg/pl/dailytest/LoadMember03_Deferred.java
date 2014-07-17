@@ -66,7 +66,6 @@ public class LoadMember03_Deferred {
 			    true);
 			driver = new InternetExplorerDriver(caps);
 			driver.manage().deleteAllCookies();
-			driver.get(Constant.main_url);
 		}
 		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;

@@ -22,6 +22,5 @@ public class ProduceReportWithInputParam {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(InputReportParamPage.RUN_BTT_ID)));
 		InputReportParamPage.RunButton(driver).click();
-		
 	}
 }

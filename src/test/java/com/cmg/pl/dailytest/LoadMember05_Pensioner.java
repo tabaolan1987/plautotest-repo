@@ -70,7 +70,6 @@ public class LoadMember05_Pensioner {
 			    true);
 			driver = new InternetExplorerDriver(caps);
 			driver.manage().deleteAllCookies();
-			driver.get(Constant.main_url);
 		}
 		driver.manage().deleteAllCookies();
 		TakeScreenShot.init(driver);
