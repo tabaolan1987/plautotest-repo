@@ -1,5 +1,7 @@
 package com.cmg.pl.dailytest;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,7 +15,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
 import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.cmg.pl.action.Authenticate;
@@ -76,7 +77,7 @@ public class LoadMember07_Securitylock {
 				driver = new InternetExplorerDriver(caps);
 				driver.manage().deleteAllCookies();
 		  }
-		  driver.manage().deleteAllCookies();
+			driver.manage().timeouts().pageLoadTimeout(200, TimeUnit.SECONDS);
 		  TakeScreenShot.init(driver);
 		  usernameLogin = super_user_name;
 		  usernamePass = super_user_pass;
@@ -86,6 +87,7 @@ public class LoadMember07_Securitylock {
 
 	  @Test
 	  public void dailyTest() throws InterruptedException {
+		  try {
 			  LoginPage.LoadPage(driver);
 			  Authenticate.Login(driver, usernameLogin, usernamePass);
 			  SuperUser.loadMember(driver, 30 , group, refno);
@@ -139,6 +141,10 @@ public class LoadMember07_Securitylock {
 			  
 			  //logout
 			  Authenticate.LogOut(driver, 10);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			  
 		  
 	  }
 	  

@@ -1,5 +1,7 @@
 package com.cmg.pl.dailytest;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,7 +15,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
 import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.cmg.pl.action.Authenticate;
@@ -71,6 +72,7 @@ public class LoadMember05_Pensioner {
 			driver = new InternetExplorerDriver(caps);
 			driver.manage().deleteAllCookies();
 		}
+		driver.manage().timeouts().pageLoadTimeout(200, TimeUnit.SECONDS);
 		driver.manage().deleteAllCookies();
 		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;
@@ -82,6 +84,7 @@ public class LoadMember05_Pensioner {
 	
 	@Test
 	public void dailytest() {
+		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			TakeScreenShot.takeScreenshoot();
@@ -119,6 +122,10 @@ public class LoadMember05_Pensioner {
 			
 			//logout
 			Authenticate.LogOut(driver, 10);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
 
 	}
 
