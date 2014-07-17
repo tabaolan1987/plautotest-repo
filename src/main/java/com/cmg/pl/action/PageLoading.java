@@ -46,7 +46,6 @@ public class PageLoading {
 			while(getAllElementVisiable(images) > 0){
 				Thread.sleep(1000);
 				count++;
-				//System.out.println(count+ "-" + timeout);
 				if(count > timeout){
 					break;
 				}
