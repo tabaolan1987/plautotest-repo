@@ -74,7 +74,7 @@ public class LoadMember01_Walled {
 		
 	}
 	
-	@Test
+	@Test(timeOut = 600000)
 	public void dailytest() {
 		try {
 			LoginPage.LoadPage(driver);

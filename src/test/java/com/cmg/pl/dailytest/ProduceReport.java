@@ -69,7 +69,7 @@ public class ProduceReport {
 
 	}
 
-	@Test
+	@Test(timeOut = 600000)
 	public void dailytest() throws InterruptedException {
 		try {
 			LoginPage.LoadPage(driver);

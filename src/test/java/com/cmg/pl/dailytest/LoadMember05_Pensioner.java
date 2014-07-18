@@ -81,7 +81,7 @@ public class LoadMember05_Pensioner {
 	}
 	
 	
-	@Test
+	@Test(timeOut = 1200000)
 	public void dailytest() {
 		try {
 			LoginPage.LoadPage(driver);

@@ -3,7 +3,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Suite" parallel="none">
-
 	<test name="IETest">
 		<parameter name="browser" value="ie" />
 		<parameter name="super_user_name" value="AutoSuperuser" />
@@ -33,8 +32,6 @@
 			<class name="com.cmg.pl.dailytest.ProduceReport" />
 		</classes>
 	</test>
-
-
 
  <test name="FirefoxTest">
 		<parameter name="browser" value="firefox" />

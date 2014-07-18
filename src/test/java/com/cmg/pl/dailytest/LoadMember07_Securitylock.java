@@ -85,7 +85,7 @@ public class LoadMember07_Securitylock {
 				  
 	  }
 
-	  @Test
+	  @Test(timeOut = 1200000)
 	  public void dailyTest() throws InterruptedException {
 		  try {
 			  LoginPage.LoadPage(driver);

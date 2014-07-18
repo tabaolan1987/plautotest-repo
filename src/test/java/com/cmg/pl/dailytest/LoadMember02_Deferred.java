@@ -76,7 +76,7 @@ public class LoadMember02_Deferred {
 		
 	}
 	
-	@Test
+	@Test(timeOut = 600000)
 	public void dailytest() {
 		try {
 			LoginPage.LoadPage(driver);
