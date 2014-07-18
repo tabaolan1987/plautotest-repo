@@ -1,7 +1,14 @@
 package com.c_mg.pl.selenium.PLAUTOTEST;
 
+import java.awt.AWTException;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -66,6 +73,19 @@ public class TakeScreenShot {
 				name = name + "-ie";
 				file = new File(screenshootDir, name + ".png");
 				FileUtils.copyFile(output, file);*/
+				   Toolkit toolkit = Toolkit.getDefaultToolkit();
+				   Rectangle screenSize = new Rectangle(0,0,toolkit.getScreenSize()
+				                    .width,toolkit.getScreenSize().height);
+				   Robot robot;
+				try {
+					robot = new Robot();
+					 name = name + "-ie";
+					   BufferedImage bfIimage = robot.createScreenCapture(screenSize);
+					   ImageIO.write(bfIimage, "png", new File(screenshootDir + File.separator + name +".png"));
+				} catch (AWTException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}else if(driver instanceof ChromeDriver){
 				output = ((TakesScreenshot) driver)
 						.getScreenshotAs(OutputType.FILE);
