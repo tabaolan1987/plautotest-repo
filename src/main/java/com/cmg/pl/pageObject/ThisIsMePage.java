@@ -18,6 +18,7 @@ public class ThisIsMePage {
 		PageLoading.waitForImageVisible(driver, 20);
 		PageLoading.waitForImageInvisible(driver, 30);
 		Assert.assertFalse(PageLoading.checkDataError(driver));
+		System.out.println("load page : "+ URL);
 		return driver;
 	}
 	

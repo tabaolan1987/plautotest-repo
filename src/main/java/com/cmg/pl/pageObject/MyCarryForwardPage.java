@@ -15,6 +15,7 @@ public class MyCarryForwardPage {
 		PageLoading.waitForImageVisible(driver, 20);
 		PageLoading.waitForImageInvisible(driver, 20);
 		Assert.assertFalse(PageLoading.checkDataError(driver));
+		System.out.println("Load page : " + URL);
 		return driver;
 	}
 }

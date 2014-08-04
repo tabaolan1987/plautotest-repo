@@ -14,7 +14,7 @@ public class RedundancyPage {
 	
 	private static String LINK_TEXT_REDUDANCY_DATE = "Redundancy date";
 	
-	public static String XPATH_BTT_GO = "//div[@id='date_panel']/form/div[@class='slider_panel']/input[2][@class='goButton']";
+	public static String XPATH_BTT_GO = "//div[@id='date_panel' and @class='controlable_panel']/form/div[@class='slider_panel']/input[2][@class='goButton']";
 	
 	public static String ID_TEXT_REDUDANCY_DATE = "input_co_nra";
 	
@@ -25,6 +25,7 @@ public class RedundancyPage {
 		PageLoading.waitForImageVisible(driver, 10);
 		PageLoading.waitForImageInvisible(driver, 20);
 		Assert.assertFalse(PageLoading.checkDataError(driver));
+		System.out.println("Load page : " + URL);
 		return driver;
 	}
 	

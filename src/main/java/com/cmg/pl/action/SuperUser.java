@@ -21,6 +21,7 @@ public class SuperUser {
 	}
 	
 	public static void loadMember(WebDriver driver ,int timeout, String group , String refno){
+		System.out.println("super user load : " + group + " : " + refno);
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(IndexSuperUserPage.ID_SELECT_BGROUP)));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(IndexSuperUserPage.ID_TXT_REFNO)));

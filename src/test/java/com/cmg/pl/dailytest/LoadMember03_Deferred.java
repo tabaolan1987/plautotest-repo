@@ -1,11 +1,14 @@
 package com.cmg.pl.dailytest;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,11 +44,12 @@ public class LoadMember03_Deferred {
 			try {
 				System.out.println("Start firefox : LoadMember03_Deferred");
 				driver = new FirefoxDriver();
+				driver.manage().deleteAllCookies();
 			} catch (WebDriverException e) {
 				System.out.println(e.getMessage());
 				FirefoxProfile profile = new FirefoxProfile();
 				profile.setAcceptUntrustedCertificates(true);
-				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, "7056");
+				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
 				driver = new FirefoxDriver(profile);
 			}
 		} else if (browser.equalsIgnoreCase("chrome")) {
@@ -53,12 +57,18 @@ public class LoadMember03_Deferred {
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
 			driver = new ChromeDriver();
+			driver.manage().deleteAllCookies();
 		} else if (browser.equalsIgnoreCase("ie")) {
 			System.out.println("Start ie : LoadMember03_Deferred");
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
-			driver = new InternetExplorerDriver();
+			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
+			caps.setCapability(
+			    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+			    true);
+			driver = new InternetExplorerDriver(caps);
+			driver.manage().deleteAllCookies();
 		}
-		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
 		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;
 		usernamePass = super_user_pass;
@@ -66,8 +76,9 @@ public class LoadMember03_Deferred {
 		
 	}
 	
-	@Test
+	@Test(timeOut = 1200000)
 	public void dailytest() {
+		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);
@@ -89,16 +100,25 @@ public class LoadMember03_Deferred {
 			//check 'This is me' page
 			ThisIsMePage.loadPage(driver);
 			CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
-			CheckThisIsMePage.checkMembershipExisted(driver, refno);
+			Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver, refno));
 
 			//logout
 			Authenticate.LogOut(driver, 10);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
 		
 	}
 	
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void afterMethod() {
-		driver.quit();
+		try {
+			driver.quit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

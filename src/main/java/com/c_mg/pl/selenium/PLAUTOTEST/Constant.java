@@ -11,6 +11,8 @@ public class Constant {
 	 */
 	public static String URL = "https://pensionline.bp.com/";
 	
+	public static String main_url = "https://pensionline.bp.com/content/pl";
+	
 	/**
 	 * URL for INT
 	 */

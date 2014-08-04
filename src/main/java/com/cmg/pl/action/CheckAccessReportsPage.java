@@ -1,10 +1,8 @@
 package com.cmg.pl.action;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.cmg.pl.pageObject.AccessReportsPage;
 
@@ -56,18 +54,22 @@ public class CheckAccessReportsPage {
 	public static void CheckSelectAllReports (WebDriver driver){
 		
 		List<WebElement> els = AccessReportsPage.listCheckBox(driver);
+		System.out.println("list select box : " + els.size());
 		for(WebElement el : els){
-			if(!el.isSelected()){
-				el.click();
+			if(!el.isSelected() && el.isDisplayed()){
+				try {
+					System.out.println("click on checkbox");
+					el.click();
+				} catch (Exception e) {
+					
+				}
 			}
 			
 		}
 	}
 	
 	public static void RunSelectedReports (WebDriver driver) {
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(AccessReportsPage.RUN_BTT_ID)));
-		AccessReportsPage.RunButton(driver).click();
+		((JavascriptExecutor)driver).executeScript("runSelectedReports();");
 		PageLoading.waitForTitle(INPUT_REPORT_PARAM_PAGE_TITLE, driver, 20);
 	}
 }

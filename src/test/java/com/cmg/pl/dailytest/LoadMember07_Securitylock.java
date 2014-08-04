@@ -1,11 +1,14 @@
 package com.cmg.pl.dailytest;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -51,23 +54,30 @@ public class LoadMember07_Securitylock {
 			  try {
 					System.out.println("Start firefox : LoadMember07_Securitylock");
 					driver = new FirefoxDriver();
+					driver.manage().deleteAllCookies();
 				} catch (WebDriverException e) {
 					System.out.println(e.getMessage());
 					FirefoxProfile profile = new FirefoxProfile();
 					profile.setAcceptUntrustedCertificates(true);
-					profile.setPreference(FirefoxProfile.PORT_PREFERENCE, "7056");
+					profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
 					driver = new FirefoxDriver(profile);
 				}
 		  }else if(browser.equalsIgnoreCase("chrome")){
 			  System.out.println("Start chrome : LoadMember07_Securitylock");
 			  System.setProperty("webdriver.chrome.driver", DriverUtil.getChromeDriver());
 			  driver= new ChromeDriver();
+			  driver.manage().deleteAllCookies();
 		  }else if(browser.equalsIgnoreCase("ie")){
 			  System.out.println("Start ie : LoadMember07_Securitylock");
 			  System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
-		      driver = new InternetExplorerDriver();
+			  DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
+				caps.setCapability(
+				    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+				    true);
+				driver = new InternetExplorerDriver(caps);
+				driver.manage().deleteAllCookies();
 		  }
-		  driver.manage().deleteAllCookies();
+		  driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
 		  TakeScreenShot.init(driver);
 		  usernameLogin = super_user_name;
 		  usernamePass = super_user_pass;
@@ -75,8 +85,9 @@ public class LoadMember07_Securitylock {
 				  
 	  }
 
-	  @Test
+	  @Test(timeOut = 1200000)
 	  public void dailyTest() throws InterruptedException {
+		  try {
 			  LoginPage.LoadPage(driver);
 			  Authenticate.Login(driver, usernameLogin, usernamePass);
 			  SuperUser.loadMember(driver, 30 , group, refno);
@@ -100,7 +111,7 @@ public class LoadMember07_Securitylock {
 			  //check 'This is me' page
 			  ThisIsMePage.loadPage(driver);
 			  CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
-			  CheckThisIsMePage.checkMembershipExisted(driver, refno);
+			  Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver, refno));
 			  
 			  //check 'My Benefits' page and its sub-menus
 			  MyBenefitPage.loadPage(driver);
@@ -130,11 +141,20 @@ public class LoadMember07_Securitylock {
 			  
 			  //logout
 			  Authenticate.LogOut(driver, 10);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			  
 		  
 	  }
 	  
-	  @AfterMethod
-	  public void afterMethod() {
-		  driver.quit();
-	  }
+	  @AfterMethod(alwaysRun = true)
+		public void afterMethod() {
+			try {
+				driver.quit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
 }

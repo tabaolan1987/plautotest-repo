@@ -1,11 +1,14 @@
 package com.cmg.pl.dailytest;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -18,30 +21,29 @@ import com.cmg.pl.action.Authenticate;
 import com.cmg.pl.action.CheckAccessReportsPage;
 import com.cmg.pl.action.ProduceReportWithInputParam;
 import com.cmg.pl.action.RunCheckingConnectionReportGroup;
-import com.cmg.pl.pageObject.AccessReportsPage;
 import com.cmg.pl.pageObject.LoginPage;
 import com.cmg.pl.pageObject.ReportingToolPage;
 
 public class ProduceReport {
-	
+
 	private static String report_runner_username;
 	private static String report_runner_password;
 	private static WebDriver driver;
-	
-  
-  @Parameters({ "browser", "report_runner_name", "report_runner_pass"})
+
+	@Parameters({ "browser", "report_runner_name", "report_runner_pass" })
 	@BeforeMethod
-	public void beforeMethod(String browser, String report_runner_name, String report_runner_pass) 
-	{
+	public void beforeMethod(String browser, String report_runner_name,
+			String report_runner_pass) {
 		if (browser.equalsIgnoreCase("firefox")) {
 			try {
 				System.out.println("Start firefox : Report Runner Login");
 				driver = new FirefoxDriver();
+				driver.manage().deleteAllCookies();
 			} catch (WebDriverException e) {
 				System.out.println(e.getMessage());
 				FirefoxProfile profile = new FirefoxProfile();
 				profile.setAcceptUntrustedCertificates(true);
-				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, "7056");
+				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
 				driver = new FirefoxDriver(profile);
 			}
 		} else if (browser.equalsIgnoreCase("chrome")) {
@@ -49,42 +51,59 @@ public class ProduceReport {
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
 			driver = new ChromeDriver();
+			driver.manage().deleteAllCookies();
 		} else if (browser.equalsIgnoreCase("ie")) {
 			System.out.println("Start ie : Report Runner Login");
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
-			driver = new InternetExplorerDriver();
+			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
+			caps.setCapability(
+					InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+					true);
+			driver = new InternetExplorerDriver(caps);
+			driver.manage().deleteAllCookies();
 		}
-		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
 		TakeScreenShot.init(driver);
 		report_runner_username = report_runner_name;
 		report_runner_password = report_runner_pass;
-		
+
+	}
+
+	@Test(timeOut = 600000)
+	public void dailytest() throws InterruptedException {
+		try {
+			LoginPage.LoadPage(driver);
+			Authenticate.Login(driver, report_runner_username,
+					report_runner_password);
+			ReportingToolPage.loadPage(driver);
+			RunCheckingConnectionReportGroup
+					.runReportGroupCheckingConnection(driver);
+			Assert.assertTrue(CheckAccessReportsPage
+					.CheckReportSections(driver));
+			CheckAccessReportsPage.CheckSelectAllReports(driver);
+			// Thread.sleep(10000);
+			TakeScreenShot.takeScreenshoot();
+			CheckAccessReportsPage.RunSelectedReports(driver);
+			Thread.sleep(2000);
+			ProduceReportWithInputParam.ProduceReportWithDefaultParam(driver);
+
+			// logout
+			Authenticate.LogOut(driver, 10);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+
+	@AfterMethod(alwaysRun = true)
+	public void afterMethod() {
+		try {
+			driver.quit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
-  
-  @Test
-  public void dailytest() {
-	  LoginPage.LoadPage(driver);
-	  Authenticate.Login(driver, report_runner_username, report_runner_password);
-	  
-	  ReportingToolPage.loadPage(driver);
-	  RunCheckingConnectionReportGroup.runReportGroupCheckingConnection(driver);
-	  Assert.assertTrue(CheckAccessReportsPage.CheckReportSections(driver));
-	  
-	  CheckAccessReportsPage.CheckSelectAllReports(driver);
-	 // Thread.sleep(10000);
-	  
-	  CheckAccessReportsPage.RunSelectedReports(driver);
-	  
-	  ProduceReportWithInputParam.ProduceReportWithDefaultParam(driver);
-	  
-	  //logout
-	  Authenticate.LogOut(driver, 10);
-  }
-
-  @AfterMethod
-  public void afterMethod() {
-	  driver.quit();
-  }
 
 }

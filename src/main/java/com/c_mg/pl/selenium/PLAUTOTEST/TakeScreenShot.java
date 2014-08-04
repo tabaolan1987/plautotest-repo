@@ -1,7 +1,14 @@
 package com.c_mg.pl.selenium.PLAUTOTEST;
 
+import java.awt.AWTException;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -10,6 +17,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.Augmenter;
 
 
 public class TakeScreenShot {
@@ -44,7 +52,7 @@ public class TakeScreenShot {
 				if (files != null && files.length > 0) {
 					for (File fl : files) {
 						if (fl.getName()
-								.startsWith(currentTestMethod.getName())) {
+								.contains(currentTestMethod.getName())) {
 							count++;
 						}
 					}
@@ -52,19 +60,41 @@ public class TakeScreenShot {
 				name = currentTestMethod.getName()
 						+ (count == 0 ? "" : (" (" + count + ")"));
 			}
-			output = ((TakesScreenshot) driver)
-					.getScreenshotAs(OutputType.FILE);
+			
 			if(driver instanceof FirefoxDriver){
 				name = name +"-firefox";
+				output = ((TakesScreenshot) driver)
+						.getScreenshotAs(OutputType.FILE);
+				file = new File(screenshootDir, name + ".png");
+				FileUtils.copyFile(output, file);
 			}else if(driver instanceof InternetExplorerDriver){
+			/*	WebDriver augmentedDriver = new Augmenter().augment(driver);
+				output = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 				name = name + "-ie";
+				file = new File(screenshootDir, name + ".png");
+				FileUtils.copyFile(output, file);*/
+				   Toolkit toolkit = Toolkit.getDefaultToolkit();
+				   Rectangle screenSize = new Rectangle(0,0,toolkit.getScreenSize()
+				                    .width,toolkit.getScreenSize().height);
+				   Robot robot;
+				try {
+					robot = new Robot();
+					 name = name + "-ie";
+					   BufferedImage bfIimage = robot.createScreenCapture(screenSize);
+					   ImageIO.write(bfIimage, "png", new File(screenshootDir + File.separator + name +".png"));
+				} catch (AWTException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}else if(driver instanceof ChromeDriver){
+				output = ((TakesScreenshot) driver)
+						.getScreenshotAs(OutputType.FILE);
 				name = name + "-chrome";
+				file = new File(screenshootDir, name + ".png");
+				FileUtils.copyFile(output, file);
 			}
-			file = new File(screenshootDir, name + ".png");
-			FileUtils.copyFile(output, file);
 		} catch (IOException e) {
-
+			e.printStackTrace();
 		}
 	}
 

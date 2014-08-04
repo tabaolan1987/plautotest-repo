@@ -12,6 +12,7 @@ public class MyDetailPage {
 	
 	public static WebDriver loadPage(WebDriver driver){
 		driver.get(URL);
+		System.out.println("load page : " + URL);
 		return driver;
 	}
 	

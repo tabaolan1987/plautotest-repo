@@ -10,7 +10,7 @@ public class DriverUtil {
 		
 		String path = "G:\\driver\\IEDriverServer.exe";
 		return path;
-	/*	String path = PropertiesHelper.getKey(PROP_PROJECT_BASE_DIR) + File.separator + FOLDER_DRIVER 
+		/*String path = PropertiesHelper.getKey(PROP_PROJECT_BASE_DIR) + File.separator + FOLDER_DRIVER 
 				+ File.separator + "IEDriverServer.exe";
 		try {
 			File driverIe = new File(path);
@@ -28,7 +28,7 @@ public class DriverUtil {
 	public static String getChromeDriver(){
 		String path = "G:\\driver\\chromedriver.exe";
 		return path;
-	/*	String path = PropertiesHelper.getKey(PROP_PROJECT_BASE_DIR) + File.separator + FOLDER_DRIVER 
+		/*String path = PropertiesHelper.getKey(PROP_PROJECT_BASE_DIR) + File.separator + FOLDER_DRIVER 
 				+ File.separator + "chromedriver.exe";
 		try {
 			File driverChrome = new File(path);
@@ -40,6 +40,6 @@ public class DriverUtil {
 			e.printStackTrace();
 			return null;
 		}
-		return null;*/	
+		return null;	*/
 	}
 }

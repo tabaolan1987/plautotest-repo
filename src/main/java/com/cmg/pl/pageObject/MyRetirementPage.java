@@ -40,6 +40,7 @@ public class MyRetirementPage {
 		PageLoading.waitForImageVisible(driver, 10);
 		PageLoading.waitForImageInvisible(driver, 20);
 		Assert.assertFalse(PageLoading.checkDataError(driver));
+		System.out.println("Load page : " + URL);
 		return driver;
 	}
 	

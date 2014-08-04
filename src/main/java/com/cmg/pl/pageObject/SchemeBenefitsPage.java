@@ -19,6 +19,7 @@ public class SchemeBenefitsPage {
 		PageLoading.waitForImageVisible(driver, 20);
 		PageLoading.waitForImageInvisible(driver, 30);
 		Assert.assertFalse(PageLoading.checkDataError(driver));
+		System.out.println("Load page : " + URL);
 		return driver;
 	}
 	
