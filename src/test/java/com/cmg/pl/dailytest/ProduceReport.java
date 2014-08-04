@@ -75,6 +75,7 @@ public class ProduceReport {
 	 // Thread.sleep(10000);
 	  
 	  CheckAccessReportsPage.RunSelectedReports(driver);
+	  
 	  ProduceReportWithInputParam.ProduceReportWithDefaultParam(driver);
 	  
 	  //logout
