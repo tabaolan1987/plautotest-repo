@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -79,7 +80,9 @@ public class LoadMember01_Walled {
 		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
+			Reporter.log("login with user : " + usernameLogin);
 			SuperUser.loadMember(driver, 30, group, refno);
+			Reporter.log("superuser load memeber : " + refno);
 			
 			//check for links unavailable under 'My details'
 			MyDetailPage.loadPage(driver);
