@@ -15,7 +15,7 @@ public class ThisIsMePage {
 	
 	public static WebDriver loadPage(WebDriver driver){
 		driver.get(URL);
-		PageLoading.waitForImageVisible(driver, 20);
+		//PageLoading.waitForImageVisible(driver, 20);
 		PageLoading.waitForImageInvisible(driver, 30);
 		Assert.assertFalse(PageLoading.checkDataError(driver));
 		System.out.println("load page : "+ URL);

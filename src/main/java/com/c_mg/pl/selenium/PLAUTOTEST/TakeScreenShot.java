@@ -83,7 +83,6 @@ public class TakeScreenShot {
 					   BufferedImage bfIimage = robot.createScreenCapture(screenSize);
 					   ImageIO.write(bfIimage, "png", new File(screenshootDir + File.separator + name +".png"));
 				} catch (AWTException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}*/
 			}else if(driver instanceof ChromeDriver){
