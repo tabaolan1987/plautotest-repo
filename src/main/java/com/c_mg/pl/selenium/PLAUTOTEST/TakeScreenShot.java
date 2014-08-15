@@ -1,14 +1,8 @@
 package com.c_mg.pl.selenium.PLAUTOTEST;
 
-import java.awt.AWTException;
-import java.awt.Rectangle;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -17,7 +11,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.Augmenter;
 
 
 public class TakeScreenShot {
@@ -68,9 +61,11 @@ public class TakeScreenShot {
 				file = new File(screenshootDir, name + ".png");
 				FileUtils.copyFile(output, file);
 			}else if(driver instanceof InternetExplorerDriver){
-				WebDriver augmentedDriver = new Augmenter().augment(driver);
-				output = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
+				/*WebDriver augmentedDriver = new Augmenter().augment(driver);
+				output = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);*/
 				name = name + "-ie";
+				output = ((TakesScreenshot) driver)
+						.getScreenshotAs(OutputType.FILE);
 				file = new File(screenshootDir, name + ".png");
 				FileUtils.copyFile(output, file);
 				  /* Toolkit toolkit = Toolkit.getDefaultToolkit();
