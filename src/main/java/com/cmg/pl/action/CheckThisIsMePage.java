@@ -15,8 +15,9 @@ public class CheckThisIsMePage {
 	
 	public static void checkPersonalDetailTableExisted(WebDriver driver , int timeout){
 		System.out.println("check personal detail table");
-		WebDriverWait wait = new WebDriverWait(driver, timeout);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ThisIsMePage.ID_TABLE_PERSONAL)));
+//		WebDriverWait wait = new WebDriverWait(driver, timeout);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ThisIsMePage.ID_TABLE_PERSONAL)));
+		PageLoading.waitForElementExistedInDomVisible(ThisIsMePage.tablePersonalDetail(driver), timeout);
 	}
 	
 	public static boolean checkMembershipExisted(WebDriver driver  , String refNumber){
