@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
 <suite name="Suite" parallel="none">
 <!-- 	 <listeners> -->
 <!--     <listener class-name="com.cmg.pl.listenner.ItestListen" /> -->
@@ -63,7 +62,7 @@
 			 <class name="com.cmg.pl.dailytest.LoadMember05_Pensioner" /> 
 			 <class name="com.cmg.pl.dailytest.LoadMember06_Pensioner"/>
 			 <class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" /> 
-			 <clasname="com.cmg.pl.dailytest.LoadMember08_Active" /> 
+			 <class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
 			 <class name="com.cmg.pl.dailytest.ProduceReport"/>
 		</classes>
 	</test>
