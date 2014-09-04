@@ -35,7 +35,7 @@ public class PageLoading {
 	
 	public static void waitForImageVisible(WebDriver driver , int timeout){
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(XPATH_IMAGE_SPINNING)));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(XPATH_IMAGE_SPINNING)));
 	}
 	
 	
