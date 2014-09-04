@@ -62,9 +62,6 @@ public class ItestListen implements ITestListener {
 		PdfPCell cell = new PdfPCell(new Paragraph(result.getTestClass()
 				.toString()));
 		this.successTable.addCell(cell);
-		cell = new PdfPCell(new Paragraph(result.getMethod().getMethodName()
-				.toString()));
-		this.successTable.addCell(cell);
 		cell = new PdfPCell(new Paragraph(""
 				+ (result.getEndMillis() - result.getStartMillis())));
 		this.successTable.addCell(cell);
@@ -99,9 +96,6 @@ public class ItestListen implements ITestListener {
 		PdfPCell cell = new PdfPCell(new Paragraph(result.getTestClass()
 				.toString()));
 		this.failTable.addCell(cell);
-		cell = new PdfPCell(new Paragraph(result.getMethod().getMethodName()
-				.toString()));
-		this.failTable.addCell(cell);
 		cell = new PdfPCell(new Paragraph(""
 				+ (result.getEndMillis() - result.getStartMillis())));
 		this.failTable.addCell(cell);
@@ -133,9 +127,6 @@ public class ItestListen implements ITestListener {
 		}
 
 		PdfPCell cell = new PdfPCell(new Paragraph(result.getTestClass()
-				.toString()));
-		this.skipTable.addCell(cell);
-		cell = new PdfPCell(new Paragraph(result.getMethod().getMethodName()
 				.toString()));
 		this.skipTable.addCell(cell);
 		cell = new PdfPCell(new Paragraph(""
@@ -182,41 +173,44 @@ public class ItestListen implements ITestListener {
 			e.printStackTrace();
 		}
 
-		Paragraph p = new Paragraph("EXCEPTIONS SUMMARY", FontFactory.getFont(
-				FontFactory.HELVETICA, 16, Font.BOLD, new Color(255, 0, 0)));
-		try {
-			this.document.add(p);
-		} catch (DocumentException e1) {
-			e1.printStackTrace();
-		}
-
 		Set<Integer> keys = this.throwableMap.keySet();
-
-		assert keys.size() == this.nbExceptions;
-
-		for (Integer key : keys) {
-			Throwable throwable = this.throwableMap.get(key);
-
-			Chunk chunk = new Chunk(throwable.toString(), FontFactory.getFont(
-					FontFactory.HELVETICA, 12, Font.BOLD, new Color(255, 0, 0)));
-			chunk.setLocalDestination("" + key);
-			Paragraph throwTitlePara = new Paragraph(chunk);
+		
+		if(keys.size() > 0){
+			Paragraph p = new Paragraph("EXCEPTIONS SUMMARY", FontFactory.getFont(
+					FontFactory.HELVETICA, 16, Font.BOLD, new Color(255, 0, 0)));
 			try {
-				this.document.add(throwTitlePara);
-			} catch (DocumentException e3) {
-				e3.printStackTrace();
+				this.document.add(p);
+			} catch (DocumentException e1) {
+				e1.printStackTrace();
 			}
+			
+			assert keys.size() == this.nbExceptions;
 
-			StackTraceElement[] elems = throwable.getStackTrace();
-			for (StackTraceElement ste : elems) {
-				Paragraph throwParagraph = new Paragraph(ste.toString());
+			for (Integer key : keys) {
+				Throwable throwable = this.throwableMap.get(key);
+
+				Chunk chunk = new Chunk(throwable.toString(), FontFactory.getFont(
+						FontFactory.HELVETICA, 12, Font.BOLD, new Color(255, 0, 0)));
+				chunk.setLocalDestination("" + key);
+				Paragraph throwTitlePara = new Paragraph(chunk);
 				try {
-					this.document.add(throwParagraph);
-				} catch (DocumentException e2) {
-					e2.printStackTrace();
+					this.document.add(throwTitlePara);
+				} catch (DocumentException e3) {
+					e3.printStackTrace();
+				}
+
+				StackTraceElement[] elems = throwable.getStackTrace();
+				for (StackTraceElement ste : elems) {
+					Paragraph throwParagraph = new Paragraph(ste.toString());
+					try {
+						this.document.add(throwParagraph);
+					} catch (DocumentException e2) {
+						e2.printStackTrace();
+					}
 				}
 			}
 		}
+		
 		System.out.println("close doc : " + context.getName());
 		this.document.close();
 
@@ -285,9 +279,6 @@ public class ItestListen implements ITestListener {
 		cell = new PdfPCell(new Paragraph("Class"));
 		cell.setBackgroundColor(Color.BLUE);
 		this.skipTable.addCell(cell);
-		cell = new PdfPCell(new Paragraph("Method"));
-		cell.setBackgroundColor(Color.BLUE);
-		this.skipTable.addCell(cell);
 		cell = new PdfPCell(new Paragraph("Time (ms)"));
 		cell.setBackgroundColor(Color.BLUE);
 		this.skipTable.addCell(cell);
@@ -307,9 +298,6 @@ public class ItestListen implements ITestListener {
 		this.failTable.addCell(cell);
 
 		cell = new PdfPCell(new Paragraph("Class"));
-		cell.setBackgroundColor(Color.LIGHT_GRAY);
-		this.failTable.addCell(cell);
-		cell = new PdfPCell(new Paragraph("Method"));
 		cell.setBackgroundColor(Color.LIGHT_GRAY);
 		this.failTable.addCell(cell);
 		cell = new PdfPCell(new Paragraph("Time (ms)"));
@@ -332,9 +320,6 @@ public class ItestListen implements ITestListener {
 		this.successTable.addCell(cell);
 
 		cell = new PdfPCell(new Paragraph("Class"));
-		cell.setBackgroundColor(Color.LIGHT_GRAY);
-		this.successTable.addCell(cell);
-		cell = new PdfPCell(new Paragraph("Method"));
 		cell.setBackgroundColor(Color.LIGHT_GRAY);
 		this.successTable.addCell(cell);
 		cell = new PdfPCell(new Paragraph("Time (ms)"));
