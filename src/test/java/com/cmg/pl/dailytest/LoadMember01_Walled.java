@@ -77,7 +77,6 @@ public class LoadMember01_Walled {
 	
 	@Test(timeOut = 600000)
 	public void dailytest() {
-		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			Reporter.log("login with user : " + usernameLogin);
@@ -86,7 +85,7 @@ public class LoadMember01_Walled {
 			
 			//check for links unavailable under 'My details'
 			MyDetailPage.loadPage(driver);
-			TakeScreenShot.takeScreenshoot();
+			//TakeScreenShot.takeScreenshoot();
 			Assert.assertFalse(MyDetailCheck.checkThisIsMeLink(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkSchemePays(driver, 5));
@@ -101,9 +100,6 @@ public class LoadMember01_Walled {
 			
 			//logout
 			Authenticate.LogOut(driver, 10);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@AfterMethod(alwaysRun = true)

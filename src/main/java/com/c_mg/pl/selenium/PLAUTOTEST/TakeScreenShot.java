@@ -23,6 +23,71 @@ public class TakeScreenShot {
 	}
 	
 	
+	public static File takeScreen(String name){
+		CmgiumMethod currentTestMethod = getCurrentTestMethod();
+		// skip take screenshot if could not found current test method execute
+		if (currentTestMethod == null) 
+			return null;
+		
+		String screenshootDir = PropertiesHelper.getKey(PROP_PROJECT_BUILD_DIR)
+				+ File.separator + "screenshots" + File.separator
+				+ currentTestMethod.getClassName();
+		File f = new File(screenshootDir);
+		if (!f.exists() || !f.isDirectory()) {
+			f.mkdirs();
+		}
+		File output = null;
+		File file;
+		try {
+			if (name == null || name.length() == 0) {
+				File[] files = f.listFiles();
+				int count = 0;
+				if (files != null && files.length > 0) {
+					for (File fl : files) {
+						if (fl.getName()
+								.contains(currentTestMethod.getName())) {
+							count++;
+						}
+					}
+				}
+				name = currentTestMethod.getName()
+						+ (count == 0 ? "" : (" (" + count + ")"));
+			}
+			
+			if(driver instanceof FirefoxDriver){
+				name = name +"-firefox";
+				output = ((TakesScreenshot) driver)
+						.getScreenshotAs(OutputType.FILE);
+				file = new File(screenshootDir, name + ".png");
+				FileUtils.copyFile(output, file);
+				return file;
+			}else if(driver instanceof InternetExplorerDriver){
+				/*WebDriver augmentedDriver = new Augmenter().augment(driver);
+				output = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);*/
+				name = name + "-ie";
+				output = ((TakesScreenshot) driver)
+						.getScreenshotAs(OutputType.FILE);
+				file = new File(screenshootDir, name + ".png");
+				FileUtils.copyFile(output, file);
+				return file;
+			}else if(driver instanceof ChromeDriver){
+				output = ((TakesScreenshot) driver)
+						.getScreenshotAs(OutputType.FILE);
+				name = name + "-chrome";
+				file = new File(screenshootDir, name + ".png");
+				FileUtils.copyFile(output, file);
+				return file;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static File takeSnapshot(){
+		return takeScreen("");
+	}
+	
 	public static void takeScreenshoot(String name) {
 		CmgiumMethod currentTestMethod = getCurrentTestMethod();
 		// skip take screenshot if could not found current test method execute
