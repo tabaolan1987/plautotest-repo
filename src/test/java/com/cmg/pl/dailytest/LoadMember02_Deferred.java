@@ -78,7 +78,6 @@ public class LoadMember02_Deferred {
 	
 	@Test(timeOut = 600000)
 	public void dailytest() {
-		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);
@@ -103,9 +102,6 @@ public class LoadMember02_Deferred {
 			Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver, refno));
 			//logout
 			Authenticate.LogOut(driver, 10);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 	}
 	

@@ -71,7 +71,6 @@ public class ProduceReport {
 
 	@Test(timeOut = 600000)
 	public void dailytest() throws InterruptedException {
-		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, report_runner_username,
 					report_runner_password);
@@ -89,9 +88,6 @@ public class ProduceReport {
 
 			// logout
 			Authenticate.LogOut(driver, 10);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 	}
 

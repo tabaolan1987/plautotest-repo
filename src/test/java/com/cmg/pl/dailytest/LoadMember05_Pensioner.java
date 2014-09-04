@@ -83,7 +83,6 @@ public class LoadMember05_Pensioner {
 	
 	@Test(timeOut = 1200000)
 	public void dailytest() {
-		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			TakeScreenShot.takeScreenshoot();
@@ -121,11 +120,6 @@ public class LoadMember05_Pensioner {
 			
 			//logout
 			Authenticate.LogOut(driver, 10);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-			
-
 	}
 	
 	@AfterMethod(alwaysRun = true)

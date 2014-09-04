@@ -81,7 +81,6 @@ public class LoadMember04_Pensioner {
 	
 	@Test(timeOut = 1200000)
 	public void dailytest() {
-		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);
@@ -118,12 +117,6 @@ public class LoadMember04_Pensioner {
 			
 			//logout
 			Authenticate.LogOut(driver, 10);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-			
-		
-
 	}
 
 	@AfterMethod(alwaysRun = true)

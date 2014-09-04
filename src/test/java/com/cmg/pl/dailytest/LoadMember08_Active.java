@@ -94,7 +94,6 @@ public class LoadMember08_Active {
 
 	@Test(timeOut = 1200000)
 	public void dailyTest() throws InterruptedException {
-		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);
@@ -174,10 +173,6 @@ public class LoadMember08_Active {
 			// logout
 			Authenticate.LogOut(driver, 10);
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	@AfterMethod(alwaysRun = true)

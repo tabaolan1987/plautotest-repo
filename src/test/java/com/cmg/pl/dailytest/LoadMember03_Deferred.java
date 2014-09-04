@@ -78,7 +78,6 @@ public class LoadMember03_Deferred {
 	
 	@Test(timeOut = 1200000)
 	public void dailytest() {
-		try {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);
@@ -101,14 +100,8 @@ public class LoadMember03_Deferred {
 			ThisIsMePage.loadPage(driver);
 			CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
 			Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver, refno));
-
 			//logout
 			Authenticate.LogOut(driver, 10);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-			
-		
 	}
 	
 	@AfterMethod(alwaysRun = true)
