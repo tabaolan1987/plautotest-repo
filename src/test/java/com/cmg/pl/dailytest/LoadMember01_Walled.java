@@ -79,17 +79,17 @@ public class LoadMember01_Walled {
 	public void dailytest() {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
-			Reporter.log("login with user : " + usernameLogin);
 			SuperUser.loadMember(driver, 30, group, refno);
-			Reporter.log("superuser load memeber : " + refno);
+			Reporter.log("Superuser load memeber : " + refno);
 			
 			//check for links unavailable under 'My details'
 			MyDetailPage.loadPage(driver);
 			//TakeScreenShot.takeScreenshoot();
+			Reporter.log(" Then Access to My Detail Page");
 			Assert.assertFalse(MyDetailCheck.checkThisIsMeLink(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkSchemePays(driver, 5));
-					
+			Reporter.log("Then check : This is Me, PaySlips , SchemePays showing");		
 			Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkMyBenefitsLink(driver, 5));
@@ -97,9 +97,10 @@ public class LoadMember01_Walled {
 			Assert.assertFalse(MyDetailCheck.checkRedundacyLink(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkMyCarryForward(driver, 5));
-			
+			Reporter.log("Then check : My Life Time , My Accurate, My Benefits, My Retirement , Redundacy, Annual Allowance, Carray Forward not show");
 			//logout
 			Authenticate.LogOut(driver, 10);
+			Reporter.log("Finally Logout");
 	}
 	
 	@AfterMethod(alwaysRun = true)

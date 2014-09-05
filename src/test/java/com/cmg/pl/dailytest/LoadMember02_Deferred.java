@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -36,10 +37,11 @@ public class LoadMember02_Deferred {
 
 	private static String group = "BPF";
 
-	@Parameters({ "browser", "super_user_name", "super_user_pass" ,"deferred_ref_no01"})
+	@Parameters({ "browser", "super_user_name", "super_user_pass",
+			"deferred_ref_no01" })
 	@BeforeMethod
-	public void beforeMethod(String browser, String super_user_name, String super_user_pass, String deferred_ref_no01) 
-	{
+	public void beforeMethod(String browser, String super_user_name,
+			String super_user_pass, String deferred_ref_no01) {
 		if (browser.equalsIgnoreCase("firefox")) {
 			try {
 				System.out.println("Start firefox : LoadMember02_Deferred");
@@ -63,8 +65,8 @@ public class LoadMember02_Deferred {
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
 			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
 			caps.setCapability(
-			    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-			    true);
+					InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+					true);
 			driver = new InternetExplorerDriver(caps);
 			driver.manage().deleteAllCookies();
 		}
@@ -73,38 +75,47 @@ public class LoadMember02_Deferred {
 		usernameLogin = super_user_name;
 		usernamePass = super_user_pass;
 		refno = deferred_ref_no01;
-		
+
 	}
-	
+
 	@Test(timeOut = 600000)
 	public void dailytest() {
-			LoginPage.LoadPage(driver);
-			Authenticate.Login(driver, usernameLogin, usernamePass);
-			SuperUser.loadMember(driver, 30, group, refno);
+		LoginPage.LoadPage(driver);
+		Authenticate.Login(driver, usernameLogin, usernamePass);
+		SuperUser.loadMember(driver, 30, group, refno);
+		Reporter.log("Superuser load member : " + refno);
+		// check for links available under 'My details'
+		MyDetailPage.loadPage(driver);
+		Reporter.log("Then Access My Detail");
+		// TakeScreenShot.takeScreenshoot();
+		Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
+		Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 5));
+		Reporter.log("Then check : This is me and SchemePays should be show under My detail");
+		// check for links unavailable under 'My details'
+		Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkMyBenefitsLink(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkMyRetirementLink(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkRedundacyLink(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
+		Assert.assertFalse(MyDetailCheck.checkMyCarryForward(driver, 5));
+		Reporter.log("Then check : Payslips , My Life time , My Accurate , My Benefits,"
+				+ " My Retirement , Redundacy, My Annual Allowance, My Carry Forward will not show");
+		// check 'This is me' page
+		ThisIsMePage.loadPage(driver);
+		Reporter.log("Then access to This is Me");
+		CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
+		Reporter.log("Then check the personal detail table will show");
+		Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver,
+				refno));
+		Reporter.log("Then check the refno : " + refno + " will existed in this table");
+		// logout
+		Authenticate.LogOut(driver, 10);
+		Reporter.log("Finally Logout");
 
-			//check for links available under 'My details'
-			MyDetailPage.loadPage(driver);
-			TakeScreenShot.takeScreenshoot();
-			Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
-			Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 5));
-			//check for links unavailable under 'My details'	
-			Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));
-			Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 5));
-			Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, 5));
-			Assert.assertFalse(MyDetailCheck.checkMyBenefitsLink(driver, 5));
-			Assert.assertFalse(MyDetailCheck.checkMyRetirementLink(driver, 5));
-			Assert.assertFalse(MyDetailCheck.checkRedundacyLink(driver, 5));
-			Assert.assertFalse(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
-			Assert.assertFalse(MyDetailCheck.checkMyCarryForward(driver, 5));
-			//check 'This is me' page
-			ThisIsMePage.loadPage(driver);
-			CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
-			Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver, refno));
-			//logout
-			Authenticate.LogOut(driver, 10);
-		
 	}
-	
+
 	@AfterMethod(alwaysRun = true)
 	public void afterMethod() {
 		try {
@@ -112,7 +123,7 @@ public class LoadMember02_Deferred {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 }

@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -81,12 +82,14 @@ public class LoadMember03_Deferred {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);
-
+			Reporter.log("Superuser load member : " + refno);
 			//check for links available under 'My details'
 			MyDetailPage.loadPage(driver);
-			TakeScreenShot.takeScreenshoot();
+			Reporter.log("Then access to My detail page");
+			//TakeScreenShot.takeScreenshoot();
 			Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
 			Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 5));
+			Reporter.log("Then check : This is Me and Scheme Pays will show");
 			//check for links unavailable under 'My details'	
 			Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 5));
@@ -96,12 +99,18 @@ public class LoadMember03_Deferred {
 			Assert.assertFalse(MyDetailCheck.checkRedundacyLink(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkMyCarryForward(driver, 5));
+			Reporter.log("Then check : Payslips , My Life time , My Accurate , My Benefits,"
+					+ " My Retirement , Redundacy, My Annual Allowance, My Carry Forward will not show");
 			//check 'This is me' page
 			ThisIsMePage.loadPage(driver);
+			Reporter.log("Then access to This is Me");
 			CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
+			Reporter.log("Then check the personal detail table will show");
 			Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver, refno));
+			Reporter.log("Then check the refno : " + refno + " will existed in this table");
 			//logout
 			Authenticate.LogOut(driver, 10);
+			Reporter.log("Finally Logout");
 	}
 	
 	@AfterMethod(alwaysRun = true)
