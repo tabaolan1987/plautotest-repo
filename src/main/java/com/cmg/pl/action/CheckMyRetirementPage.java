@@ -18,6 +18,7 @@ public class CheckMyRetirementPage {
 		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelBttRetirementAge(driver), 20);
 		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelSliderRetirementAge(driver), 20);
 		System.out.println("model retirement age 1");
+		Thread.sleep(2000);
 		//slide the slider
 		Actions dragger = new Actions(driver);
 		dragger.dragAndDropBy(MyRetirementPage.modelSliderRetirementAge(driver), movePixel, 0);
@@ -46,6 +47,7 @@ public class CheckMyRetirementPage {
 		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelSliderCashLumSum(driver), 20);
 		System.out.println("model cashlumpsum 2");
 		// slide the slider
+		Thread.sleep(2000);
 		Actions dragger = new Actions(driver);
 		dragger.dragAndDropBy(MyRetirementPage.modelSliderCashLumSum(driver),movePixel, 0);
 		dragger.build().perform();
@@ -67,19 +69,22 @@ public class CheckMyRetirementPage {
 		//click on link 'Contributory option'
 		System.out.println("model Contributory option");
 		MyRetirementPage.linkContributoryOption(driver).click();
-		
+		System.out.println("model Contributory option 1");
 		//wait for element model present
 				
 		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelBttContributoryOption(driver), 20);
 		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.SelectContributoryOption(driver), 20);
-		
+		System.out.println("model Contributory option 2");
+		Thread.sleep(2000);
 		//select option by index and model
 		Select selectContri = new Select(MyRetirementPage.SelectContributoryOption(driver));
 		selectContri.selectByIndex(index);
 		MyRetirementPage.modelBttContributoryOption(driver).click();
 		Thread.sleep(1000);
+		System.out.println("model Contributory option 3");
 		PageLoading.waitForImageVisible(driver, 10);
 		PageLoading.waitForImageInvisible(driver, 20);
+		System.out.println("model Contributory option 4");
 		//Assert.assertFalse(PageLoading.checkDataError(driver));
 		
 	}
