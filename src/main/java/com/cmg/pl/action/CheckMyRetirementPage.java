@@ -17,17 +17,18 @@ public class CheckMyRetirementPage {
 	 		
 		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelBttRetirementAge(driver), 20);
 		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelSliderRetirementAge(driver), 20);
-		
+		System.out.println("model retirement age 1");
 		//slide the slider
 		Actions dragger = new Actions(driver);
 		dragger.dragAndDropBy(MyRetirementPage.modelSliderRetirementAge(driver), movePixel, 0);
 		dragger.build().perform();
 		// click button to model
 		MyRetirementPage.modelBttRetirementAge(driver).click();
-		
-		Thread.sleep(1000);
+		System.out.println("model retirement age 2");
 		// wait for spinning visible then invisible
-		//PageLoading.waitForImageVisible(driver, 10);
+		Thread.sleep(1000);
+		PageLoading.waitForImageVisible(driver, 10);
+		System.out.println("model retirement age 3");
 		PageLoading.waitForImageInvisible(driver, 20);
 		//Assert.assertFalse(PageLoading.checkDataError(driver));
 		System.out.println("end model retirement");
@@ -37,13 +38,13 @@ public class CheckMyRetirementPage {
 		System.out.println("model cashlumpsum");
 		//click link 'Cash lump sum'
 		MyRetirementPage.linkCashLumpSum(driver).click();
-		
-		Thread.sleep(1000);
+		System.out.println("model cashlumpsum 1");
+		Thread.sleep(3000);
 		// wait for button and slider show-up
-			
 		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelBttGoCashLum(driver), 20);
+		System.out.println("model cashlumpsum 1.5");
 		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelSliderCashLumSum(driver), 20);
-		
+		System.out.println("model cashlumpsum 2");
 		// slide the slider
 		Actions dragger = new Actions(driver);
 		dragger.dragAndDropBy(MyRetirementPage.modelSliderCashLumSum(driver),movePixel, 0);
@@ -52,9 +53,11 @@ public class CheckMyRetirementPage {
 		// click button to model
 		MyRetirementPage.modelBttGoCashLum(driver).click();
 		Thread.sleep(1000);
+		System.out.println("model cashlumpsum 3");
 		// wait for spinning visible then invisible
-		//PageLoading.waitForImageVisible(driver, 10);
+		PageLoading.waitForImageVisible(driver, 10);
 		PageLoading.waitForImageInvisible(driver, 20);
+		System.out.println("model cashlumpsum 4");
 		//Assert.assertFalse(PageLoading.checkDataError(driver));
 		
 		
@@ -75,7 +78,7 @@ public class CheckMyRetirementPage {
 		selectContri.selectByIndex(index);
 		MyRetirementPage.modelBttContributoryOption(driver).click();
 		Thread.sleep(1000);
-		//PageLoading.waitForImageVisible(driver, 10);
+		PageLoading.waitForImageVisible(driver, 10);
 		PageLoading.waitForImageInvisible(driver, 20);
 		//Assert.assertFalse(PageLoading.checkDataError(driver));
 		

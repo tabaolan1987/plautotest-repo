@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PageLoading {
 
-	private static String XPATH_IMAGE_SPINNING = "//img[@alt='waiting']";
+	private static String XPATH_IMAGE_SPINNING = "//img[contains(@src,'spinning_image')]";
 	
 	private static String XPATH_ERROR_SPAN = "//span[contains(., '[[')]";
 	
@@ -34,8 +34,20 @@ public class PageLoading {
 	}
 	
 	public static void waitForImageVisible(WebDriver driver , int timeout){
-		WebDriverWait wait = new WebDriverWait(driver, timeout);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(XPATH_IMAGE_SPINNING)));
+		/*WebDriverWait wait = new WebDriverWait(driver, timeout);
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(XPATH_IMAGE_SPINNING)));*/
+		try {
+			int count = 0;
+			while (count < timeout) {
+				Thread.sleep(1000);
+				count++;
+				List<WebElement> images = driver.findElements(By.xpath(XPATH_IMAGE_SPINNING));
+				if(images.size() > 0){
+					break;
+				}
+			}
+		} catch (Exception e) {
+		}
 	}
 	
 	
