@@ -30,7 +30,7 @@ public class MyRetirementPage {
 	
 	public static String LINK_TEXT_CASHLUMSUM = "Cash lump sum";
 	
-	public static String ID_SLIDER_CASHLUMSUM = "sl2slider";
+	public static String ID_SLIDER_CASHLUMSUM = "sl1slider";
 	
 	public static String XPATH_BTT_GO_CASHLUMSUM ="//div[@id='cash_panel']/div[@class='slider_panel']/input[2][@class='goButton'] ";
 	

@@ -24,11 +24,13 @@ public class CheckMyRetirementPage {
 		dragger.build().perform();
 		// click button to model
 		MyRetirementPage.modelBttRetirementAge(driver).click();
+		
 		Thread.sleep(1000);
 		// wait for spinning visible then invisible
 		//PageLoading.waitForImageVisible(driver, 10);
 		PageLoading.waitForImageInvisible(driver, 20);
 		//Assert.assertFalse(PageLoading.checkDataError(driver));
+		System.out.println("end model retirement");
 	}
 
 	public static void modelCashLumpSum(WebDriver driver, int movePixel) throws InterruptedException {
@@ -36,6 +38,7 @@ public class CheckMyRetirementPage {
 		//click link 'Cash lump sum'
 		MyRetirementPage.linkCashLumpSum(driver).click();
 		
+		Thread.sleep(1000);
 		// wait for button and slider show-up
 			
 		PageLoading.waitForElementExistedInDomVisible(MyRetirementPage.modelBttGoCashLum(driver), 20);
