@@ -7,7 +7,6 @@ public class DriverUtil {
 	public static final String FOLDER_DRIVER = "driver";
 	
 	public static String getIeDriver(){
-		
 		String path = "H:\\Driver Automation\\IEDriverServer.exe";
 		return path;
 		/*String path = PropertiesHelper.getKey(PROP_PROJECT_BASE_DIR) + File.separator + FOLDER_DRIVER 
