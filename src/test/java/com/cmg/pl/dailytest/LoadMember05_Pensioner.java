@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -87,14 +88,14 @@ public class LoadMember05_Pensioner {
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			TakeScreenShot.takeScreenshoot();
 			SuperUser.loadMember(driver, 30, group, refno);
-
+			Reporter.log("Superuser load member : " + refno);
 			//check for links available under 'My details'
 			MyDetailPage.loadPage(driver);
-			TakeScreenShot.takeScreenshoot();
+			Reporter.log("Then access to my detail page");
 			Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
 			Assert.assertTrue(MyDetailCheck.checkPaySlips(driver, 5));
 			Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 5));
-			
+			Reporter.log("Then check : This is Me, Payslips, SchemePays will show under My Detail");
 			//check for links unavailable under 'My details'
 			Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, 5));
@@ -103,23 +104,29 @@ public class LoadMember05_Pensioner {
 			Assert.assertFalse(MyDetailCheck.checkRedundacyLink(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkMyAnnualAllowance(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkMyCarryForward(driver, 5));
-
+			Reporter.log("Then check : My Life time , My Accurate , My Benefits,"
+					+ " My Retirement , Redundacy, My Annual Allowance, My Carry Forward will not show");
 			//check 'This is me' page
 			ThisIsMePage.loadPage(driver);
+			Reporter.log("Then access to This is Me page");
 			CheckThisIsMePage.checkPersonalDetailTableExisted(driver, 10);
+			Reporter.log("Then check Table Personal Detail existed");
 			Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver, refno));
-
+			Reporter.log("Then check refno : " + refno + " will existed in table");
 			//check Payslips page 
 			PaySlipsPage.loadPage(driver);
+			Reporter.log("Then access to Payslips page");
 			Assert.assertTrue(CheckPaySlipsPage.checkTablePaySlipsExisted(driver,10));
 			Assert.assertTrue(CheckPaySlipsPage.checkTablePersonalDetailExisted(driver, 10));
+			Reporter.log("Then check : table payslips , table personal detail existed");
 			Assert.assertTrue(CheckPaySlipsPage.checkCurrentTaxYear(driver));
 			Assert.assertTrue(CheckPaySlipsPage.checkRefno(driver, refno));
 			Assert.assertTrue(CheckPaySlipsPage.checkNiNo(driver));
 			Assert.assertTrue(CheckPaySlipsPage.checkBttPreviousExisted(driver, 10));
-			
+			Reporter.log("Then check : current tax year and refno and nino and button previous existed");
 			//logout
 			Authenticate.LogOut(driver, 10);
+			Reporter.log("Finally logout");
 	}
 	
 	@AfterMethod(alwaysRun = true)

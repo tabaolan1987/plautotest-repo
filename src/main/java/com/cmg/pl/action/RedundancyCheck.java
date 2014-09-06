@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import com.cmg.pl.pageObject.RedundancyPage;
 
@@ -21,17 +20,21 @@ public class RedundancyCheck {
 	
 	public static void modelRedundancy(WebDriver driver) throws InterruptedException{
 		//Click on link text date
+		System.out.println("model redundancy");
 		RedundancyPage.linkRedudancyDate(driver).click();
 		//wait for all element model present
 		waitForButtonModel(driver, 10);
 		waitForTextBox(driver, 10);
-		
+		System.out.println("model redundancy 2");
 		//click to open calendar
 		RedundancyPage.txt_Date(driver).click();
 		//wait for calendar present
 		waitForCalendar(driver, 10);
+		Thread.sleep(2000);
+		System.out.println("model redundancy 3");
 		//click to set next month in calendar
 		setNextMonthCalendar(driver);
+		System.out.println("model redundancy 4");
 		//click to choose the first date of next month in calendar
 		chooseDateNextMonth(driver);
 		//click model
@@ -39,9 +42,10 @@ public class RedundancyCheck {
 		
 		RedundancyPage.bttModel(driver).click();
 		//check page loading
+		System.out.println("model redundancy 5");
 		PageLoading.waitForImageVisible(driver, 10);
 		PageLoading.waitForImageInvisible(driver, 20);
-		Assert.assertFalse(PageLoading.checkDataError(driver));
+		System.out.println("model redundancy 6");
 	}
 	
 	private static void waitForCalendar(WebDriver driver , int timeout){

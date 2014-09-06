@@ -157,7 +157,7 @@ public class LoadMember08_Active {
 			// Check 'Redundancy' page and model a future redundancy date
 			RedundancyPage.loadPage(driver);
 			RedundancyCheck.modelRedundancy(driver);
-
+			Assert.assertFalse(PageLoading.checkDataError(driver));
 			// Check 'My Annual Allowance' Page and its sub-menus
 			MyAnnualAllowancePage.loadPage(driver);
 			Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAPensionSavings(
