@@ -50,7 +50,7 @@ public class RedundancyCheck {
 	
 	private static void waitForCalendar(WebDriver driver , int timeout){
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(RedundancyPage.XPATH_CALENDAR)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RedundancyPage.XPATH_CALENDAR)));
 	}
 	
 	private static void waitForButtonModel(WebDriver driver , int timeout){
