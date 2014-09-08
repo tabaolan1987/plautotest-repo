@@ -57,14 +57,17 @@ public class ItestListen implements ITestListener {
 	 */
 	private int nbExceptions = 0;
 
-
 	public void onTestSuccess(ITestResult result) {
-		PdfPCell cell = new PdfPCell(new Paragraph(result.getTestClass()
+		if (successTable == null) {
+			createSuccessTable();
+		}
+		PdfPCell cell1 = new PdfPCell(new Paragraph(result.getTestClass()
 				.toString()));
-		this.successTable.addCell(cell);
-		cell = new PdfPCell(new Paragraph(""
+		this.successTable.addCell(cell1);
+
+		cell1 = new PdfPCell(new Paragraph(""
 				+ (result.getEndMillis() - result.getStartMillis())));
-		this.successTable.addCell(cell);
+		this.successTable.addCell(cell1);
 
 		Throwable throwable = result.getThrowable();
 		if (throwable != null) {
@@ -74,14 +77,17 @@ public class ItestListen implements ITestListener {
 					new Chunk(throwable.toString(), new Font(Font.TIMES_ROMAN,
 							Font.DEFAULTSIZE, Font.UNDERLINE)).setLocalGoto(""
 							+ throwable.hashCode()));
-			cell = new PdfPCell(excep);
-			this.successTable.addCell(cell);
+			cell1 = new PdfPCell(excep);
+			this.successTable.addCell(cell1);
 		} else {
 			this.successTable.addCell(new PdfPCell(new Paragraph("")));
 		}
 	}
 
 	public void onTestFailure(ITestResult result) {
+		if (failTable == null) {
+			createFailTable();
+		}
 		String path = "";
 		try {
 			File file = TakeScreenShot.takeSnapshot();
@@ -93,12 +99,12 @@ public class ItestListen implements ITestListener {
 		}
 		System.out.println("path file : " + path);
 
-		PdfPCell cell = new PdfPCell(new Paragraph(result.getTestClass()
+		PdfPCell cell1 = new PdfPCell(new Paragraph(result.getTestClass()
 				.toString()));
-		this.failTable.addCell(cell);
-		cell = new PdfPCell(new Paragraph(""
+		this.failTable.addCell(cell1);
+		cell1 = new PdfPCell(new Paragraph(""
 				+ (result.getEndMillis() - result.getStartMillis())));
-		this.failTable.addCell(cell);
+		this.failTable.addCell(cell1);
 		Throwable throwable = result.getThrowable();
 		if (throwable != null) {
 			this.throwableMap.put(new Integer(throwable.hashCode()), throwable);
@@ -108,8 +114,8 @@ public class ItestListen implements ITestListener {
 			imdb.setAction(new PdfAction("file:///" + path));
 			Paragraph excep = new Paragraph(throwable.toString());
 			excep.add(imdb);
-			cell = new PdfPCell(excep);
-			this.failTable.addCell(cell);
+			cell1 = new PdfPCell(excep);
+			this.failTable.addCell(cell1);
 		} else {
 			this.failTable.addCell(new PdfPCell(new Paragraph("")));
 		}
@@ -117,6 +123,9 @@ public class ItestListen implements ITestListener {
 	}
 
 	public void onTestSkipped(ITestResult result) {
+		if (skipTable == null) {
+			createSkippTable();
+		}
 		String path = "";
 		try {
 			File file = TakeScreenShot.takeSnapshot();
@@ -126,12 +135,12 @@ public class ItestListen implements ITestListener {
 		} catch (Exception e) {
 		}
 
-		PdfPCell cell = new PdfPCell(new Paragraph(result.getTestClass()
+		PdfPCell cell1 = new PdfPCell(new Paragraph(result.getTestClass()
 				.toString()));
-		this.skipTable.addCell(cell);
-		cell = new PdfPCell(new Paragraph(""
+		this.skipTable.addCell(cell1);
+		cell1 = new PdfPCell(new Paragraph(""
 				+ (result.getEndMillis() - result.getStartMillis())));
-		this.skipTable.addCell(cell);
+		this.skipTable.addCell(cell1);
 		Throwable throwable = result.getThrowable();
 		if (throwable != null) {
 			this.throwableMap.put(new Integer(throwable.hashCode()), throwable);
@@ -141,8 +150,8 @@ public class ItestListen implements ITestListener {
 			imdb.setAction(new PdfAction("file:///" + path));
 			Paragraph excep = new Paragraph(throwable.toString());
 			excep.add(imdb);
-			cell = new PdfPCell(excep);
-			this.skipTable.addCell(cell);
+			cell1 = new PdfPCell(excep);
+			this.skipTable.addCell(cell1);
 		} else {
 			this.skipTable.addCell(new PdfPCell(new Paragraph("")));
 		}
@@ -151,20 +160,20 @@ public class ItestListen implements ITestListener {
 
 	public void onFinish(ITestContext context) {
 		try {
-			
+
 			if (this.successTable != null) {
 				this.successTable.setSpacingBefore(20f);
 				this.document.add(this.successTable);
 				this.successTable.setSpacingBefore(20f);
 			}
-			
+
 			if (this.failTable != null) {
 				this.failTable.setSpacingBefore(20f);
 				this.document.add(this.failTable);
 				this.failTable.setSpacingAfter(20f);
 			}
-			
-			if(this.skipTable!=null){
+
+			if (this.skipTable != null) {
 				this.skipTable.setSpacingBefore(20f);
 				this.document.add(this.skipTable);
 				this.successTable.setSpacingBefore(20f);
@@ -174,23 +183,25 @@ public class ItestListen implements ITestListener {
 		}
 
 		Set<Integer> keys = this.throwableMap.keySet();
-		
-		if(keys.size() > 0){
-			Paragraph p = new Paragraph("EXCEPTIONS SUMMARY", FontFactory.getFont(
-					FontFactory.HELVETICA, 16, Font.BOLD, new Color(255, 0, 0)));
+
+		if (keys.size() > 0) {
+			Paragraph p = new Paragraph("EXCEPTIONS SUMMARY",
+					FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLD,
+							new Color(255, 0, 0)));
 			try {
 				this.document.add(p);
 			} catch (DocumentException e1) {
 				e1.printStackTrace();
 			}
-			
+
 			assert keys.size() == this.nbExceptions;
 
 			for (Integer key : keys) {
 				Throwable throwable = this.throwableMap.get(key);
 
-				Chunk chunk = new Chunk(throwable.toString(), FontFactory.getFont(
-						FontFactory.HELVETICA, 12, Font.BOLD, new Color(255, 0, 0)));
+				Chunk chunk = new Chunk(throwable.toString(),
+						FontFactory.getFont(FontFactory.HELVETICA, 12,
+								Font.BOLD, new Color(255, 0, 0)));
 				chunk.setLocalDestination("" + key);
 				Paragraph throwTitlePara = new Paragraph(chunk);
 				try {
@@ -210,15 +221,14 @@ public class ItestListen implements ITestListener {
 				}
 			}
 		}
-		
+
 		System.out.println("close doc : " + context.getName());
 		this.document.close();
 
 	}
 
 	public void onTestStart(ITestResult result) {
-		
-		
+
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
@@ -226,29 +236,31 @@ public class ItestListen implements ITestListener {
 	}
 
 	public void onStart(ITestContext context) {
-		
+
 		this.document = new Document();
 		this.throwableMap = new HashMap<Integer, Throwable>();
 		System.out.println("start create " + context.getName());
 		String name = context.getName();
 		System.out.println("create new pdf for : " + name);
-		String pathFilePDF = PropertiesHelper.getKey(TakeScreenShot.PROP_PROJECT_BUILD_DIR)
-				+ File.separator + "PDF Report";
+		String pathFilePDF = PropertiesHelper
+				.getKey(TakeScreenShot.PROP_PROJECT_BUILD_DIR)
+				+ File.separator
+				+ "PDF Report";
 		File f = new File(pathFilePDF);
 		if (!f.exists() || !f.isDirectory()) {
 			f.mkdirs();
 		}
 		System.out.println("pathFilePDF : " + pathFilePDF);
 		try {
-			PdfWriter.getInstance(this.document, new FileOutputStream(pathFilePDF +File.separator+ name + ".pdf"));
+			PdfWriter.getInstance(this.document, new FileOutputStream(
+					pathFilePDF + File.separator + name + ".pdf"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		this.document.open();
 
-		Paragraph p = new Paragraph(name + " RESULTS",
-				FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD,
-						new Color(0, 0, 255)));
+		Paragraph p = new Paragraph(name + " RESULTS", FontFactory.getFont(
+				FontFactory.HELVETICA, 20, Font.BOLD, new Color(0, 0, 255)));
 
 		try {
 			this.document.add(p);
@@ -256,20 +268,18 @@ public class ItestListen implements ITestListener {
 		} catch (DocumentException e1) {
 			e1.printStackTrace();
 		}
-		
-		//init success table
-		createSuccessTable();
-		//init fail table
-		createFailTable();
-		//init skipped table
-		createSkippTable();
+
+		this.skipTable = null;
+		this.successTable = null;
+		this.failTable = null;
 		this.nbExceptions = 0;
 	}
-	public void createSkippTable(){
-		this.skipTable = new PdfPTable(new float[] { .3f, .2f, .2f, .3f });
+
+	public void createSkippTable() {
+		this.skipTable = new PdfPTable(new float[] { .3f, .2f, .3f });
 		this.skipTable.setTotalWidth(20f);
-		Paragraph p = new Paragraph("Skipped TESTS", new Font(
-				Font.TIMES_ROMAN, Font.DEFAULTSIZE, Font.BOLD));
+		Paragraph p = new Paragraph("Skipped TESTS", new Font(Font.TIMES_ROMAN,
+				Font.DEFAULTSIZE, Font.BOLD));
 		p.setAlignment(Element.ALIGN_CENTER);
 		PdfPCell cell = new PdfPCell(p);
 		cell.setColspan(4);
@@ -286,11 +296,12 @@ public class ItestListen implements ITestListener {
 		cell.setBackgroundColor(Color.BLUE);
 		this.skipTable.addCell(cell);
 	}
-	public void createFailTable(){
-		this.failTable = new PdfPTable(new float[] { .3f, .2f, .2f, .3f });
+
+	public void createFailTable() {
+		this.failTable = new PdfPTable(new float[] { .3f, .2f, .3f });
 		this.failTable.setTotalWidth(20f);
-		Paragraph p = new Paragraph("FAILED TESTS", new Font(
-				Font.TIMES_ROMAN, Font.DEFAULTSIZE, Font.BOLD));
+		Paragraph p = new Paragraph("FAILED TESTS", new Font(Font.TIMES_ROMAN,
+				Font.DEFAULTSIZE, Font.BOLD));
 		p.setAlignment(Element.ALIGN_CENTER);
 		PdfPCell cell = new PdfPCell(p);
 		cell.setColspan(4);
@@ -307,12 +318,11 @@ public class ItestListen implements ITestListener {
 		cell.setBackgroundColor(Color.LIGHT_GRAY);
 		this.failTable.addCell(cell);
 	}
-	
-	public void createSuccessTable(){
-		this.successTable = new PdfPTable(
-				new float[] { .3f, .2f, .2f, .3f });
-		Paragraph p = new Paragraph("PASSED TESTS", new Font(
-				Font.TIMES_ROMAN, Font.DEFAULTSIZE, Font.BOLD));
+
+	public void createSuccessTable() {
+		this.successTable = new PdfPTable(new float[] { .3f, .2f, .3f });
+		Paragraph p = new Paragraph("PASSED TESTS", new Font(Font.TIMES_ROMAN,
+				Font.DEFAULTSIZE, Font.BOLD));
 		p.setAlignment(Element.ALIGN_CENTER);
 		PdfPCell cell = new PdfPCell(p);
 		cell.setColspan(4);
