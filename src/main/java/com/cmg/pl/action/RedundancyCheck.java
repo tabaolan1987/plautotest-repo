@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.cmg.pl.pageObject.RedundancyPage;
 
 public class RedundancyCheck {
@@ -28,9 +29,10 @@ public class RedundancyCheck {
 		System.out.println("model redundancy 2");
 		//click to open calendar
 		RedundancyPage.txt_Date(driver).click();
-		//wait for calendar present
-		waitForCalendar(driver, 10);
 		Thread.sleep(2000);
+		//wait for calendar present
+		TakeScreenShot.takeScreenshoot();
+		waitForCalendar(driver, 10);
 		System.out.println("model redundancy 3");
 		//click to set next month in calendar
 		setNextMonthCalendar(driver);
