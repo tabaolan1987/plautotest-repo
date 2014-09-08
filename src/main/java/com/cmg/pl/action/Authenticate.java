@@ -24,8 +24,8 @@ public class Authenticate {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(LogoutPage.XPAHT_BTT_LOGOUT)));
 		
 		LogoutPage.BttLogout(driver).click();
-		
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.linkText("Logout")));
+		WebDriverWait wait1 = new WebDriverWait(driver, timeout);
+		wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.linkText("Logout")));
 		
 		System.out.println("log out");
 		
