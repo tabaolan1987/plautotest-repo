@@ -84,6 +84,7 @@ public class LoadMember08_Active {
 			driver = new InternetExplorerDriver(caps);
 			driver.manage().deleteAllCookies();
 		}
+		driver.manage().window().maximize();
 		driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
 		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;
@@ -158,7 +159,6 @@ public class LoadMember08_Active {
 			RedundancyPage.loadPage(driver);
 			Assert.assertFalse(PageLoading.checkDataError(driver));
 			RedundancyCheck.modelRedundancy(driver);
-			TakeScreenShot.takeScreenshoot();
 			Assert.assertFalse(PageLoading.checkDataError(driver));
 			// Check 'My Annual Allowance' Page and its sub-menus
 			MyAnnualAllowancePage.loadPage(driver);
