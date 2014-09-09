@@ -1,6 +1,15 @@
 package com.c_mg.pl.selenium.PLAUTOTEST;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverUtil {
 	public static final String PROP_PROJECT_BASE_DIR = "project.basedir";
@@ -40,5 +49,36 @@ public class DriverUtil {
 			return null;
 		}
 		return null;	
+	}
+	
+	public static WebDriver getInstance(String browser){
+		WebDriver driver = null;
+		if (browser.equalsIgnoreCase("firefox")) {
+			try {
+				driver = new FirefoxDriver();
+				driver.manage().deleteAllCookies();
+			} catch (WebDriverException e) {
+				System.out.println(e.getMessage());
+				FirefoxProfile profile = new FirefoxProfile();
+				profile.setAcceptUntrustedCertificates(true);
+				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
+				driver = new FirefoxDriver(profile);
+			}
+		} else if (browser.equalsIgnoreCase("chrome")) {
+			System.setProperty("webdriver.chrome.driver",
+					DriverUtil.getChromeDriver());
+			driver = new ChromeDriver();
+			driver.manage().deleteAllCookies();
+		} else if (browser.equalsIgnoreCase("ie")) {
+			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
+			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
+			caps.setCapability(
+			    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+			    true);
+			driver = new InternetExplorerDriver(caps);
+			driver.manage().deleteAllCookies();
+		}
+		driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
+		return driver;
 	}
 }

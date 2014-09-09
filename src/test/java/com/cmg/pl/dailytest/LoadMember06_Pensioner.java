@@ -1,17 +1,9 @@
 package com.cmg.pl.dailytest;
 
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -43,35 +35,7 @@ public class LoadMember06_Pensioner {
 	@BeforeMethod
 	public void beforeMethod(String browser, String super_user_name, String super_user_pass, String pensioner_ref_no03) 
 	{
-		if (browser.equalsIgnoreCase("firefox")) {
-			try {
-				System.out.println("Start firefox : LoadMember06_Pensioner");
-				driver = new FirefoxDriver();
-				driver.manage().deleteAllCookies();
-			} catch (WebDriverException e) {
-				System.out.println(e.getMessage());
-				FirefoxProfile profile = new FirefoxProfile();
-				profile.setAcceptUntrustedCertificates(true);
-				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
-				driver = new FirefoxDriver(profile);
-			}
-		} else if (browser.equalsIgnoreCase("chrome")) {
-			System.out.println("Start chrome : LoadMember06_Pensioner");
-			System.setProperty("webdriver.chrome.driver",
-					DriverUtil.getChromeDriver());
-			driver = new ChromeDriver();
-			driver.manage().deleteAllCookies();
-		} else if (browser.equalsIgnoreCase("ie")) {
-			System.out.println("Start ie : LoadMember06_Pensioner");
-			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
-			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
-			caps.setCapability(
-			    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-			    true);
-			driver = new InternetExplorerDriver(caps);
-			driver.manage().deleteAllCookies();
-		}
-		driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
+		driver = DriverUtil.getInstance(browser);
 		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;
 		usernamePass = super_user_pass;
