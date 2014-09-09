@@ -24,12 +24,12 @@
 		<parameter name="active_ref_no01" value="0122398" />
 
 		<classes>
-			<class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
+			 <class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
 			<class name="com.cmg.pl.dailytest.LoadMember02_Deferred" /> 
 			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" /> 
 			<class name="com.cmg.pl.dailytest.LoadMember04_Pensioner"/> 
 			<class name="com.cmg.pl.dailytest.LoadMember05_Pensioner" /> 
-			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner" /> 
+			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner" />
 			<class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" />
 			<class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
 			<class name="com.cmg.pl.dailytest.ProduceReport" /> 
@@ -54,14 +54,14 @@
 		<parameter name="active_ref_no01" value="0122398" />
 
 		<classes>
-			 <class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
+			<class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
 			<class name="com.cmg.pl.dailytest.LoadMember02_Deferred" /> 
 			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" />
 			 <class name="com.cmg.pl.dailytest.LoadMember04_Pensioner"/> 
 			 <class name="com.cmg.pl.dailytest.LoadMember05_Pensioner" /> 
 			 <class name="com.cmg.pl.dailytest.LoadMember06_Pensioner"/>
 			 <class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" /> 
-			 <class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
+			<class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
 			 <class name="com.cmg.pl.dailytest.ProduceReport"/>
 		</classes>
 	</test>
@@ -89,10 +89,10 @@
 			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" /> 
 			<class name="com.cmg.pl.dailytest.LoadMember04_Pensioner"/> 
 			<class name="com.cmg.pl.dailytest.LoadMember05_Pensioner" /> 
-			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner"/> 
+			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner"/>
 			<class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" />
-			<class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
-			<class name="com.cmg.pl.dailytest.ProduceReport" />
+			<!-- <class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
+			<class name="com.cmg.pl.dailytest.ProduceReport" /> -->
 		</classes>
 
 	</test> 
