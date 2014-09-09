@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="none">
 	<!--  <listeners>
@@ -21,7 +20,7 @@
 		<parameter name="pensioner_ref_no01" value="0001532" />
 		<parameter name="pensioner_ref_no02" value="0100027" />
 		<parameter name="pensioner_ref_no03" value="0090597" />
-		<parameter name="securitylock_ref_no01" value="0001341" />
+		<parameter name="securitylock_ref_no01" value="0057437" />
 		<parameter name="active_ref_no01" value="0122398" />
 
 		<classes>
@@ -51,7 +50,7 @@
 		<parameter name="pensioner_ref_no01" value="0001532" />
 		<parameter name="pensioner_ref_no02" value="0100027" />
 		<parameter name="pensioner_ref_no03" value="0090597" />
-		<parameter name="securitylock_ref_no01" value="0001341" />
+		<parameter name="securitylock_ref_no01" value="0057437" />
 		<parameter name="active_ref_no01" value="0122398" />
 
 		<classes>
@@ -81,7 +80,7 @@
 		<parameter name="pensioner_ref_no01" value="0001532" />
 		<parameter name="pensioner_ref_no02" value="0100027" />
 		<parameter name="pensioner_ref_no03" value="0090597" />
-		<parameter name="securitylock_ref_no01" value="0001341" />
+		<parameter name="securitylock_ref_no01" value="0057437" />
 		<parameter name="active_ref_no01" value="0122398" />
 
 		<classes>
