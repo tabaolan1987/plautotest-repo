@@ -91,8 +91,8 @@
 			<class name="com.cmg.pl.dailytest.LoadMember05_Pensioner" /> 
 			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner"/>
 			<class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" />
-			<!-- <class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
-			<class name="com.cmg.pl.dailytest.ProduceReport" /> -->
+			<class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
+			<class name="com.cmg.pl.dailytest.ProduceReport" />
 		</classes>
 
 	</test> 
