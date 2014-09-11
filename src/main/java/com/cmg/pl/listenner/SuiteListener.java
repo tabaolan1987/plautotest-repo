@@ -41,8 +41,8 @@ public class SuiteListener implements ISuiteListener{
 
 		// message info
 		String mailTo = "lan.ta@c-mg.com,tabaolan1987@gmail.com";
-		String subject = "Automation test Result";
-		String message = "<p>Dear all,<p>I send some attachments for you.This is the result of the automation test today!";
+		String subject = "Automation Test Result";
+		String message = "<p>Dear all,<p>I send some attachments for you.There are the results of the automation daily test for Pensionline PROD  today!";
 		
 		// attachments
 		String[] attachFiles = new String[3];
@@ -96,9 +96,11 @@ public class SuiteListener implements ISuiteListener{
 
 		msg.setFrom(new InternetAddress("automation@c-mg.com"));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("lan.ta@c-mg.com"));
-		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("hai.lu@c-mg.com"));
-		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("tabaolan1987@gmail.com"));
-		
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("anh.nguyen@c-mg.com"));
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("elaine.dimon@c-mg.com"));
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("my.vu@c-mg.com"));
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("caroline.schofield@c-mg.com"));
+	
 		msg.setSubject(subject);
 		msg.setSentDate(new Date());
 
