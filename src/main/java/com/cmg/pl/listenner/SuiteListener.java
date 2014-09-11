@@ -27,6 +27,11 @@ import com.c_mg.pl.selenium.PLAUTOTEST.PropertiesHelper;
 public class SuiteListener implements ISuiteListener{
 
 	public void onStart(ISuite suite) {
+		
+		
+	}
+
+	public void onFinish(ISuite suite) {
 		System.out.println("chay xong roi gui mail di em oi");
 		// SMTP info
 		String host = "smtp.gmail.com";
@@ -62,11 +67,6 @@ public class SuiteListener implements ISuiteListener{
 			System.out.println("Could not send email.");
 			ex.printStackTrace();
 		}
-		
-	}
-
-	public void onFinish(ISuite suite) {
-		
 	}
 	public static void sendEmailWithAttachments(String host, String port,
 			final String userName, final String password, String toAddress,
