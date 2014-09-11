@@ -116,6 +116,7 @@ public class SuiteListener implements ISuiteListener{
 				MimeBodyPart attachPart = new MimeBodyPart();
 
 				try {
+					System.out.println(filePath);
 					attachPart.attachFile(filePath);
 				} catch (IOException ex) {
 					ex.printStackTrace();
