@@ -42,7 +42,7 @@ public class SuiteListener implements ISuiteListener{
 		// message info
 		String mailTo = "lan.ta@c-mg.com,tabaolan1987@gmail.com";
 		String subject = "Automation Test Result";
-		String message = "<p>Dear all,<p>I send some attachments for you.There are the results of the automation daily test for Pensionline PROD  today!";
+		String message = "<p>Dear all,<p>I send some attachments for you.There are the results of the automation daily test for Pensionline PROD today!";
 		
 		// attachments
 		String[] attachFiles = new String[3];
