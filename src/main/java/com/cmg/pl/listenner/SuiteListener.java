@@ -46,7 +46,7 @@ public class SuiteListener implements ISuiteListener{
 		
 		// attachments
 		String[] attachFiles = new String[3];
-		String path = PropertiesHelper.getKey("project.basedir") + File.separator + "test-output" + File.separator + "Suite";
+		String path = PropertiesHelper.getKey("project.basedir") + File.separator + "target" + File.separator + "surefire-reports" + File.separator + "Suite";
 		File chrome = new File(path + File.separator + "ChromeTest.html");
 		if(chrome.exists()){
 			attachFiles[0] = chrome.getAbsolutePath();
