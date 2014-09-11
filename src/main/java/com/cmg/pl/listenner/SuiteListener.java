@@ -94,7 +94,7 @@ public class SuiteListener implements ISuiteListener{
 		// creates a new e-mail message
 		Message msg = new MimeMessage(session);
 
-		msg.setFrom(new InternetAddress("Automation Daily Checker"));
+		msg.setFrom(new InternetAddress("automation@c-mg.com"));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("lan.ta@c-mg.com"));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("hai.lu@c-mg.com"));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("tabaolan1987@gmail.com"));
