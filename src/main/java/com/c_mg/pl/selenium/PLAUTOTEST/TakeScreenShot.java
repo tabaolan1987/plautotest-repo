@@ -15,6 +15,8 @@ import java.io.IOException;
 
 
 
+
+
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
@@ -24,6 +26,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.sikuli.api.DesktopScreenRegion;
+import org.sikuli.api.ScreenRegion;
 
 
 public class TakeScreenShot {
