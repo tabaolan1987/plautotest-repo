@@ -21,14 +21,13 @@ import javax.mail.internet.MimeMultipart;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.FolderZiper;
 import com.c_mg.pl.selenium.PLAUTOTEST.PropertiesHelper;
 
-
-public class SuiteListener implements ISuiteListener{
+public class SuiteListener implements ISuiteListener {
 
 	public void onStart(ISuite suite) {
-		
-		
+
 	}
 
 	public void onFinish(ISuite suite) {
@@ -41,25 +40,21 @@ public class SuiteListener implements ISuiteListener{
 
 		// message info
 		String mailTo = "lan.ta@c-mg.com,tabaolan1987@gmail.com";
-		String subject = "Automation Test Result";
-		String message = "<p>Dear all,<p>I send some attachments for you.There are the results of the automation daily test for Pensionline PROD today!";
-		
+		String subject = "Automation Daily Test Result";
+		String message = "<p>Dear all,<p>I send some attachments for you.There is the result of the automation daily test PL today!";
+
 		// attachments
-		String[] attachFiles = new String[3];
-		String path = PropertiesHelper.getKey("project.basedir") + File.separator + "target" + File.separator + "surefire-reports" + File.separator + "Suite";
-		File chrome = new File(path + File.separator + "ChromeTest.html");
-		if(chrome.exists()){
-			attachFiles[0] = chrome.getAbsolutePath();
-		}
-		File firefox = new File(path + File.separator + "FirefoxTest.html");
-		if(firefox.exists()){
-			attachFiles[1] = firefox.getAbsolutePath();
-		}
-		File ie = new File(path + File.separator + "IETest.html");
-		if(ie.exists()){
-			attachFiles[2] = ie.getAbsolutePath();
-		}
 		try {
+			String attachFiles = new String();
+			String folderTarget = PropertiesHelper.getKey("project.basedir")
+					+ File.separator + "target";
+			String zipFile = PropertiesHelper.getKey("project.basedir")
+					+ File.separator + "result.zip";
+			FolderZiper.zipFolder(folderTarget, zipFile);
+			File fileZip = new File(zipFile);
+			if(fileZip.exists()){
+				attachFiles = fileZip.getAbsolutePath();
+			}
 			sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
 					subject, message, attachFiles);
 			System.out.println("Email sent.");
@@ -68,9 +63,10 @@ public class SuiteListener implements ISuiteListener{
 			ex.printStackTrace();
 		}
 	}
+
 	public static void sendEmailWithAttachments(String host, String port,
 			final String userName, final String password, String toAddress,
-			String subject, String message, String[] attachFiles)
+			String subject, String message, String attachFiles)
 			throws AddressException, MessagingException {
 		// sets SMTP server properties
 		Properties properties = new Properties();
@@ -94,13 +90,16 @@ public class SuiteListener implements ISuiteListener{
 		// creates a new e-mail message
 		Message msg = new MimeMessage(session);
 
-		msg.setFrom(new InternetAddress("automation@c-mg.com"));
-		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("lan.ta@c-mg.com"));
+		msg.setFrom(new InternetAddress(userName));
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+				"lan.ta@c-mg.com"));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("anh.nguyen@c-mg.com"));
-		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("elaine.dimon@c-mg.com"));
-		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("my.vu@c-mg.com"));
-		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("caroline.schofield@c-mg.com"));
-	
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+				"my.vu@c-mg.com"));
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+				"caroline.schofield@c-mg.com"));
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+				"elaine.dimon@c-mg.com"));
 		msg.setSubject(subject);
 		msg.setSentDate(new Date());
 
@@ -113,24 +112,18 @@ public class SuiteListener implements ISuiteListener{
 		multipart.addBodyPart(messageBodyPart);
 
 		// adds attachments
-		if (attachFiles != null && attachFiles.length > 0) {
-			for (String filePath : attachFiles) {
-				MimeBodyPart attachPart = new MimeBodyPart();
-
-				try {
-					System.out.println(filePath);
-					attachPart.attachFile(filePath);
-				} catch (IOException ex) {
-					ex.printStackTrace();
-				}
-				multipart.addBodyPart(attachPart);
-			}
+		MimeBodyPart attachPart = new MimeBodyPart();
+		try {
+			attachPart.attachFile(attachFiles);
+		} catch (IOException ex) {
+			ex.printStackTrace();
 		}
-
+		multipart.addBodyPart(attachPart);
 		// sets the multi-part as e-mail's content
 		msg.setContent(multipart);
 
 		// sends the e-mail
-		Transport.send(msg,msg.getAllRecipients());
+		Transport.send(msg, msg.getAllRecipients());
 	}
+
 }
