@@ -3,6 +3,7 @@
 <suite name="Suite" parallel="none">
 <listeners>
     <listener class-name="com.cmg.pl.listenner.SuiteListener" />
+       <listener class-name="com.cmg.pl.listenner.ItestListen" />
 </listeners>
 	 <test name="IETest">
 		<parameter name="browser" value="ie" />

@@ -35,6 +35,44 @@ public class TakeScreenShot {
 		driver = d;
 	}
 	
+	public static void takeSnapShot(String methodName) {
+		String folderBaseDriver = null;
+		if (driver instanceof InternetExplorerDriver) {
+			folderBaseDriver = "Internet Explore";
+		} else if (driver instanceof ChromeDriver) {
+			folderBaseDriver = "Chrome";
+		} else if (driver instanceof FirefoxDriver) {
+			folderBaseDriver = "Firefox";
+		}
+		String screenshootDir = PropertiesHelper.getKey(PROP_PROJECT_BUILD_DIR)
+				+ File.separator + "screenshots" + File.separator
+				+ folderBaseDriver;
+		File f = new File(screenshootDir);
+		if (!f.exists() || !f.isDirectory()) {
+			f.mkdirs();
+		}
+		File output = null;
+		File file;
+		if (folderBaseDriver.equalsIgnoreCase("Internet Explore")) {
+			ScreenRegion s = new DesktopScreenRegion();
+			try {
+				ImageIO.write(s.capture(), "png", new File(screenshootDir
+						+ File.separator + methodName + ".png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else{
+			output = ((TakesScreenshot) driver)
+					.getScreenshotAs(OutputType.FILE);
+			file = new File(screenshootDir, methodName + ".png");
+			try {
+				FileUtils.copyFile(output, file);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
 	
 	public static File takeScreen(String name){
 		CmgiumMethod currentTestMethod = getCurrentTestMethod();
