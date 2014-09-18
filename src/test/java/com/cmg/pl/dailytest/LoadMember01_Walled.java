@@ -49,7 +49,6 @@ public class LoadMember01_Walled {
 			
 			//check for links unavailable under 'My details'
 			MyDetailPage.loadPage(driver);
-			//TakeScreenShot.takeScreenshoot();
 			Reporter.log(" Then Access to My Detail Page");
 			Assert.assertFalse(MyDetailCheck.checkThisIsMeLink(driver, 5));
 			Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, 5));

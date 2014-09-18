@@ -59,7 +59,6 @@ public class LoadMember07_Securitylock {
 			  
 			  //check for links available under 'My details'
 			  MyDetailPage.loadPage(driver);
-			  TakeScreenShot.takeScreenshoot();
 			  Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
 			  Assert.assertTrue(MyDetailCheck.checkMyBenefitsLink(driver, 5));
 			  Assert.assertTrue(MyDetailCheck.checkMyAnnualAllowance(driver, 5));

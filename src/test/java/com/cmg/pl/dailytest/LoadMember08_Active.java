@@ -65,7 +65,6 @@ public class LoadMember08_Active {
 
 			// check for links available under 'My details'
 			MyDetailPage.loadPage(driver);
-			//TakeScreenShot.takeScreenshoot();
 			Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
 			Assert.assertTrue(MyDetailCheck.checkMyBenefitsLink(driver, 5));
 			Assert.assertTrue(MyDetailCheck.checkMyRetirementLink(driver, 5));

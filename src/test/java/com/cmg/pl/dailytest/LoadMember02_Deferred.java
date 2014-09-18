@@ -52,7 +52,6 @@ public class LoadMember02_Deferred {
 		// check for links available under 'My details'
 		MyDetailPage.loadPage(driver);
 		Reporter.log("Then Access My Detail");
-		// TakeScreenShot.takeScreenshoot();
 		Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, 5));
 		Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, 5));
 		Reporter.log("Then check : This is me and SchemePays should be show under My detail");
