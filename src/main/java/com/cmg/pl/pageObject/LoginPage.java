@@ -2,7 +2,6 @@ package com.cmg.pl.pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
@@ -21,8 +20,7 @@ public class LoginPage {
 	public static WebDriver LoadPage(WebDriver driver){
 		try {
 			driver.get(URL);
-		} catch (WebDriverException e) {
-			System.out.println("exception webdriver : " + e.getMessage() + " try to load this url once more time");
+		} catch (Exception e) {
 			driver.get(URL);
 		}
 		PageLoading.checkAlertPresent(driver);

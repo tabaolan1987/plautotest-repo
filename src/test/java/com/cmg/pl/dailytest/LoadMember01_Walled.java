@@ -42,7 +42,11 @@ public class LoadMember01_Walled {
 	
 	@Test(timeOut = 600000)
 	public void dailytest() {
-			LoginPage.LoadPage(driver);
+			try {
+				LoginPage.LoadPage(driver);
+			} catch (Exception e) {
+				LoginPage.LoadPage(driver);
+			}
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);
 			Reporter.log("Superuser load memeber : " + refno);
