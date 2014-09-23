@@ -3,6 +3,7 @@ package com.cmg.pl.dailytest;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
@@ -39,19 +40,24 @@ public class ProduceReport {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, report_runner_username,
 					report_runner_password);
+			Reporter.log("login with report runner : "  + report_runner_username);
 			ReportingToolPage.loadPage(driver);
+			Reporter.log("Then access to Reporting Tool page");
 			RunCheckingConnectionReportGroup
 					.runReportGroupCheckingConnection(driver);
 			Assert.assertTrue(CheckAccessReportsPage
 					.CheckReportSections(driver));
 			CheckAccessReportsPage.CheckSelectAllReports(driver);
+			Reporter.log("Then check all report");
 			// Thread.sleep(10000);
 			CheckAccessReportsPage.RunSelectedReports(driver);
+			Reporter.log("Then Run the report");
 			Thread.sleep(2000);
 			ProduceReportWithInputParam.ProduceReportWithDefaultParam(driver);
-
+			Reporter.log("Then Check successful report page is shown");
 			// logout
 			Authenticate.LogOut(driver, 10);
+			Reporter.log("Finnaly logout");
 
 	}
 
