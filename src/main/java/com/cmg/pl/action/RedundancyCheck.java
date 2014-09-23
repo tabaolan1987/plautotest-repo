@@ -30,8 +30,6 @@ public class RedundancyCheck {
 		//click to open calendar
 		RedundancyPage.txt_Date(driver).click();
 		Thread.sleep(2000);
-		//wait for calendar present
-		TakeScreenShot.takeScreenshoot();
 		waitForCalendar(driver, 10);
 		System.out.println("model redundancy 3");
 		//click to set next month in calendar

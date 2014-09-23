@@ -46,7 +46,6 @@ public class ProduceReport {
 					.CheckReportSections(driver));
 			CheckAccessReportsPage.CheckSelectAllReports(driver);
 			// Thread.sleep(10000);
-			TakeScreenShot.takeScreenshoot();
 			CheckAccessReportsPage.RunSelectedReports(driver);
 			Thread.sleep(2000);
 			ProduceReportWithInputParam.ProduceReportWithDefaultParam(driver);
