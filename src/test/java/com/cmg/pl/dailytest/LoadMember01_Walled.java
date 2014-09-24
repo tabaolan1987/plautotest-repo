@@ -40,8 +40,8 @@ public class LoadMember01_Walled {
 		
 	}
 	
-	@Test(timeOut = 600000)
-	public void dailytest() {
+	@Test(timeOut = 1200000)
+	public void LoadMember01Walled() {
 			try {
 				LoginPage.LoadPage(driver);
 			} catch (Exception e) {

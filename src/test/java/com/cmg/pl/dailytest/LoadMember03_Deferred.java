@@ -43,7 +43,7 @@ public class LoadMember03_Deferred {
 	}
 	
 	@Test(timeOut = 1200000)
-	public void dailytest() {
+	public void LoadMember03Deferred() {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);

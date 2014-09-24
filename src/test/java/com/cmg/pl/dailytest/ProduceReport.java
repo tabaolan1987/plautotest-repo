@@ -35,8 +35,8 @@ public class ProduceReport {
 
 	}
 
-	@Test(timeOut = 600000)
-	public void dailytest() throws InterruptedException {
+	@Test(timeOut = 1200000)
+	public void dailytest_ProduceReport() throws InterruptedException {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, report_runner_username,
 					report_runner_password);

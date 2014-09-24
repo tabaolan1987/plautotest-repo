@@ -58,7 +58,7 @@ public class LoadMember08_Active {
 	}
 
 	@Test(timeOut = 1200000)
-	public void dailyTest() throws InterruptedException {
+	public void LoadMember08Active() throws InterruptedException {
 		LoginPage.LoadPage(driver);
 		Authenticate.Login(driver, usernameLogin, usernamePass);
 		SuperUser.loadMember(driver, 30, group, refno);

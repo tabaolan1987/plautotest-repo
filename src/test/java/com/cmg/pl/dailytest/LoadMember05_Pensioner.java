@@ -48,7 +48,7 @@ public class LoadMember05_Pensioner {
 	
 	
 	@Test(timeOut = 1200000)
-	public void dailytest() {
+	public void LoadMember05Pensioner() {
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, usernameLogin, usernamePass);
 			SuperUser.loadMember(driver, 30, group, refno);

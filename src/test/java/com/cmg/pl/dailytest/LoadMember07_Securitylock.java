@@ -53,7 +53,7 @@ public class LoadMember07_Securitylock {
 	  }
 
 	  @Test(timeOut = 1200000)
-	  public void dailyTest() throws InterruptedException {
+	  public void LoadMember07Securitylock() throws InterruptedException {
 			  LoginPage.LoadPage(driver);
 			  Authenticate.Login(driver, usernameLogin, usernamePass);
 			  SuperUser.loadMember(driver, 30 , group, refno);

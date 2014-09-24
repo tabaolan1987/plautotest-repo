@@ -41,8 +41,7 @@ public class SuiteListener implements ISuiteListener {
 		// message info
 		String mailTo = "lan.ta@c-mg.com,tabaolan1987@gmail.com";
 		String subject = "Automation Daily Test Result";
-		String message = "<p>Dear all,<p>I send some attachments for you.There is the result of the automation daily test PL today!";
-
+		String message = "<p>Dear all,<p>This is the automation test for PL PROD daily test result.<p>Kind regards,<p>Lan Ta";
 		// attachments
 		try {
 			String attachFiles = new String();
@@ -119,9 +118,7 @@ public class SuiteListener implements ISuiteListener {
 			ex.printStackTrace();
 		}
 		multipart.addBodyPart(attachPart);
-		// sets the multi-part as e-mail's content
 		msg.setContent(multipart);
-
 		// sends the e-mail
 		Transport.send(msg, msg.getAllRecipients());
 	}
