@@ -13,7 +13,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class DriverUtil {
 	public static final String PROP_PROJECT_BASE_DIR = "project.basedir";
 	public static final String FOLDER_DRIVER = "driver";
-	
+	private static WebDriver driverFF;
+	private static WebDriver driverIE;
+	private static WebDriver driverChrome;
 	public static String getIeDriver(){
 		String path = "H:\\Driver Automation\\IEDriverServer.exe";
 		return path;
@@ -51,33 +53,37 @@ public class DriverUtil {
 	}
 	
 	public static WebDriver getInstance(String browser){
-		WebDriver driver = null;
 		if (browser.equalsIgnoreCase("firefox")) {
 			try {
-				driver = new FirefoxDriver();
-				driver.manage().deleteAllCookies();
+				driverFF = new FirefoxDriver();
+				driverFF.manage().deleteAllCookies();
 			} catch (WebDriverException e) {
 				System.out.println(e.getMessage());
 				FirefoxProfile profile = new FirefoxProfile();
 				profile.setAcceptUntrustedCertificates(true);
 				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
-				driver = new FirefoxDriver(profile);
+				driverFF = new FirefoxDriver(profile);
 			}
+			driverFF.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
+			return driverFF;
 		} else if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
-			driver = new ChromeDriver();
-			driver.manage().deleteAllCookies();
+			driverChrome = new ChromeDriver();
+			driverChrome.manage().deleteAllCookies();
+			driverChrome.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
+			return driverChrome;
 		} else if (browser.equalsIgnoreCase("ie")) {
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
 			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
 			caps.setCapability(
 			    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 			    true);
-			driver = new InternetExplorerDriver(caps);
-			driver.manage().deleteAllCookies();
+			driverIE = new InternetExplorerDriver(caps);
+			driverIE.manage().deleteAllCookies();
+			driverIE.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
+			return driverIE;
 		}
-		driver.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
-		return driver;
+	
 	}
 }

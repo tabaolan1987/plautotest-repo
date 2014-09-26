@@ -42,16 +42,38 @@ public class SuiteListener implements ISuiteListener {
 		String mailTo = "lan.ta@c-mg.com,tabaolan1987@gmail.com";
 		String subject = "Automation Daily Test Result";
 		String message = "<p>Dear all,<p>This is the automation test for PL PROD daily test result.<p>Kind regards,<p>Lan Ta";
+
+		String folderTarget = PropertiesHelper.getKey("project.basedir")
+				+ File.separator + "target";
+
+		// delete folder unnecessary
+		try {
+			File folderTestClasses = new File(folderTarget + File.separator
+					+ "test-classes");
+			delete(folderTestClasses);
+			File folderMavenStatus = new File(folderTarget + File.separator
+					+ "maven-status");
+			delete(folderMavenStatus);
+			File folderSurefire = new File(folderTarget + File.separator
+					+ "surefire");
+			delete(folderSurefire);
+			File folderClasses = new File(folderTarget + File.separator
+					+ "classes" + File.separator + "com");
+			delete(folderClasses);
+		} catch (IOException e) {
+			System.out.println("can not delete folder : " + e.getMessage());
+			e.printStackTrace();
+		}
+
 		// attachments
 		try {
 			String attachFiles = new String();
-			String folderTarget = PropertiesHelper.getKey("project.basedir")
-					+ File.separator + "target";
+
 			String zipFile = PropertiesHelper.getKey("project.basedir")
 					+ File.separator + "result.zip";
 			FolderZiper.zipFolder(folderTarget, zipFile);
 			File fileZip = new File(zipFile);
-			if(fileZip.exists()){
+			if (fileZip.exists()) {
 				attachFiles = fileZip.getAbsolutePath();
 			}
 			sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
@@ -60,6 +82,37 @@ public class SuiteListener implements ISuiteListener {
 		} catch (Exception ex) {
 			System.out.println("Could not send email.");
 			ex.printStackTrace();
+		}
+	}
+
+	public static void delete(File file) throws IOException {
+
+		if (file.isDirectory()) {
+			// directory is empty, then delete it
+			if (file.list().length == 0) {
+				file.delete();
+				System.out.println("Directory is deleted : "
+						+ file.getAbsolutePath());
+			} else {
+				// list all the directory contents
+				String files[] = file.list();
+				for (String temp : files) {
+					// construct the file structure
+					File fileDelete = new File(file, temp);
+					// recursive delete
+					delete(fileDelete);
+				}
+				// check the directory again, if empty then delete it
+				if (file.list().length == 0) {
+					file.delete();
+					System.out.println("Directory is deleted : "
+							+ file.getAbsolutePath());
+				}
+			}
+		} else {
+			// if file, then delete it
+			file.delete();
+			System.out.println("File is deleted : " + file.getAbsolutePath());
 		}
 	}
 
@@ -92,7 +145,8 @@ public class SuiteListener implements ISuiteListener {
 		msg.setFrom(new InternetAddress(userName));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 				"lan.ta@c-mg.com"));
-		msg.addRecipient(Message.RecipientType.TO, new InternetAddress("anh.nguyen@c-mg.com"));
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+				"anh.nguyen@c-mg.com"));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 				"my.vu@c-mg.com"));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
