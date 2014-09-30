@@ -31,7 +31,7 @@ public class SuiteListener implements ISuiteListener {
 	}
 
 	public void onFinish(ISuite suite) {
-		System.out.println("chay xong roi gui mail di em oi");
+		//System.out.println("chay xong roi gui mail di em oi");
 		// SMTP info
 		String host = "smtp.gmail.com";
 		String port = "465";
@@ -47,7 +47,7 @@ public class SuiteListener implements ISuiteListener {
 				+ File.separator + "target";
 
 		// delete folder unnecessary
-		try {
+		/*try {
 			File folderTestClasses = new File(folderTarget + File.separator
 					+ "test-classes");
 			delete(folderTestClasses);
@@ -63,7 +63,7 @@ public class SuiteListener implements ISuiteListener {
 		} catch (IOException e) {
 			System.out.println("can not delete folder : " + e.getMessage());
 			e.printStackTrace();
-		}
+		}*/
 
 		// attachments
 		try {
