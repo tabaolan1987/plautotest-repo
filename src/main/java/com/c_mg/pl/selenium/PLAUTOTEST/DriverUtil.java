@@ -19,9 +19,9 @@ public class DriverUtil {
 	private static WebDriver driverChrome;
 	public static String browserRunning;
 	public static String getIeDriver(){
-/*		String path = "H:\\Driver Automation\\IEDriverServer.exe";
-		return path;*/
-		String path = PropertiesHelper.getKey(PROP_PROJECT_BASE_DIR) + File.separator + FOLDER_DRIVER 
+		String path = "H:\\Driver Automation\\IEDriverServer.exe";
+		return path;
+		/*String path = PropertiesHelper.getKey(PROP_PROJECT_BASE_DIR) + File.separator + FOLDER_DRIVER 
 				+ File.separator + "IEDriverServer.exe";
 		try {
 			File driverIe = new File(path);
@@ -33,13 +33,13 @@ public class DriverUtil {
 			e.printStackTrace();
 			return null;
 		}
-		return null;
+		return null;*/
 	}
 	
 	public static String getChromeDriver(){
-		/*String path = "H:\\Driver Automation\\chromedriver.exe";
-		return path;*/
-		String path = PropertiesHelper.getKey(PROP_PROJECT_BASE_DIR) + File.separator + FOLDER_DRIVER 
+		String path = "H:\\Driver Automation\\chromedriver.exe";
+		return path;
+		/*String path = PropertiesHelper.getKey(PROP_PROJECT_BASE_DIR) + File.separator + FOLDER_DRIVER 
 				+ File.separator + "chromedriver.exe";
 		try {
 			File driverChrome = new File(path);
@@ -51,7 +51,7 @@ public class DriverUtil {
 			e.printStackTrace();
 			return null;
 		}
-		return null;	
+		return null;	*/
 	}
 	
 	public static WebDriver getInstance(String browser){
@@ -68,6 +68,7 @@ public class DriverUtil {
 			}
 			driverFF.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
 			browserRunning = browser;
+			driverFF.manage().window().maximize();
 			return driverFF;
 		} else if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver",
@@ -76,6 +77,7 @@ public class DriverUtil {
 			driverChrome.manage().deleteAllCookies();
 			driverChrome.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
 			browserRunning = browser;
+			driverChrome.manage().window().maximize();
 			return driverChrome;
 		} else if (browser.equalsIgnoreCase("ie")) {
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
@@ -87,6 +89,7 @@ public class DriverUtil {
 			driverIE.manage().deleteAllCookies();
 			driverIE.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
 			browserRunning = browser;
+			driverIE.manage().window().maximize();
 			return driverIE;
 		}
 		return null;
