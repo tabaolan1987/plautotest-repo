@@ -38,8 +38,10 @@ public class ProduceReport {
 	@Test(timeOut = 1200000)
 	public void dailytest_ProduceReport() throws InterruptedException {
 			LoginPage.LoadPage(driver);
+			Thread.sleep(3000);
 			Authenticate.Login(driver, report_runner_username,
 					report_runner_password);
+			Thread.sleep(3000);
 			Reporter.log("login with report runner : "  + report_runner_username);
 			ReportingToolPage.loadPage(driver);
 			Reporter.log("Then access to Reporting Tool page");

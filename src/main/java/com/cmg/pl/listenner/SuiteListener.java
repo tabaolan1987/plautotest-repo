@@ -68,7 +68,6 @@ public class SuiteListener implements ISuiteListener {
 		// attachments
 		try {
 			String attachFiles = new String();
-
 			String zipFile = PropertiesHelper.getKey("project.basedir")
 					+ File.separator + "result.zip";
 			FolderZiper.zipFolder(folderTarget, zipFile);
