@@ -59,7 +59,7 @@ public class ItestListen implements ITestListener {
 	}
 
 	public void onStart(ITestContext context) {
-
+		System.out.println(context.getCurrentXmlTest().getName());
 	}
 
 
