@@ -2,8 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="none">
 <listeners>
-    <listener class-name="com.cmg.pl.listenner.SuiteListener" />
-       <listener class-name="com.cmg.pl.listenner.ItestListen" />
+     <listener class-name="com.cmg.pl.listenner.SuiteListener" />
+      <listener class-name="com.cmg.pl.listenner.ItestListen" />
 </listeners>
 	 <test name="IETest">
 		<parameter name="browser" value="ie" />
@@ -23,7 +23,7 @@
 		<parameter name="active_ref_no01" value="0122398" />
 
 		<classes>
-			 <class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
+		 	<class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
 			<class name="com.cmg.pl.dailytest.LoadMember02_Deferred" /> 
 			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" /> 
 			<class name="com.cmg.pl.dailytest.LoadMember04_Pensioner"/> 
@@ -31,7 +31,7 @@
 			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner" />
 			<class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" />
 			<class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
-			<class name="com.cmg.pl.dailytest.ProduceReport" />
+			<class name="com.cmg.pl.dailytest.ProduceReport" /> 
 		</classes>
 	</test> 
 
@@ -54,14 +54,14 @@
 
 		<classes>
 			 <class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
-			<class name="com.cmg.pl.dailytest.LoadMember02_Deferred" /> 
+		 <class name="com.cmg.pl.dailytest.LoadMember02_Deferred" /> 
 			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" />
 			 <class name="com.cmg.pl.dailytest.LoadMember04_Pensioner"/> 
 			 <class name="com.cmg.pl.dailytest.LoadMember05_Pensioner" /> 
 			 <class name="com.cmg.pl.dailytest.LoadMember06_Pensioner"/>
 			 <class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" /> 
-			<class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
-			 <class name="com.cmg.pl.dailytest.ProduceReport"/>
+			<class name="com.cmg.pl.dailytest.LoadMember08_Active" />
+			 <class name="com.cmg.pl.dailytest.ProduceReport"/> 
 		</classes>
 	</test>
 
@@ -91,7 +91,7 @@
 			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner"/>
 			<class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" />
 			<class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
-			<class name="com.cmg.pl.dailytest.ProduceReport" />
+			<class name="com.cmg.pl.dailytest.ProduceReport" /> 
 		</classes>
 
 	</test> 
