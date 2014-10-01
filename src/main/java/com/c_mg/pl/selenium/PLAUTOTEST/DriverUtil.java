@@ -17,6 +17,7 @@ public class DriverUtil {
 	private static WebDriver driverFF;
 	private static WebDriver driverIE;
 	private static WebDriver driverChrome;
+	public static String browserRunning;
 	public static String getIeDriver(){
 /*		String path = "H:\\Driver Automation\\IEDriverServer.exe";
 		return path;*/
@@ -65,14 +66,16 @@ public class DriverUtil {
 				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
 				driverFF = new FirefoxDriver(profile);
 			}
-			driverFF.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
+			driverFF.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
+			browserRunning = browser;
 			return driverFF;
 		} else if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
 			driverChrome = new ChromeDriver();
 			driverChrome.manage().deleteAllCookies();
-			driverChrome.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
+			driverChrome.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
+			browserRunning = browser;
 			return driverChrome;
 		} else if (browser.equalsIgnoreCase("ie")) {
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
@@ -82,7 +85,8 @@ public class DriverUtil {
 			    true);
 			driverIE = new InternetExplorerDriver(caps);
 			driverIE.manage().deleteAllCookies();
-			driverIE.manage().timeouts().pageLoadTimeout(300, TimeUnit.SECONDS);
+			driverIE.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
+			browserRunning = browser;
 			return driverIE;
 		}
 		return null;
