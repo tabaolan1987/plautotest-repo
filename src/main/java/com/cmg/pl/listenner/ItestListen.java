@@ -55,7 +55,7 @@ public class ItestListen implements ITestListener {
 	}
 
 	public void onTestStart(ITestResult result) {
-		if(DriverUtil.browserRunning.equalsIgnoreCase("firefox")){
+		if(DriverUtil.browserRunning.equalsIgnoreCase("test")){
 			String name = DriverUtil.browserRunning+"-"+ result.getName();
 			try {
 				record = new ScreenRecord();

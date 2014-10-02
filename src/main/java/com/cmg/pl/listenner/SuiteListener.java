@@ -75,12 +75,16 @@ public class SuiteListener implements ISuiteListener {
 		String pathZip = PropertiesHelper.getKey("project.basedir")
 				+ File.separator + "surefire-reports.zip";
 		try {
+			File ext = new File(pathZip);
+			if(ext.exists()){
+				delete(ext);
+			}
 			File input = new File(path);
 			if (input.exists()) {
 				FolderZiper.zipFolder(path, pathZip);
-				File output = new File(pathZip);
-				if (output.exists()) {
-					return output.getAbsolutePath();
+				File zip = new File(pathZip);
+				if (zip.exists()) {
+					return zip.getAbsolutePath();
 				}
 			}
 		} catch (Exception e) {
@@ -95,6 +99,10 @@ public class SuiteListener implements ISuiteListener {
 		String pathZip = PropertiesHelper.getKey("project.basedir")
 				+ File.separator + "screenshots.zip";
 		try {
+			File ext = new File(pathZip);
+			if(ext.exists()){
+				delete(ext);
+			}
 			File input = new File(path);
 			if (input.exists()) {
 				FolderZiper.zipFolder(path, pathZip);
@@ -115,6 +123,10 @@ public class SuiteListener implements ISuiteListener {
 		String pathZip = PropertiesHelper.getKey("project.basedir")
 				+ File.separator + "VideoZip.zip";
 		try {
+			File ext = new File(pathZip);
+			if(ext.exists()){
+				delete(ext);
+			}
 			File input = new File(path);
 			if (input.exists()) {
 				FolderZiper.zipFolder(path, pathZip);
@@ -128,9 +140,7 @@ public class SuiteListener implements ISuiteListener {
 		}
 		return null;
 	}
-
-	public static void delete(File file) throws IOException {
-
+	private static void delete(File file) throws IOException {
 		if (file.isDirectory()) {
 			// directory is empty, then delete it
 			if (file.list().length == 0) {
@@ -191,12 +201,12 @@ public class SuiteListener implements ISuiteListener {
 				"lan.ta@c-mg.com"));
 		  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 		 "anh.nguyen@c-mg.com")); 
-		/*  msg.addRecipient(Message.RecipientType.TO,
+		  msg.addRecipient(Message.RecipientType.TO,
 		 new InternetAddress( "my.vu@c-mg.com"));
 		  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 		  "caroline.schofield@c-mg.com"));
 		  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-		  "elaine.dimon@c-mg.com"));*/
+		  "elaine.dimon@c-mg.com"));
 		 
 		msg.setSubject(subject);
 		msg.setSentDate(new Date());
