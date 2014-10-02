@@ -8,17 +8,21 @@ import java.util.zip.ZipOutputStream;
 
 public class FolderZiper {
 	
-	
-	 public static void zipFolder(String srcFolder, String destZipFile)
-			throws Exception {
-		ZipOutputStream zip = null;
-		FileOutputStream fileWriter = null;
-
-		fileWriter = new FileOutputStream(destZipFile);
-		zip = new ZipOutputStream(fileWriter);
-		addFolderToZip("", srcFolder, zip);
-		zip.flush();
-		zip.close();
+	 public static void zipFolder(String srcFolder, String destZipFile){
+		 try {
+			 ZipOutputStream zip = null;
+				FileOutputStream fileWriter = null;
+				fileWriter = new FileOutputStream(destZipFile);
+				zip = new ZipOutputStream(fileWriter);
+				addFolderToZip("", srcFolder, zip);
+				zip.flush();
+				zip.close();
+				fileWriter.flush();
+				fileWriter.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	static private void addFileToZip(String path, String srcFile,
@@ -35,6 +39,7 @@ public class FolderZiper {
 			while ((len = in.read(buf)) > 0) {
 				zip.write(buf, 0, len);
 			}
+			in.close();
 		}
 	}
 

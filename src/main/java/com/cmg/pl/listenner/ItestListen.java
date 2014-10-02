@@ -1,6 +1,8 @@
 package com.cmg.pl.listenner;
 
 
+import java.sql.Driver;
+
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -12,32 +14,40 @@ import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 
 public class ItestListen implements ITestListener {
 	
-	/*private static ScreenRecord record;*/
+	private ScreenRecord record;
+	
+	boolean recordRunning = false;
 	
 	public void onTestSuccess(ITestResult result) {
-		/*try {
-			record.stopRecording();
+		try {
+			if(recordRunning){
+				record.stopRecording();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 
 	public void onTestFailure(ITestResult result) {
 		TakeScreenShot.takeSnapShot(result.getName());
-		/*try {
-			record.stopRecording();
+		try {
+			if(recordRunning){
+				record.stopRecording();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 
 	public void onTestSkipped(ITestResult result) {
 		TakeScreenShot.takeSnapShot(result.getName());
-		/*try {
-			record.stopRecording();
+		try {
+			if(recordRunning){
+				record.stopRecording();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 
 	public void onFinish(ITestContext context) {
@@ -45,13 +55,17 @@ public class ItestListen implements ITestListener {
 	}
 
 	public void onTestStart(ITestResult result) {
-	/*	String name = DriverUtil.browserRunning+"-"+ result.getName();
-		try {
-			record = new ScreenRecord();
-			record.startRecording(name);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
+		if(DriverUtil.browserRunning.equalsIgnoreCase("firefox")){
+			String name = DriverUtil.browserRunning+"-"+ result.getName();
+			try {
+				record = new ScreenRecord();
+				record.startRecording(name);
+				recordRunning = true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
@@ -59,7 +73,6 @@ public class ItestListen implements ITestListener {
 	}
 
 	public void onStart(ITestContext context) {
-		System.out.println(context.getCurrentXmlTest().getName());
 	}
 
 

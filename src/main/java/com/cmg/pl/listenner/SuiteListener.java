@@ -2,6 +2,7 @@ package com.cmg.pl.listenner;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
@@ -31,7 +32,6 @@ public class SuiteListener implements ISuiteListener {
 	}
 
 	public void onFinish(ISuite suite) {
-		//System.out.println("chay xong roi gui mail di em oi");
 		// SMTP info
 		String host = "smtp.gmail.com";
 		String port = "465";
@@ -42,46 +42,91 @@ public class SuiteListener implements ISuiteListener {
 		String mailTo = "lan.ta@c-mg.com,tabaolan1987@gmail.com";
 		String subject = "Automation Daily Test Result";
 		String message = "<p>Dear all,<p>This is the automation test for PL PROD daily test result.<p>Kind regards,<p>Lan Ta";
-
-		String folderTarget = PropertiesHelper.getKey("project.basedir")
-				+ File.separator + "target";
-
-		// delete folder unnecessary
-		/*try {
-			File folderTestClasses = new File(folderTarget + File.separator
-					+ "test-classes");
-			delete(folderTestClasses);
-			File folderMavenStatus = new File(folderTarget + File.separator
-					+ "maven-status");
-			delete(folderMavenStatus);
-			File folderSurefire = new File(folderTarget + File.separator
-					+ "surefire");
-			delete(folderSurefire);
-			File folderClasses = new File(folderTarget + File.separator
-					+ "classes" + File.separator + "com");
-			delete(folderClasses);
-		} catch (IOException e) {
-			System.out.println("can not delete folder : " + e.getMessage());
-			e.printStackTrace();
-		}*/
-
 		// attachments
 		try {
-			String attachFiles = new String();
-			String zipFile = PropertiesHelper.getKey("project.basedir")
-					+ File.separator + "result.zip";
-			FolderZiper.zipFolder(folderTarget, zipFile);
-			File fileZip = new File(zipFile);
-			if (fileZip.exists()) {
-				attachFiles = fileZip.getAbsolutePath();
+			ArrayList<String> list = new ArrayList<String>();
+			String reportZip = ZipFolderReports();
+			if (reportZip != null) {
+				list.add(reportZip);
 			}
+			String screenshotsZip = ZipFolderScreenshots();
+			if (screenshotsZip != null) {
+				list.add(screenshotsZip);
+			}
+			String videoZip = ZipFolderVideo();
+			if (videoZip != null) {
+				list.add(videoZip);
+			}
+			String[] attachfiles = new String[list.size()];
+			list.toArray(attachfiles);
 			sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
-					subject, message, attachFiles);
+					subject, message, attachfiles);
 			System.out.println("Email sent.");
 		} catch (Exception ex) {
 			System.out.println("Could not send email.");
 			ex.printStackTrace();
 		}
+	}
+
+	private static String ZipFolderReports() {
+		String path = PropertiesHelper.getKey("project.basedir")
+				+ File.separator + "target" + File.separator
+				+ "surefire-reports";
+		String pathZip = PropertiesHelper.getKey("project.basedir")
+				+ File.separator + "surefire-reports.zip";
+		try {
+			File input = new File(path);
+			if (input.exists()) {
+				FolderZiper.zipFolder(path, pathZip);
+				File output = new File(pathZip);
+				if (output.exists()) {
+					return output.getAbsolutePath();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	private static String ZipFolderScreenshots() {
+		String path = PropertiesHelper.getKey("project.basedir")
+				+ File.separator + "target" + File.separator + "screenshots";
+		String pathZip = PropertiesHelper.getKey("project.basedir")
+				+ File.separator + "screenshots.zip";
+		try {
+			File input = new File(path);
+			if (input.exists()) {
+				FolderZiper.zipFolder(path, pathZip);
+				File output = new File(pathZip);
+				if (output.exists()) {
+					return output.getAbsolutePath();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	private static String ZipFolderVideo() {
+		String path = PropertiesHelper.getKey("project.basedir")
+				+ File.separator + "Video";
+		String pathZip = PropertiesHelper.getKey("project.basedir")
+				+ File.separator + "VideoZip.zip";
+		try {
+			File input = new File(path);
+			if (input.exists()) {
+				FolderZiper.zipFolder(path, pathZip);
+				File output = new File(pathZip);
+				if (output.exists()) {
+					return output.getAbsolutePath();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public static void delete(File file) throws IOException {
@@ -117,7 +162,7 @@ public class SuiteListener implements ISuiteListener {
 
 	public static void sendEmailWithAttachments(String host, String port,
 			final String userName, final String password, String toAddress,
-			String subject, String message, String attachFiles)
+			String subject, String message, String[] attachFiles)
 			throws AddressException, MessagingException {
 		// sets SMTP server properties
 		Properties properties = new Properties();
@@ -144,14 +189,15 @@ public class SuiteListener implements ISuiteListener {
 		msg.setFrom(new InternetAddress(userName));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 				"lan.ta@c-mg.com"));
-	msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-				"anh.nguyen@c-mg.com"));
-		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-				"my.vu@c-mg.com"));
-		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-				"caroline.schofield@c-mg.com"));
-		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-				"elaine.dimon@c-mg.com"));
+		  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+		 "anh.nguyen@c-mg.com")); 
+		/*  msg.addRecipient(Message.RecipientType.TO,
+		 new InternetAddress( "my.vu@c-mg.com"));
+		  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+		  "caroline.schofield@c-mg.com"));
+		  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+		  "elaine.dimon@c-mg.com"));*/
+		 
 		msg.setSubject(subject);
 		msg.setSentDate(new Date());
 
@@ -164,13 +210,17 @@ public class SuiteListener implements ISuiteListener {
 		multipart.addBodyPart(messageBodyPart);
 
 		// adds attachments
-		MimeBodyPart attachPart = new MimeBodyPart();
-		try {
-			attachPart.attachFile(attachFiles);
-		} catch (IOException ex) {
-			ex.printStackTrace();
+		if (attachFiles != null && attachFiles.length > 0) {
+			for (String filePath : attachFiles) {
+				MimeBodyPart attachPart = new MimeBodyPart();
+				try {
+					attachPart.attachFile(filePath);
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
+				multipart.addBodyPart(attachPart);
+			}
 		}
-		multipart.addBodyPart(attachPart);
 		msg.setContent(multipart);
 		// sends the e-mail
 		Transport.send(msg, msg.getAllRecipients());

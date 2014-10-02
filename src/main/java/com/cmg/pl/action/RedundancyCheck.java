@@ -75,37 +75,39 @@ public class RedundancyCheck {
 			}
 		}
 	}
-	public static boolean elementClickAble(WebElement el){
-		try {
-			el.click();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
+
 	public static void chooseDateNextMonth(WebDriver driver){
 		WebElement tbody = RedundancyPage.tableCalendar(driver).findElement(By.tagName("tbody"));
-		List<WebElement> trs = tbody.findElements(By.tagName("tr"));
+		WebElement firstTr = tbody.findElements(By.tagName("tr")).get(2);
+		List<WebElement> tds = firstTr.findElements(By.tagName("td"));
+		for(WebElement td : tds){
+			String classAtt = td.getAttribute("class");
+			System.out.println(classAtt);
+			if(td.getAttribute("class").equalsIgnoreCase(TD_CLASS)){
+				td.click();
+				break;
+			}
+		}
+		
+		/*List<WebElement> trs = tbody.findElements(By.tagName("tr"));
+		boolean continueCase = true;
 		for(WebElement tr : trs){
+			if(!continueCase){
+				System.out.println("break loop 1");
+				break;
+			}
 			List<WebElement> tds = tr.findElements(By.tagName("td"));
 			for(WebElement td : tds){
 				if(td.getAttribute("class").equalsIgnoreCase(TD_CLASS)){
 					if(elementClickAble(td)){
 						td.click();
-						return;
+						continueCase = false;
+						break;
 					}
 				}
 			}
-		}
-		
-		/*WebElement firstTr = tbody.findElements(By.tagName("tr")).get(0);
-		List<WebElement> tds = firstTr.findElements(By.tagName("td"));
-		for(WebElement td : tds){
-			if(td.getAttribute("class").equalsIgnoreCase(TD_CLASS)){
-				td.click();
-				break;
-			}
 		}*/
+		
+	
 	}
 }

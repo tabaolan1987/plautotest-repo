@@ -45,7 +45,7 @@ public class LoadMember01_Walled {
 			try {
 				LoginPage.LoadPage(driver);
 			} catch (Exception e) {
-				driver.quit();
+				driver.close();
 				LoginPage.LoadPage(driver);
 			}
 			Authenticate.Login(driver, usernameLogin, usernamePass);
