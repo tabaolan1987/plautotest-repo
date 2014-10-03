@@ -21,7 +21,7 @@ public class LoginPage {
 		try {
 			driver.get(URL);
 		} catch (Exception e) {
-			driver.quit();
+			driver.close();
 			driver.get(URL);
 		}
 		PageLoading.checkAlertPresent(driver);
