@@ -17,6 +17,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.IOException;
 
 import org.monte.media.Format;
 import org.monte.media.FormatKeys.MediaType;
@@ -30,6 +31,36 @@ public class ScreenRecord {
 		System.out.println("create new screen record");
 	}
 	
+	private void delete(File file) throws IOException {
+
+		if (file.isDirectory()) {
+			// directory is empty, then delete it
+			if (file.list().length == 0) {
+				file.delete();
+				System.out.println("Directory is deleted : "
+						+ file.getAbsolutePath());
+			} else {
+				// list all the directory contents
+				String files[] = file.list();
+				for (String temp : files) {
+					// construct the file structure
+					File fileDelete = new File(file, temp);
+					// recursive delete
+					delete(fileDelete);
+				}
+				// check the directory again, if empty then delete it
+				if (file.list().length == 0) {
+					file.delete();
+					System.out.println("Directory is deleted : "
+							+ file.getAbsolutePath());
+				}
+			}
+		} else {
+			// if file, then delete it
+			file.delete();
+			System.out.println("File is deleted : " + file.getAbsolutePath());
+		}
+	}
 	
 	private static ScreenRecorder screenRecorder;
 	
@@ -37,6 +68,10 @@ public class ScreenRecord {
 		String folderVideo = PropertiesHelper.getKey("project.basedir")
 				+ File.separator + "Video" + File.separator + DriverUtil.browserRunning;
 		File file = new File(folderVideo);
+		if(file.exists()){
+			delete(file);
+		}
+		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = screenSize.width;
 		int height = screenSize.height;
