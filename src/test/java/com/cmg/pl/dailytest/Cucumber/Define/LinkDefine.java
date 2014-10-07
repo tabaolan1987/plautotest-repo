@@ -13,7 +13,7 @@ import cucumber.api.java.en.Then;
 
 public class LinkDefine {
 	
-	public boolean checkLink(WebDriver driver,String name){
+	/*public boolean checkLink(WebDriver driver,String name){
 		boolean check = false;
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -44,6 +44,6 @@ public class LinkDefine {
 	@Then("^I should see \"(.*?)\" link$")
 	public void i_should__see_link(String arg1) throws Throwable {
 		Assert.assertTrue(checkLink(DriverUtil.driverCurrent, arg1));
-	}
+	}*/
 
 }

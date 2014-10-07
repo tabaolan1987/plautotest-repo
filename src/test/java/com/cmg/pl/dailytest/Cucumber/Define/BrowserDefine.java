@@ -9,7 +9,7 @@ import cucumber.api.java.en.Then;
 
 public class BrowserDefine {
 	
-	@Given("^I open browser \"(.*?)\"$")
+	/*@Given("^I open browser \"(.*?)\"$")
 	public void i_open_browser(String arg1) throws Throwable {
 		String browser = arg1;
 		DriverUtil.driverCurrent = DriverUtil.getInstance(browser);
@@ -23,5 +23,5 @@ public class BrowserDefine {
 	@And("^I navigate to Login Page$")
 	public void i_navigate_to_Login_Page() throws Throwable {
 		LoginPage.LoadPage(DriverUtil.driverCurrent);
-	}
+	}*/
 }
