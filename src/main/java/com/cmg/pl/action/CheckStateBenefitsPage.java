@@ -32,6 +32,7 @@ public class CheckStateBenefitsPage {
 	public static boolean checkDateOfBirth(WebDriver driver){
 		WebElement dob = driver.findElement(By.xpath(XPATH_DATE_OF_BIRTH));
 		if(dob.getText()!=null && dob.getText()!=""){
+			System.out.println("dob : " + dob.getText());
 			return true;
 		}else{
 			return false;
@@ -41,6 +42,7 @@ public class CheckStateBenefitsPage {
 	public static boolean checkNinoNumber(WebDriver driver){
 		WebElement number = driver.findElement(By.xpath(XPATH_NINO_NUMBER));
 		if(number.getText()!=null && number.getText()!=""){
+			System.out.println("nino : " + number.getText());
 			return true;
 		}else{
 			return false;
