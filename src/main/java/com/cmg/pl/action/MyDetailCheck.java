@@ -31,7 +31,6 @@ public class MyDetailCheck {
 	private static String LINK_TEXT_MY_LIFETIME = "My LifeTime Allowance";
 	
 	public static boolean checkThisIsMeLink(WebDriver driver , int timeout){
-		System.out.println("check this is me link");
 		WebDriverWait wait = new WebDriverWait(driver , timeout);
 		try {
 			WebElement el = wait.until(ExpectedConditions.elementToBeClickable(MyDetailPage.subMenu(driver, By.linkText(LINK_TEXT_THIS_IS_ME))));

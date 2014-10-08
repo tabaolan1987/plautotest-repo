@@ -1,4 +1,4 @@
-package com.cmg.pl.dailytest.Cucumber.Define;
+package com.cmg.pl.dailytest.Cucumber.Runner;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -8,12 +8,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
+import com.cmg.pl.action.PageLoading;
 
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class LinkDefine {
 	
-	/*public boolean checkLink(WebDriver driver,String name){
+	public boolean checkLink(WebDriver driver,String name){
 		boolean check = false;
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -30,20 +32,21 @@ public class LinkDefine {
 	
 	
 
-	@Then("^I click to \"(.*?)\" link$")
-	public void i_click_to_link(String arg1) throws Throwable {
+	@When("^I click to \"(.*?)\" link$")
+	public void i_click_to_link(String arg1)  {
 		DriverUtil.driverCurrent.findElement(By.linkText(arg1)).click();
+		PageLoading.waitForImageInvisible(DriverUtil.driverCurrent, 100);
 	}
 
 	
 	@Then("^I should not see \"(.*?)\" link$")
-	public void i_should_not_see_link(String arg1) throws Throwable {
+	public void i_should_not_see_link(String arg1) {
 		Assert.assertFalse(checkLink(DriverUtil.driverCurrent, arg1));
 	}
 	
 	@Then("^I should see \"(.*?)\" link$")
-	public void i_should__see_link(String arg1) throws Throwable {
+	public void i_should__see_link(String arg1) {
 		Assert.assertTrue(checkLink(DriverUtil.driverCurrent, arg1));
-	}*/
+	}
 
 }
