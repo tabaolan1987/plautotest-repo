@@ -58,6 +58,7 @@ public class DriverUtil {
 	public static WebDriver getInstance(String browser){
 		if (browser.equalsIgnoreCase("firefox")) {
 			try {
+				driverFF = null;
 				driverFF = new FirefoxDriver();
 				driverFF.manage().deleteAllCookies();
 			} catch (WebDriverException e) {
@@ -74,6 +75,7 @@ public class DriverUtil {
 		} else if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
+			driverChrome = null;
 			driverChrome = new ChromeDriver();
 			driverChrome.manage().deleteAllCookies();
 			driverChrome.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
@@ -81,6 +83,7 @@ public class DriverUtil {
 			driverChrome.manage().window().maximize();
 			return driverChrome;
 		} else if (browser.equalsIgnoreCase("ie")) {
+			driverIE = null;
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
 			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
 			caps.setCapability(
