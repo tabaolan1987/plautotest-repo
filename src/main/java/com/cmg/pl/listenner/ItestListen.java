@@ -19,35 +19,35 @@ public class ItestListen implements ITestListener {
 	boolean recordRunning = false;
 	
 	public void onTestSuccess(ITestResult result) {
-		try {
+		/*try {
 			if(recordRunning){
 				record.stopRecording();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	public void onTestFailure(ITestResult result) {
 		TakeScreenShot.takeSnapShot(result.getName());
-		try {
+		/*try {
 			if(recordRunning){
 				record.stopRecording();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	public void onTestSkipped(ITestResult result) {
 		TakeScreenShot.takeSnapShot(result.getName());
-		try {
+		/*try {
 			if(recordRunning){
 				record.stopRecording();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	public void onFinish(ITestContext context) {
@@ -55,7 +55,7 @@ public class ItestListen implements ITestListener {
 	}
 
 	public void onTestStart(ITestResult result) {
-		if(DriverUtil.browserRunning.equalsIgnoreCase("test")){
+	/*	if(DriverUtil.browserRunning.equalsIgnoreCase("test")){
 			String name = DriverUtil.browserRunning+"-"+ result.getName();
 			try {
 				record = new ScreenRecord();
@@ -64,7 +64,7 @@ public class ItestListen implements ITestListener {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 		
 	}
 

@@ -5,6 +5,37 @@
      <listener class-name="com.cmg.pl.listenner.SuiteListener" />  
       <listener class-name="com.cmg.pl.listenner.ItestListen" />
 </listeners>
+
+	<test name="ChromeTest">
+		<parameter name="browser" value="chrome" />
+		<parameter name="super_user_name" value="AutoSuperuser" />
+		<parameter name="super_user_pass" value="P3nsions" />
+
+		<parameter name="report_runner_name" value="auto_daily_checker" />
+		<parameter name="report_runner_pass" value="P3nsions" />
+
+		<parameter name="walled_ref_no01" value="0103603" />
+		<parameter name="deferred_ref_no01" value="0103360" />
+		<parameter name="deferred_ref_no02" value="0001794" />
+		<parameter name="pensioner_ref_no01" value="0001532" />
+		<parameter name="pensioner_ref_no02" value="0100027" />
+		<parameter name="pensioner_ref_no03" value="0090597" />
+		<parameter name="securitylock_ref_no01" value="0057437" />
+		<parameter name="active_ref_no01" value="0122398" />
+
+		<classes>
+		 <class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
+		 <class name="com.cmg.pl.dailytest.LoadMember02_Deferred" /> 
+			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" /> 
+			<class name="com.cmg.pl.dailytest.LoadMember04_Pensioner"/> 
+			<class name="com.cmg.pl.dailytest.LoadMember05_Pensioner" /> 
+			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner"/>
+			<class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" />
+			<class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
+			<class name="com.cmg.pl.dailytest.ProduceReport" />  
+		</classes>
+
+	</test> 
 	 <test name="IETest">
 		<parameter name="browser" value="ie" />
 		<parameter name="super_user_name" value="AutoSuperuser" />
@@ -63,34 +94,5 @@
 		</classes>
 	</test>
 
-	<test name="ChromeTest">
-		<parameter name="browser" value="chrome" />
-		<parameter name="super_user_name" value="AutoSuperuser" />
-		<parameter name="super_user_pass" value="P3nsions" />
 
-		<parameter name="report_runner_name" value="auto_daily_checker" />
-		<parameter name="report_runner_pass" value="P3nsions" />
-
-		<parameter name="walled_ref_no01" value="0103603" />
-		<parameter name="deferred_ref_no01" value="0103360" />
-		<parameter name="deferred_ref_no02" value="0001794" />
-		<parameter name="pensioner_ref_no01" value="0001532" />
-		<parameter name="pensioner_ref_no02" value="0100027" />
-		<parameter name="pensioner_ref_no03" value="0090597" />
-		<parameter name="securitylock_ref_no01" value="0057437" />
-		<parameter name="active_ref_no01" value="0122398" />
-
-		<classes>
-		 <class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
-		 <class name="com.cmg.pl.dailytest.LoadMember02_Deferred" /> 
-			<class name="com.cmg.pl.dailytest.LoadMember03_Deferred" /> 
-			<class name="com.cmg.pl.dailytest.LoadMember04_Pensioner"/> 
-			<class name="com.cmg.pl.dailytest.LoadMember05_Pensioner" /> 
-			<class name="com.cmg.pl.dailytest.LoadMember06_Pensioner"/>
-			<class name="com.cmg.pl.dailytest.LoadMember07_Securitylock" />
-			<class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
-			<class name="com.cmg.pl.dailytest.ProduceReport" />  
-		</classes>
-
-	</test> 
 </suite>

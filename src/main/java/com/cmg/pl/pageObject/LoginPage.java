@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
+import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
 import com.cmg.pl.action.PageLoading;
 
 public class LoginPage {
@@ -22,6 +23,7 @@ public class LoginPage {
 			driver.get(URL);
 		} catch (Exception e) {
 			driver.close();
+			driver = DriverUtil.getInstance(DriverUtil.browserRunning);
 			driver.get(URL);
 		}
 		PageLoading.checkAlertPresent(driver);
