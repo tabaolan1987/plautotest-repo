@@ -81,6 +81,7 @@ public class DriverUtil {
 			driverChrome.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
 			browserRunning = browser;
 			driverChrome.manage().window().maximize();
+			System.out.println("setup chrome done");
 			return driverChrome;
 		} else if (browser.equalsIgnoreCase("ie")) {
 			driverIE = null;

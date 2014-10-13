@@ -34,8 +34,8 @@
 			<class name="com.cmg.pl.dailytest.LoadMember08_Active" /> 
 			<class name="com.cmg.pl.dailytest.ProduceReport" />  
 		</classes>
-
 	</test> 
+	
 	 <test name="IETest">
 		<parameter name="browser" value="ie" />
 		<parameter name="super_user_name" value="AutoSuperuser" />
