@@ -10,9 +10,8 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		features = {"src/test/resources/"},
-		format = {"pretty","html:target/chrome/"},
-		tags ={"@chrome"}
+		format = {"pretty","html:target/chrome/"}
 )
-public class CucumberChromeRunning {
+public class CucumberRunning {
 
 }
