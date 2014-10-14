@@ -68,7 +68,7 @@ public class DriverUtil {
 				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
 				driverFF = new FirefoxDriver(profile);
 			}
-			driverFF.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
+			driverFF.manage().timeouts().pageLoadTimeout(Constant.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 			browserRunning = browser;
 			driverFF.manage().window().maximize();
 			return driverFF;
@@ -78,7 +78,7 @@ public class DriverUtil {
 			driverChrome = null;
 			driverChrome = new ChromeDriver();
 			driverChrome.manage().deleteAllCookies();
-			driverChrome.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
+			driverChrome.manage().timeouts().pageLoadTimeout(Constant.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 			browserRunning = browser;
 			driverChrome.manage().window().maximize();
 			System.out.println("setup chrome done");
@@ -92,7 +92,7 @@ public class DriverUtil {
 			    true);
 			driverIE = new InternetExplorerDriver(caps);
 			driverIE.manage().deleteAllCookies();
-			driverIE.manage().timeouts().pageLoadTimeout(500, TimeUnit.SECONDS);
+			driverIE.manage().timeouts().pageLoadTimeout(Constant.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 			browserRunning = browser;
 			driverIE.manage().window().maximize();
 			return driverIE;

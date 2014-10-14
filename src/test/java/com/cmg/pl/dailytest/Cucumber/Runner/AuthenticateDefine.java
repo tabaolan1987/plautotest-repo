@@ -1,5 +1,6 @@
 package com.cmg.pl.dailytest.Cucumber.Runner;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
 import com.cmg.pl.action.Authenticate;
 
@@ -20,7 +21,7 @@ public class AuthenticateDefine {
 	
 	@Then("^I logout$")
 	public void i_logout() {
-	    Authenticate.LogOut(DriverUtil.driverCurrent, 20);
+	    Authenticate.LogOut(DriverUtil.driverCurrent, Constant.NORMAL_WAITING_TIME);
 	}
 
 }

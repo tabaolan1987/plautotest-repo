@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
 import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.cmg.pl.action.Authenticate;
@@ -58,7 +59,7 @@ public class ProduceReport {
 			ProduceReportWithInputParam.ProduceReportWithDefaultParam(driver);
 			Reporter.log("Then Check successful report page is shown");
 			// logout
-			Authenticate.LogOut(driver, 10);
+			Authenticate.LogOut(driver, Constant.SMALL_WAITING_TIME);
 			Reporter.log("Finnaly logout");
 
 	}

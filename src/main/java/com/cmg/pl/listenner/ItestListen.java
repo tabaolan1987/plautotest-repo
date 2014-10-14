@@ -1,20 +1,16 @@
 package com.cmg.pl.listenner;
 
 
-import java.sql.Driver;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
-import com.c_mg.pl.selenium.PLAUTOTEST.ScreenRecord;
 import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 
 
 public class ItestListen implements ITestListener {
 	
-	private ScreenRecord record;
 	
 	boolean recordRunning = false;
 	

@@ -11,6 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
+
 
 public class PageLoading {
 
@@ -120,7 +122,7 @@ public class PageLoading {
 	
 	public static boolean checkAlertPresent(WebDriver driver){
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, 10);
+			WebDriverWait wait = new WebDriverWait(driver, Constant.SMALL_WAITING_TIME);
 			Alert alert = wait.until(ExpectedConditions.alertIsPresent());
 			System.out.println("alert present");
 			alert.accept();

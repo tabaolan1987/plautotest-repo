@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
 import com.cmg.pl.action.PageLoading;
 
@@ -18,7 +19,7 @@ public class LinkDefine {
 	public boolean checkLink(WebDriver driver,String name){
 		boolean check = false;
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, 10);
+			WebDriverWait wait = new WebDriverWait(driver, Constant.SMALL_WAITING_TIME);
 			wait.until(ExpectedConditions.elementToBeClickable(By.linkText(name)));
 			WebElement link = driver.findElement(By.linkText(name));
 			if(link.isDisplayed()){
@@ -35,7 +36,7 @@ public class LinkDefine {
 	@When("^I click to \"(.*?)\" link$")
 	public void i_click_to_link(String arg1)  {
 		DriverUtil.driverCurrent.findElement(By.linkText(arg1)).click();
-		PageLoading.waitForImageInvisible(DriverUtil.driverCurrent, 100);
+		PageLoading.waitForImageInvisible(DriverUtil.driverCurrent, Constant.LONG_WAITING_TIME);
 	}
 
 	
