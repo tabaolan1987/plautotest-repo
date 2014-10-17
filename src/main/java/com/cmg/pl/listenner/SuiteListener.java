@@ -52,12 +52,19 @@ public class SuiteListener implements ISuiteListener {
 			}
 			String screenshotsZip = ZipFolderScreenshots();
 			if (screenshotsZip != null) {
-				list.add(screenshotsZip);
+				String path = PropertiesHelper.getKey("project.basedir")
+						+ File.separator + "target" + File.separator
+						+ "screenshots";
+				long size = FileUtils.sizeOfDirectory(new File(path));
+				System.out.println("folder screenshots size : " + size);
+				if (size > 0) {
+					list.add(screenshotsZip);
+				}
 			}
-			/*String videoZip = ZipFolderVideo();
-			if (videoZip != null) {
-				list.add(videoZip);
-			}*/
+			/*
+			 * String videoZip = ZipFolderVideo(); if (videoZip != null) {
+			 * list.add(videoZip); }
+			 */
 			String[] attachfiles = new String[list.size()];
 			list.toArray(attachfiles);
 			sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
@@ -77,7 +84,7 @@ public class SuiteListener implements ISuiteListener {
 				+ File.separator + "surefire-reports.zip";
 		try {
 			File ext = new File(pathZip);
-			if(ext.exists()){
+			if (ext.exists()) {
 				delete(ext);
 			}
 			File input = new File(path);
@@ -101,7 +108,7 @@ public class SuiteListener implements ISuiteListener {
 				+ File.separator + "screenshots.zip";
 		try {
 			File ext = new File(pathZip);
-			if(ext.exists()){
+			if (ext.exists()) {
 				delete(ext);
 			}
 			File input = new File(path);
@@ -113,7 +120,7 @@ public class SuiteListener implements ISuiteListener {
 				}
 			}
 		} catch (Exception e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 		}
 		return null;
 	}
@@ -125,7 +132,7 @@ public class SuiteListener implements ISuiteListener {
 				+ File.separator + "VideoZip.zip";
 		try {
 			File ext = new File(pathZip);
-			if(ext.exists()){
+			if (ext.exists()) {
 				delete(ext);
 			}
 			File input = new File(path);
@@ -141,6 +148,7 @@ public class SuiteListener implements ISuiteListener {
 		}
 		return null;
 	}
+
 	private static void delete(File file) throws IOException {
 		if (file.isDirectory()) {
 			// directory is empty, then delete it
@@ -200,15 +208,15 @@ public class SuiteListener implements ISuiteListener {
 		msg.setFrom(new InternetAddress(userName));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 				"lan.ta@c-mg.com"));
-		  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-		 "anh.nguyen@c-mg.com")); 
-		  msg.addRecipient(Message.RecipientType.TO,
-		 new InternetAddress( "my.vu@c-mg.com"));
-		  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-		  "caroline.schofield@c-mg.com"));
-		  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-		  "elaine.dimon@c-mg.com"));
-		 
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+				"anh.nguyen@c-mg.com"));
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+				"my.vu@c-mg.com"));
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+				"caroline.schofield@c-mg.com"));
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+				"elaine.dimon@c-mg.com"));
+
 		msg.setSubject(subject);
 		msg.setSentDate(new Date());
 
