@@ -25,7 +25,11 @@ public class ItestListen implements ITestListener {
 	}
 
 	public void onTestFailure(ITestResult result) {
-		TakeScreenShot.takeSnapShot(result.getName());
+		try {
+			TakeScreenShot.takeSnapShot(result.getName());
+		} catch (Exception e) {
+		}
+	
 		/*try {
 			if(recordRunning){
 				record.stopRecording();
@@ -36,7 +40,11 @@ public class ItestListen implements ITestListener {
 	}
 
 	public void onTestSkipped(ITestResult result) {
-		TakeScreenShot.takeSnapShot(result.getName());
+		try {
+			TakeScreenShot.takeSnapShot(result.getName());
+		} catch (Exception e) {
+		}
+	
 		/*try {
 			if(recordRunning){
 				record.stopRecording();
