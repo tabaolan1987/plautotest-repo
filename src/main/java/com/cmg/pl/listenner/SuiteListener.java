@@ -19,6 +19,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import org.apache.commons.io.FileUtils;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 
@@ -53,10 +54,10 @@ public class SuiteListener implements ISuiteListener {
 			if (screenshotsZip != null) {
 				list.add(screenshotsZip);
 			}
-			String videoZip = ZipFolderVideo();
+			/*String videoZip = ZipFolderVideo();
 			if (videoZip != null) {
 				list.add(videoZip);
-			}
+			}*/
 			String[] attachfiles = new String[list.size()];
 			list.toArray(attachfiles);
 			sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
