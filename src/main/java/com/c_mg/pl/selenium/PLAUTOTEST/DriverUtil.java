@@ -80,7 +80,7 @@ public class DriverUtil {
 					DriverUtil.getChromeDriver());
 			ChromeOptions options = new ChromeOptions();
 			//options.addArguments("no-sandbox");
-			options.setBinary("H:\\Driver Automation\\ChromeStandaloneSetup.exe");
+			options.setBinary("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
 			driverChrome = new ChromeDriver(options);
 			System.out.println("setup chrome get dantri");
 			driverChrome.get("http://dantri.com.vn/");
