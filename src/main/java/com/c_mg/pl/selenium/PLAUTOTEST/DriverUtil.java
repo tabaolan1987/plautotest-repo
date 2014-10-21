@@ -1,5 +1,6 @@
 package com.c_mg.pl.selenium.PLAUTOTEST;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -38,9 +39,9 @@ public class DriverUtil {
 	}
 	
 	public static String getChromeDriver(){
-		String path = "H:\\Driver Automation\\chromedriver.exe";
-		return path;
-		/*String path = PropertiesHelper.getKey(PROP_PROJECT_BASE_DIR) + File.separator + FOLDER_DRIVER 
+	/*	String path = "H:\\Driver Automation\\chromedriver.exe";
+		return path;*/
+		String path = PropertiesHelper.getKey(PROP_PROJECT_BASE_DIR) + File.separator + FOLDER_DRIVER 
 				+ File.separator + "chromedriver.exe";
 		try {
 			File driverChrome = new File(path);
@@ -51,7 +52,7 @@ public class DriverUtil {
 			e.printStackTrace();
 			return null;
 		}
-		return null;	*/
+		return null;	
 	}
 	
 	public static WebDriver getInstance(String browser){
