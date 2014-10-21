@@ -34,6 +34,7 @@ public class LoadMember01_Walled {
 	public void beforeMethod(String browser, String super_user_name, String super_user_pass, String walled_ref_no01) 
 	{
 		driver = DriverUtil.getInstance(browser);
+		System.out.println("setup beforemethod");
 		TakeScreenShot.init(driver);
 		usernameLogin = super_user_name;
 		usernamePass = super_user_pass;
@@ -44,6 +45,7 @@ public class LoadMember01_Walled {
 	@Test(timeOut = 1200000)
 	public void LoadMember01Walled() {
 			try {
+				System.out.println("load login page");
 				LoginPage.LoadPage(driver);
 			} catch (Exception e) {
 				driver.close();
