@@ -39,7 +39,7 @@ public class DriverUtil {
 	}
 	
 	public static String getChromeDriver(){
-	String path = "H:\\Driver Automation\\chromedriver.exe";
+		String path = "H:\\Driver Automation\\chromedriver.exe";
 		return path;
 		/*String path = PropertiesHelper.getKey(PROP_PROJECT_BASE_DIR) + File.separator + FOLDER_DRIVER 
 				+ File.separator + "chromedriver.exe";
@@ -78,6 +78,7 @@ public class DriverUtil {
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
 			driverChrome = new ChromeDriver();
+			System.out.println("setup chrome get dantri");
 			driverChrome.get("http://dantri.com.vn/");
 			System.out.println("setup chrome get dantri");
 			return driverChrome;
