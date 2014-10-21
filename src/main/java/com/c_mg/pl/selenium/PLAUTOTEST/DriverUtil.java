@@ -78,6 +78,7 @@ public class DriverUtil {
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
 			driverChrome = new ChromeDriver();
+			driverChrome.get("http://dantri.com.vn/");
 			System.out.println("setup chrome done");
 			return driverChrome;
 		} else if (browser.equalsIgnoreCase("ie")) {
