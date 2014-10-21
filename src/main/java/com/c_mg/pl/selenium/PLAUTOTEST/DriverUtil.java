@@ -82,6 +82,10 @@ public class DriverUtil {
 			//options.addArguments("no-sandbox");
 			options.setBinary("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
 			driverChrome = new ChromeDriver(options);
+			driverChrome.manage().timeouts().pageLoadTimeout(Constant.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
+			browserRunning = browser;
+			driverChrome.manage().deleteAllCookies();
+			driverChrome.manage().window().maximize();
 			System.out.println("setup chrome done");
 			return driverChrome;
 		} else if (browser.equalsIgnoreCase("ie")) {
