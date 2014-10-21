@@ -72,13 +72,17 @@ public class DriverUtil {
 			driverFF.manage().window().maximize();
 			return driverFF;
 		} else if (browser.equalsIgnoreCase("chrome")) {
+			System.out.println("setup chrome done 1");
+			driverChrome = null;
 			System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());
-			driverChrome = null;
 			driverChrome = new ChromeDriver();
+			System.out.println("setup chrome done 2");
 			driverChrome.manage().deleteAllCookies();
+			System.out.println("setup chrome done 3");
 			driverChrome.manage().timeouts().pageLoadTimeout(Constant.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 			browserRunning = browser;
+			System.out.println("setup chrome done 4");
 			driverChrome.manage().window().maximize();
 			System.out.println("setup chrome done");
 			return driverChrome;
