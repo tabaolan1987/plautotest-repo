@@ -82,9 +82,7 @@ public class DriverUtil {
 			//options.addArguments("no-sandbox");
 			options.setBinary("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
 			driverChrome = new ChromeDriver(options);
-			System.out.println("setup chrome get dantri");
-			driverChrome.get("http://dantri.com.vn/");
-			System.out.println("setup chrome get dantri");
+			System.out.println("setup chrome done");
 			return driverChrome;
 		} else if (browser.equalsIgnoreCase("ie")) {
 			driverIE = null;
