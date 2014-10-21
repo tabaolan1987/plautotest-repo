@@ -1,7 +1,7 @@
 Feature: daily test load member 01 Walled
 
   Scenario: check links under My details page
-    Given I open browser "firefox"
+    Given I open browser "chrome"
     And I navigate to Login Page
     Then I login as superuser
     Then I load member "BPF-0103603"
