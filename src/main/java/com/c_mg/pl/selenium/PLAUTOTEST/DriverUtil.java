@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -75,9 +76,12 @@ public class DriverUtil {
 		} else if (browser.equalsIgnoreCase("chrome")) {
 			System.out.println("setup chrome done 1");
 			driverChrome = null;
-			System.setProperty("webdriver.chrome.driver",
-					DriverUtil.getChromeDriver());
-			driverChrome = new ChromeDriver();
+			/*System.setProperty("webdriver.chrome.driver",
+					DriverUtil.getChromeDriver());*/
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("no-sandbox");
+			options.setBinary(DriverUtil.getChromeDriver());
+			driverChrome = new ChromeDriver(options);
 			System.out.println("setup chrome get dantri");
 			driverChrome.get("http://dantri.com.vn/");
 			System.out.println("setup chrome get dantri");
