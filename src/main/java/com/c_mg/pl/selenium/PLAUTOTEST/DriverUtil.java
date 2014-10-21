@@ -79,7 +79,7 @@ public class DriverUtil {
 			/*System.setProperty("webdriver.chrome.driver",
 					DriverUtil.getChromeDriver());*/
 			ChromeOptions options = new ChromeOptions();
-			options.addArguments("no-sandbox");
+			//options.addArguments("no-sandbox");
 			options.setBinary(DriverUtil.getChromeDriver());
 			driverChrome = new ChromeDriver(options);
 			System.out.println("setup chrome get dantri");
