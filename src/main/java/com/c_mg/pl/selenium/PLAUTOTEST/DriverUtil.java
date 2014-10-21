@@ -76,11 +76,11 @@ public class DriverUtil {
 		} else if (browser.equalsIgnoreCase("chrome")) {
 			System.out.println("setup chrome done 1");
 			driverChrome = null;
-			/*System.setProperty("webdriver.chrome.driver",
-					DriverUtil.getChromeDriver());*/
+			System.setProperty("webdriver.chrome.driver",
+					DriverUtil.getChromeDriver());
 			ChromeOptions options = new ChromeOptions();
 			//options.addArguments("no-sandbox");
-			options.setBinary(DriverUtil.getChromeDriver());
+			options.setBinary("H:\\Driver Automation\\ChromeStandaloneSetup.exe");
 			driverChrome = new ChromeDriver(options);
 			System.out.println("setup chrome get dantri");
 			driverChrome.get("http://dantri.com.vn/");
