@@ -64,10 +64,8 @@
 		<parameter name="browser" value="firefox" />
 		<parameter name="super_user_name" value="AutoSuperuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
-
 		<parameter name="report_runner_name" value="auto_daily_checker" />
 		<parameter name="report_runner_pass" value="P3nsions" />
-
 		<parameter name="walled_ref_no01" value="0103603" />
 		<parameter name="deferred_ref_no01" value="0103360" />
 		<parameter name="deferred_ref_no02" value="0001794" />
@@ -76,7 +74,6 @@
 		<parameter name="pensioner_ref_no03" value="0090597" />
 		<parameter name="securitylock_ref_no01" value="0057437" />
 		<parameter name="active_ref_no01" value="0122398" />
-
 		<classes>
 			 <class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
 			 <class name="com.cmg.pl.dailytest.LoadMember01_Walled" />
