@@ -29,7 +29,7 @@ import com.c_mg.pl.selenium.PLAUTOTEST.PropertiesHelper;
 public class SuiteListener implements ISuiteListener {
 
 	public void onStart(ISuite suite) {
-
+		System.out.println("===================="+suite.getName()+"=======================================");
 	}
 
 	public void onFinish(ISuite suite) {

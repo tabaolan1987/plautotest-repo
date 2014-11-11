@@ -78,6 +78,7 @@ public class LoadMember02_Deferred {
 		// logout
 		Authenticate.LogOut(driver, Constant.SMALL_WAITING_TIME);
 		Reporter.log("Finally Logout");
+		System.out.println("------------------------------------------------------------------------------");
 
 	}
 

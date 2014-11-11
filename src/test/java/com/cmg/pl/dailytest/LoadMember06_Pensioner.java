@@ -91,6 +91,7 @@ public class LoadMember06_Pensioner {
 			//logout
 			Authenticate.LogOut(driver, Constant.SMALL_WAITING_TIME);
 			Reporter.log("Finnaly logout");
+			System.out.println("------------------------------------------------------------------------------");
 
 	}
 
