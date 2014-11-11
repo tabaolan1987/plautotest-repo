@@ -61,6 +61,7 @@
 	</test> 
 
  <test name="FirefoxTest">
+ 		<parameter name="browser" value="firefox" />
 		<parameter name="super_user_name" value="AutoSuperuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
 		<parameter name="report_runner_name" value="auto_daily_checker" />
