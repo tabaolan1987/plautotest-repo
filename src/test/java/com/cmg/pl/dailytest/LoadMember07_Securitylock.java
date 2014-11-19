@@ -67,15 +67,15 @@ public class LoadMember07_Securitylock {
 			  Assert.assertTrue(MyDetailCheck.checkMyAnnualAllowance(driver, Constant.SMALL_WAITING_TIME));
 			  Assert.assertTrue(MyDetailCheck.checkMyCarryForward(driver, Constant.SMALL_WAITING_TIME));
 			  Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, Constant.SMALL_WAITING_TIME));
-			  Reporter.log("Then check : This is Me, My Benefits, My Annual Allowance, My Carry Forward, Scheme Pays will show under My Detail");
+			  Assert.assertTrue(MyDetailCheck.checkMyAccurateLink(driver, Constant.SMALL_WAITING_TIME));
+			  Reporter.log("Then check : This is Me, My Benefits, My Annual Allowance, My Carry Forward, Scheme Pays,My Accurate will show under My Detail");
 			  
 			  //check for links unavailable under 'My details'
 			  Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, Constant.SMALL_WAITING_TIME));
 			  Assert.assertFalse(MyDetailCheck.checkMyRetirementLink(driver, Constant.SMALL_WAITING_TIME));
 			  Assert.assertFalse(MyDetailCheck.checkRedundacyLink(driver, Constant.SMALL_WAITING_TIME));
 			  Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, Constant.SMALL_WAITING_TIME));
-			  Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, Constant.SMALL_WAITING_TIME));
-			  Reporter.log("Then check : PaySlips, My Retirement, My Redundancy, My Lifetime and My Accurate  will not show under My Detail");
+			  Reporter.log("Then check : PaySlips, My Retirement, My Redundancy, My Lifetime will not show under My Detail");
 			  //check 'This is me' page
 			  ThisIsMePage.loadPage(driver);
 			  Reporter.log("Then access to This is Me page");

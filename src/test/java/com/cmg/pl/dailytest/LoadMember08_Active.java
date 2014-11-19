@@ -74,15 +74,16 @@ public class LoadMember08_Active {
 		Assert.assertTrue(MyDetailCheck.checkMyAnnualAllowance(driver, Constant.SMALL_WAITING_TIME));
 		Assert.assertTrue(MyDetailCheck.checkMyCarryForward(driver, Constant.SMALL_WAITING_TIME));
 		Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, Constant.SMALL_WAITING_TIME));
+		Assert.assertTrue(MyDetailCheck.checkMyAccurateLink(driver, Constant.SMALL_WAITING_TIME));
 		Reporter.log("Then check : This is Me, My Benefits,"
 				+ " My Annual Allowance, My Carry Forward, "
-				+ "Scheme Pays, My Retirement, My Redundancy should show under My Detail");
+				+ "Scheme Pays, My Retirement, My Redundancy  and My Accurate should show under My Detail");
 
 		// check for links unavailable under 'My details'
 		Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, Constant.SMALL_WAITING_TIME));
 		Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, Constant.SMALL_WAITING_TIME));
 		Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, Constant.SMALL_WAITING_TIME));
-		Reporter.log("Then check : PaySlips, My Lifetime and My Accurate should not show under My Detail");
+		Reporter.log("Then check : PaySlips, My Lifetime should not show under My Detail");
 
 		// check 'This is me' page
 		ThisIsMePage.loadPage(driver);
