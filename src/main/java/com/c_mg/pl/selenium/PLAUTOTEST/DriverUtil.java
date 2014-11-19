@@ -53,20 +53,23 @@ public class DriverUtil {
 			e.printStackTrace();
 			return null;
 		}
-		return null;	*/
+		return null;*/	
 	}
 	
 	public static WebDriver getInstance(String browser){
 		if (browser.equalsIgnoreCase("firefox")) {
 			try {
 				driverFF = null;
-				driverFF = new FirefoxDriver();
+				FirefoxProfile profile = new FirefoxProfile();
+				profile.setAcceptUntrustedCertificates(true);
+				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
+				driverFF = new FirefoxDriver(profile);
 				driverFF.manage().deleteAllCookies();
 			} catch (WebDriverException e) {
 				System.out.println(e.getMessage());
 				FirefoxProfile profile = new FirefoxProfile();
 				profile.setAcceptUntrustedCertificates(true);
-				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
+				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7057);
 				driverFF = new FirefoxDriver(profile);
 			}
 			driverFF.manage().timeouts().pageLoadTimeout(Constant.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
