@@ -45,6 +45,7 @@ public class ProduceReport {
 			Thread.sleep(3000);
 			Reporter.log("login with report runner : "  + report_runner_username);
 			ReportingToolPage.loadPage(driver);
+			Thread.sleep(3000);
 			Reporter.log("Then access to Reporting Tool page");
 			RunCheckingConnectionReportGroup
 					.runReportGroupCheckingConnection(driver);

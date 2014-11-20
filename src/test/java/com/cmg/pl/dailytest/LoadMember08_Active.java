@@ -82,7 +82,6 @@ public class LoadMember08_Active {
 		// check for links unavailable under 'My details'
 		Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, Constant.SMALL_WAITING_TIME));
 		Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, Constant.SMALL_WAITING_TIME));
-		Assert.assertFalse(MyDetailCheck.checkMyAccurateLink(driver, Constant.SMALL_WAITING_TIME));
 		Reporter.log("Then check : PaySlips, My Lifetime should not show under My Detail");
 
 		// check 'This is me' page
