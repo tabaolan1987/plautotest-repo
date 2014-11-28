@@ -31,21 +31,11 @@ import testlink.api.java.client.TestLinkAPIException;
 import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.c_mg.pl.selenium.PLAUTOTEST.FolderZiper;
 import com.c_mg.pl.selenium.PLAUTOTEST.PropertiesHelper;
-import com.c_mg.pl.selenium.PLAUTOTEST.TestLinkUtil;
 
 public class SuiteListener implements ISuiteListener {
 	
 	
 	public void onStart(ISuite suite) {
-		/*System.out.println("===================="+suite.getName()+"=======================================");
-		TestLinkUtil testLink = new TestLinkUtil();
-		try {
-			testLink.createNewBuild();
-			Constant.mapContainer = new HashMap<String, String>();
-		} catch (TestLinkAPIException e) {
-			e.printStackTrace();
-		}
-		*/
 	}
 
 	public void onFinish(ISuite suite) {
@@ -83,7 +73,6 @@ public class SuiteListener implements ISuiteListener {
 			 */
 			String[] attachfiles = new String[list.size()];
 			list.toArray(attachfiles);
-			//Constant.updateStatusToTestLink();
 			sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
 					subject, message, attachfiles);
 			System.out.println("Email sent.");
