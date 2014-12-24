@@ -1,14 +1,9 @@
 package com.c_mg.pl.selenium.PLAUTOTEST;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
-import testlink.api.java.client.TestLinkAPIClient;
-import testlink.api.java.client.TestLinkAPIException;
 
 
 /**
@@ -16,5 +11,11 @@ import testlink.api.java.client.TestLinkAPIException;
  * 
  */
 public class App {
-	
+	public static void main(String[] acg) throws UnsupportedEncodingException{
+		String simple  = "%2Fdropboxes%3Fpath%3Dcmg%252F%255B%255D%257B%257D%25C2%25A3%2524%2500%25C2%25AC%2Bmy%2Btest.txt";
+		simple = URLDecoder.decode(simple);
+		simple = simple.replace("+", "%20");
+		System.out.println(simple);
+		
+	}
 }
