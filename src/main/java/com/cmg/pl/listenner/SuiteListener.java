@@ -73,8 +73,8 @@ public class SuiteListener implements ISuiteListener {
 			 */
 			String[] attachfiles = new String[list.size()];
 			list.toArray(attachfiles);
-			/*sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
-					subject, message, attachfiles);*/
+			sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
+					subject, message, attachfiles);
 			System.out.println("Email sent.");
 			
 			
