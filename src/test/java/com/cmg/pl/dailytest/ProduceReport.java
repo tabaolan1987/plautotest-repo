@@ -47,8 +47,7 @@ public class ProduceReport {
 			ReportingToolPage.loadPage(driver);
 			Thread.sleep(3000);
 			Reporter.log("Then access to Reporting Tool page");
-			RunCheckingConnectionReportGroup
-					.runReportGroupCheckingConnection(driver);
+			RunCheckingConnectionReportGroup.runReportGroupCheckingConnection(driver);
 			Assert.assertTrue(CheckAccessReportsPage
 					.CheckReportSections(driver));
 			CheckAccessReportsPage.CheckSelectAllReports(driver);
