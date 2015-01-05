@@ -69,7 +69,7 @@ public class CheckAccessReportsPage {
 	}
 	
 	public static void RunSelectedReports (WebDriver driver) {
-		((JavascriptExecutor)driver).executeScript("runSelectedReports();");
+		((JavascriptExecutor)driver).executeScript("updateSelectedReportParamValues();");
 		PageLoading.waitForTitle(INPUT_REPORT_PARAM_PAGE_TITLE, driver, 20);
 	}
 }

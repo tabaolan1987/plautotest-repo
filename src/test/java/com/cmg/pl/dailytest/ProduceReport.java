@@ -57,7 +57,7 @@ public class ProduceReport {
 			CheckAccessReportsPage.RunSelectedReports(driver);
 			Reporter.log("Then Run the report");
 			Thread.sleep(2000);
-			ProduceReportWithInputParam.ProduceReportWithDefaultParam(driver);
+			Assert.assertTrue(ProduceReportWithInputParam.ProduceReportWithDefaultParam(driver));
 			Reporter.log("Then Check successful report page is shown");
 			// logout
 			Authenticate.LogOut(driver, Constant.SMALL_WAITING_TIME);
