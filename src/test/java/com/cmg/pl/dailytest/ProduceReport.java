@@ -55,7 +55,7 @@ public class ProduceReport {
 			// Thread.sleep(10000);
 			CheckAccessReportsPage.RunSelectedReports(driver);
 			Reporter.log("Then Run the report");
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 			Assert.assertTrue(ProduceReportWithInputParam.ProduceReportWithDefaultParam(driver));
 			Reporter.log("Then Check successful report page is shown");
 			// logout

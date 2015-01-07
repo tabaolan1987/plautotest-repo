@@ -1,9 +1,13 @@
 package com.cmg.pl.action;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.cmg.pl.pageObject.AccessReportsPage;
 
 import java.util.*;
@@ -32,9 +36,6 @@ public class CheckAccessReportsPage {
 			} else if(el.getText().equals(DATABASE_REPORT_TITLE)) {
 				count++;
 			}
-			else if(el.getText().equals(EXTRA_VIEW_REPORT_TITLE)) {
-				count++;
-			}
 			else if(el.getText().equals(OPENCMS_REPORT_TITLE)) {
 				count++;
 			}
@@ -42,7 +43,7 @@ public class CheckAccessReportsPage {
 				count++;
 			}
 		}
-		if(count == 6){
+		if(count == 5){
 			return true;
 		}
 		else {
@@ -69,7 +70,10 @@ public class CheckAccessReportsPage {
 	}
 	
 	public static void RunSelectedReports (WebDriver driver) {
-		((JavascriptExecutor)driver).executeScript("updateSelectedReportParamValues();");
+		((JavascriptExecutor)driver).executeScript("runSelectedReports();");
 		PageLoading.waitForTitle(INPUT_REPORT_PARAM_PAGE_TITLE, driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, Constant.NORMAL_WAITING_TIME);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("_run_report_confirm")));
+		driver.findElement(By.id("_run_report_confirm")).click();
 	}
 }

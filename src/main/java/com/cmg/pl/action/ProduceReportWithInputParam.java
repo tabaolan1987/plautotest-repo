@@ -29,14 +29,17 @@ public class ProduceReportWithInputParam {
 			 String winHandle=(String) handles.iterator().next();
 			 if (winHandle!=firstWinHandle){
 			 String secondWinHandle=winHandle;
+			 System.out.println("swith to second" + secondWinHandle);
 			 driver.switchTo().window(secondWinHandle);
+			 System.out.println("title second" + driver.getTitle());
 			 }
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.titleIs(TITLE_DOWNLOAD_REPORT_PAGE));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.id(InputReportParamPage.RUN_BTT_ID)));
-			InputReportParamPage.RunButton(driver).click();
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.id(DOWNLOAD_REPORT_BTT_ID)));
+			driver.findElement(By.id(DOWNLOAD_REPORT_BTT_ID)).click();
 			result = true;
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
