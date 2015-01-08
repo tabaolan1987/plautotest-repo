@@ -36,7 +36,7 @@ public class ProduceReportWithInputParam {
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.titleIs(TITLE_DOWNLOAD_REPORT_PAGE));
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.id(DOWNLOAD_REPORT_BTT_ID)));
-			driver.findElement(By.id(DOWNLOAD_REPORT_BTT_ID)).click();
+			//driver.findElement(By.id(DOWNLOAD_REPORT_BTT_ID)).click();
 			result = true;
 		} catch (Exception e) {
 			e.printStackTrace();
