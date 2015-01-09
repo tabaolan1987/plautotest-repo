@@ -28,7 +28,7 @@ public class TakeScreenShot {
 		driver = d;
 	}
 	
-	public static void takeSnapShot(String methodName) {
+	public static String takeSnapShot(String methodName) {
 		String folderBaseDriver = null;
 		if (driver instanceof InternetExplorerDriver) {
 			folderBaseDriver = "Internet Explore";
@@ -45,11 +45,11 @@ public class TakeScreenShot {
 			f.mkdirs();
 		}
 		File output = null;
-		File file;
+		File file = null;
 		if (folderBaseDriver.equalsIgnoreCase("Internet Explore")) {
 			ScreenRegion s = new DesktopScreenRegion();
 			try {
-				ImageIO.write(s.capture(), "png", new File(screenshootDir
+				ImageIO.write(s.capture(), "png", file = new File(screenshootDir
 						+ File.separator + methodName + ".png"));
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -64,6 +64,7 @@ public class TakeScreenShot {
 				e.printStackTrace();
 			}
 		}
+		return file.getAbsolutePath();
 
 	}
 	
