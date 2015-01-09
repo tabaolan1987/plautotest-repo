@@ -1,9 +1,6 @@
 package com.c_mg.pl.selenium.PLAUTOTEST;
 
-import java.util.HashMap;
-import java.util.Map;
 
-import testlink.api.java.client.TestLinkAPIClient;
 
 /**
  * @author lantb
@@ -35,5 +32,10 @@ public class Constant {
 	 * URL for DEV
 	 */
 	/* public static String URL = ""; */
+	
+	
+	
+	
+	
 
 }
