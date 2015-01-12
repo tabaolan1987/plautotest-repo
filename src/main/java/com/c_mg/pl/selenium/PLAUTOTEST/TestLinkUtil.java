@@ -1,6 +1,5 @@
 package com.c_mg.pl.selenium.PLAUTOTEST;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import br.eti.kinoshita.testlinkjavaapi.TestLinkAPI;
@@ -10,6 +9,7 @@ import br.eti.kinoshita.testlinkjavaapi.model.TestPlan;
 import testlink.api.java.client.TestLinkAPIClient;
 import testlink.api.java.client.TestLinkAPIException;
 import testlink.api.java.client.TestLinkAPIResults;
+
 
 public class TestLinkUtil {
 	
@@ -65,9 +65,7 @@ public class TestLinkUtil {
 					Constant.API_KEY_TESTLINK);
 			TestPlan tl = api.getTestPlanByName(testPlanName, projectName);
 			return tl;
-		} catch (br.eti.kinoshita.testlinkjavaapi.util.TestLinkAPIException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
+		} catch (Exception e){
 			e.printStackTrace();
 		}
 		return null;
@@ -85,9 +83,7 @@ public class TestLinkUtil {
 					return p;
 				}
 			}
-		} catch (br.eti.kinoshita.testlinkjavaapi.util.TestLinkAPIException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
+		} catch (Exception e){
 			e.printStackTrace();
 		}
 		return null;
@@ -104,9 +100,7 @@ public class TestLinkUtil {
 					return b;
 				}
 			}
-		} catch (br.eti.kinoshita.testlinkjavaapi.util.TestLinkAPIException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
+		} catch (Exception e){
 			e.printStackTrace();
 		}
 		return null;
