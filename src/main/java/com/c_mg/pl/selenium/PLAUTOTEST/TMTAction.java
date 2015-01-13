@@ -10,12 +10,16 @@ import org.apache.commons.io.FileUtils;
 import org.testng.ITestResult;
 
 
+
+
+
 import testlink.api.java.client.TestLinkAPIClient;
 import testlink.api.java.client.TestLinkAPIException;
 import br.eti.kinoshita.testlinkjavaapi.TestLinkAPI;
+import br.eti.kinoshita.testlinkjavaapi.constants.ExecutionStatus;
+import br.eti.kinoshita.testlinkjavaapi.constants.TestCaseDetails;
 import br.eti.kinoshita.testlinkjavaapi.model.Build;
 import br.eti.kinoshita.testlinkjavaapi.model.Execution;
-import br.eti.kinoshita.testlinkjavaapi.model.ExecutionStatus;
 import br.eti.kinoshita.testlinkjavaapi.model.Platform;
 import br.eti.kinoshita.testlinkjavaapi.model.TestCase;
 import br.eti.kinoshita.testlinkjavaapi.model.TestPlan;
@@ -26,14 +30,6 @@ public class TMTAction {
 	private TestLinkUtil util = new TestLinkUtil();
 
 	public void createNewBuild() throws TestLinkAPIException {
-		try {
-			InetAddress thisIp = InetAddress.getLocalHost();
-		     String ip = thisIp.getHostAddress();
-		     Constant.SERVER_URL = "http://"+ip+"/testlink/lib/api/xmlrpc/v1/xmlrpc.php";
-		     System.out.println(Constant.SERVER_URL);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		TestLinkAPIClient testlinkAPIClient = new TestLinkAPIClient(
 				Constant.API_KEY_TESTLINK, Constant.SERVER_URL);
 		String buildName = "Daily Test : " + new Date();
@@ -45,7 +41,7 @@ public class TMTAction {
 	}
 
 	public boolean updateResultToTestLink(ITestResult result,
-			ExecutionStatus ex, String browser, String notes) {
+		ExecutionStatus ex, String browser, String notes) {
 		try {
 			TestLinkAPI api = new TestLinkAPI(new URL(Constant.SERVER_URL),
 					Constant.API_KEY_TESTLINK);
@@ -126,8 +122,6 @@ public class TMTAction {
 					String name = tcase.getName().trim();
 					if(name.equalsIgnoreCase(testcaseName)){
 						String temp = tcase.getPreconditions();
-						temp = temp.replaceAll("<p>", "");
-						temp = temp.replaceAll("</p>", "");
 						pre = temp.trim();
 						break;
 					}
@@ -151,13 +145,11 @@ public class TMTAction {
 			for(TestSuite suite : suites){
 				if(suite.getName().equalsIgnoreCase(tsName)){
 					TestCaseDetails details = TestCaseDetails.valueOf("FULL");
-					TestCase[] cases = api.getTestCasesForTestSuite(suite.getId(), true, "FULL");
+					TestCase[] cases = api.getTestCasesForTestSuite(suite.getId(), true, details);
 					for(TestCase tcase : cases){
 						String name = tcase.getName().trim();
 						if(name.equalsIgnoreCase(tcName)){
 							String temp = tcase.getPreconditions();
-							temp = temp.replaceAll("<p>", "");
-							temp = temp.replaceAll("</p>", "");
 							pre = temp.trim();
 							break;
 						}

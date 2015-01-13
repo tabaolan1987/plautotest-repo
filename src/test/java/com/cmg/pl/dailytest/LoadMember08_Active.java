@@ -1,5 +1,6 @@
 package com.cmg.pl.dailytest;
 
+
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -10,6 +11,7 @@ import org.testng.annotations.Test;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
+import com.c_mg.pl.selenium.PLAUTOTEST.ParameterMap;
 import com.c_mg.pl.selenium.PLAUTOTEST.TakeScreenShot;
 import com.cmg.pl.action.Authenticate;
 import com.cmg.pl.action.CheckMyAnnualAllowancePage;
@@ -37,61 +39,33 @@ public class LoadMember08_Active {
 
 	private static WebDriver driver;
 
-	private static String usernameLogin;
-
-	private static String usernamePass;
-
-	private static String refno;
-
-	private static String group = "BPF";
-
-	@Parameters({ "browser", "super_user_name", "super_user_pass",
-			"active_ref_no01" })
+	@Parameters({ "browser"})
 	@BeforeMethod
-	public void beforeMethod(String browser, String super_user_name,
-			String super_user_pass, String active_ref_no01) {
+	public void beforeMethod(String browser) {
 		driver = DriverUtil.getInstance(browser);
 		TakeScreenShot.init(driver);
-		usernameLogin = super_user_name;
-		usernamePass = super_user_pass;
-		refno = active_ref_no01;
-
 	}
 
 	@Test(timeOut = 1200000)
 	public void LoadMember08Active() throws InterruptedException {
 		LoginPage.LoadPage(driver);
-		Authenticate.Login(driver, usernameLogin, usernamePass);
-		SuperUser.loadMember(driver, Constant.NORMAL_WAITING_TIME, group, refno);
-		Reporter.log("Superuser load member : " + refno);
+		Authenticate.Login(driver, ParameterMap.getValue("superusername"), ParameterMap.getValue("superuserpass"));
+		SuperUser.loadMember(driver, Constant.NORMAL_WAITING_TIME, ParameterMap.getValue("group"), ParameterMap.getValue("refno"));
+		Reporter.log("Superuser load member : " + ParameterMap.getValue("refno"));
 		// check for links available under 'My details'
 		MyDetailPage.loadPage(driver);
 		Reporter.log("Then access to my detail page");
-		Assert.assertTrue(MyDetailCheck.checkThisIsMeLink(driver, Constant.SMALL_WAITING_TIME));
-		Assert.assertTrue(MyDetailCheck.checkMyBenefitsLink(driver, Constant.SMALL_WAITING_TIME));
-		Assert.assertTrue(MyDetailCheck.checkMyRetirementLink(driver, Constant.SMALL_WAITING_TIME));
-		Assert.assertTrue(MyDetailCheck.checkRedundacyLink(driver, Constant.SMALL_WAITING_TIME));
-		Assert.assertTrue(MyDetailCheck.checkMyAnnualAllowance(driver, Constant.SMALL_WAITING_TIME));
-		Assert.assertTrue(MyDetailCheck.checkMyCarryForward(driver, Constant.SMALL_WAITING_TIME));
-		Assert.assertTrue(MyDetailCheck.checkSchemePays(driver, Constant.SMALL_WAITING_TIME));
-		//Assert.assertTrue(MyDetailCheck.checkMyAccurateLink(driver, Constant.SMALL_WAITING_TIME));
-		Reporter.log("Then check : This is Me, My Benefits,"
-				+ " My Annual Allowance, My Carry Forward, "
-				+ "Scheme Pays, My Retirement, My Redundancy  and My Accurate should show under My Detail");
-
-		// check for links unavailable under 'My details'
-		Assert.assertFalse(MyDetailCheck.checkPaySlips(driver, Constant.SMALL_WAITING_TIME));
-		Assert.assertFalse(MyDetailCheck.checkMyLifeTime(driver, Constant.SMALL_WAITING_TIME));
-		Reporter.log("Then check : PaySlips, My Lifetime should not show under My Detail");
-
+		MyDetailCheck mdCheck = new MyDetailCheck();
+		mdCheck.checkLinkInVisible(driver, ParameterMap.getValue("invisibleLinkUnderMyDetails"));
+		mdCheck.checkLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyDetails"));
 		// check 'This is me' page
 		ThisIsMePage.loadPage(driver);
 		Reporter.log("Then access to This is Me page");
 		CheckThisIsMePage.checkPersonalDetailTableExisted(driver, Constant.SMALL_WAITING_TIME);
 		Reporter.log("Then check Table Personal Detail should existed in page");
 		Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver,
-				refno));
-		Reporter.log("Then check refno : " + refno + " should existed in table");
+				ParameterMap.getValue("refno")));
+		Reporter.log("Then check refno : " + ParameterMap.getValue("refno") + " should existed in table");
 
 		// check 'My Benefits' page and its sub-menus
 		MyBenefitPage.loadPage(driver);
@@ -108,10 +82,10 @@ public class LoadMember08_Active {
 				.checkTablePersonalDetailsExisted(driver, Constant.SMALL_WAITING_TIME));
 		Reporter.log("Then Check the table personal details should existed");
 		Assert.assertTrue(CheckSchemeBenefitsPage.checkMemberRefNumberExisted(
-				driver, refno));
+				driver, ParameterMap.getValue("refno")));
 		Assert.assertTrue(CheckSchemeBenefitsPage
 				.checkNinoNumberExisted(driver));
-		Reporter.log("Then check refno : " + refno
+		Reporter.log("Then check refno : " + ParameterMap.getValue("refno")
 				+ " and nino number should existed in this table");
 
 		// check 'State Benefits' page

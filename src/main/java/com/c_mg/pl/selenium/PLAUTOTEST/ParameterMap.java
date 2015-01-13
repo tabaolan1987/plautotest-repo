@@ -2,6 +2,10 @@ package com.c_mg.pl.selenium.PLAUTOTEST;
 
 import java.util.HashMap;
 
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
+import org.jsoup.nodes.Element;
+
 public class ParameterMap {
 	
 	private static  HashMap<String, String> params;
@@ -9,8 +13,9 @@ public class ParameterMap {
 	
 	public static void setupParam(String pre){
 		params = new HashMap<String, String>();
-		String[] parameters= pre.split(",");
-		for(String param : parameters){
+		Elements els = Jsoup.parse(pre).getElementsByTag("p");
+		for(Element el : els){
+			String param = el.text();
 			String key = param.split("=")[0];
 			String value = param.split("=")[1];
 			System.out.println("key : " + key  + " - value = " + value );

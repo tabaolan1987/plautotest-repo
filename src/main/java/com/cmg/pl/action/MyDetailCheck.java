@@ -1,10 +1,13 @@
 package com.cmg.pl.action;
 
+import java.util.ArrayList;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.cmg.pl.pageObject.MyDetailPage;
@@ -31,56 +34,89 @@ public class MyDetailCheck {
 	
 	private static String LINK_TEXT_MY_LIFETIME = "My LifeTime Allowance";
 	
-	
-	
-	public boolean checkLinkVisible(WebDriver driver, String link){
-		if(link.equalsIgnoreCase("this is me")){
-			return checkThisIsMeLink(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("my retirement")){
-			return checkMyRetirementLink(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("my carry forward")){
-			return checkMyCarryForward(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("my annual allowance")){
-			return checkMyAnnualAllowance(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("scheme pays")){
-			return checkSchemePays(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("my lifeTime allowance")){
-			return checkMyLifeTime(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("redundancy")){
-			return checkRedundacyLink(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("my benefits")){
-			return checkMyBenefitsLink(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("payslips")){
-			return checkPaySlips(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("my accrual rate")){
-			return checkMyAccurateLink(driver, Constant.SMALL_WAITING_TIME);
+	public ArrayList<String> getLinks(String data){
+		ArrayList<String> temp = new ArrayList<String>();
+		if(data!=null && data.length() > 0){
+			String[] links = data.split(",");
+			for(String link : links){
+				temp.add(link.trim());
+			}
 		}
-		return false;
+		return temp;
 	}
 	
-	public boolean checkLinkInVisible(WebDriver driver, String link){
-		if(link.equalsIgnoreCase("this is me")){
-			return checkThisIsMeLink(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("my retirement")){
-			return checkMyRetirementLink(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("my carry forward")){
-			return checkMyCarryForward(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("my annual allowance")){
-			return checkMyAnnualAllowance(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("scheme pays")){
-			return checkSchemePays(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("my lifeTime allowance")){
-			return checkMyLifeTime(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("redundancy")){
-			return checkRedundacyLink(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("my benefits")){
-			return checkMyBenefitsLink(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("payslips")){
-			return checkPaySlips(driver, Constant.SMALL_WAITING_TIME);
-		}else if(link.equalsIgnoreCase("my accrual rate")){
-			return checkMyAccurateLink(driver, Constant.SMALL_WAITING_TIME);
+	public void checkLinkVisible(WebDriver driver, String allLinks){
+		ArrayList<String> list = getLinks(allLinks);
+		for(String link : list){
+			if(link.equalsIgnoreCase(LINK_TEXT_THIS_IS_ME)){
+				System.out.println("check link this is me");
+				Assert.assertTrue(checkThisIsMeLink(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_RETIREMENT)){
+				System.out.println("check link my retirement");
+				Assert.assertTrue(checkMyRetirementLink(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_CARRY_FORWARD)){
+				System.out.println("check link my carry forward");
+				Assert.assertTrue(checkMyCarryForward(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_ANNUAL_ALLOWANCE)){
+				System.out.println("check link my annual allowance");
+				Assert.assertTrue(checkMyAnnualAllowance(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase(LINK_TEXT_SCHEME_PAYS)){
+				System.out.println("check link scheme pays");
+				Assert.assertTrue(checkSchemePays(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_LIFETIME)){
+				System.out.println("check link my lifetime allowance");
+				Assert.assertTrue(checkMyLifeTime(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase(LINK_TEXT_REDUNDACY)){
+				System.out.println("check link redundancy");
+				Assert.assertTrue(checkRedundacyLink(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase("My Benefits")){
+				System.out.println("check link my benefits");
+				Assert.assertTrue(checkMyBenefitsLink(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase("PaySlips")){
+				System.out.println("check link payslips");
+				Assert.assertTrue(checkPaySlips(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase("my accrual rate")){
+				System.out.println("check link my accurual rate");
+				Assert.assertTrue(checkMyAccurateLink(driver, Constant.SMALL_WAITING_TIME));
+			}
 		}
-		return true;
+	}
+	
+	public void checkLinkInVisible(WebDriver driver, String allLinks){
+		ArrayList<String> list = getLinks(allLinks);
+		for(String link : list){
+			if(link.equalsIgnoreCase(LINK_TEXT_THIS_IS_ME)){
+				System.out.println("check link this is me");
+				Assert.assertFalse(checkThisIsMeLink(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_RETIREMENT)){
+				System.out.println("check link my retirement");
+				Assert.assertFalse(checkMyRetirementLink(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_CARRY_FORWARD)){
+				System.out.println("check link my carry forward");
+				Assert.assertFalse(checkMyCarryForward(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_ANNUAL_ALLOWANCE)){
+				System.out.println("check link my annual allowance");
+				Assert.assertFalse(checkMyAnnualAllowance(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase(LINK_TEXT_SCHEME_PAYS)){
+				System.out.println("check link scheme pays");
+				Assert.assertFalse(checkSchemePays(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_LIFETIME)){
+				System.out.println("check link my lifetime allowance");
+				Assert.assertFalse(checkMyLifeTime(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase(LINK_TEXT_REDUNDACY)){
+				System.out.println("check link redundancy");
+				Assert.assertFalse(checkRedundacyLink(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase("My Benefits")){
+				System.out.println("check link my benefits");
+				Assert.assertFalse(checkMyBenefitsLink(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase("PaySlips")){
+				System.out.println("check link payslips");
+				Assert.assertFalse(checkPaySlips(driver, Constant.SMALL_WAITING_TIME));
+			}else if(link.equalsIgnoreCase("my accrual rate")){
+				System.out.println("check link my accurual rate");
+				Assert.assertFalse(checkMyAccurateLink(driver, Constant.SMALL_WAITING_TIME));
+			}
+		}
 	}
 	
 	
@@ -164,7 +200,6 @@ public class MyDetailCheck {
 	}
 	
 	public static boolean checkPaySlips(WebDriver driver , int timeout){
-		System.out.println("check paylips link");
 		WebDriverWait wait = new WebDriverWait(driver , timeout);
 		try {
 			WebElement el = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(XPATH_PAYSLIPS_LINK)));

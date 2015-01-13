@@ -31,11 +31,18 @@ import testlink.api.java.client.TestLinkAPIException;
 import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.c_mg.pl.selenium.PLAUTOTEST.FolderZiper;
 import com.c_mg.pl.selenium.PLAUTOTEST.PropertiesHelper;
+import com.c_mg.pl.selenium.PLAUTOTEST.TMTAction;
 
 public class SuiteListener implements ISuiteListener {
 	
 	
 	public void onStart(ISuite suite) {
+		try {
+			TMTAction action = new TMTAction();
+			action.createNewBuild();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void onFinish(ISuite suite) {
@@ -73,8 +80,8 @@ public class SuiteListener implements ISuiteListener {
 			 */
 			String[] attachfiles = new String[list.size()];
 			list.toArray(attachfiles);
-			sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
-					subject, message, attachfiles);
+			/*sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
+					subject, message, attachfiles);*/
 			System.out.println("Email sent.");
 			
 			

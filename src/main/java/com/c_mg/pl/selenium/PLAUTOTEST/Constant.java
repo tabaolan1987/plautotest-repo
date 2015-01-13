@@ -50,5 +50,7 @@ public class Constant {
 	// Substitute your build name
 	public static String BUILD_NAME = "not set";
 	
+	public static String SUITE_NAME = "Daily Test Suite";
+	
 
 }
