@@ -36,10 +36,10 @@ public class Constant {
 	
 	
 
-	public static String API_KEY_TESTLINK = "a3d6ac381f1769d63ff13044f441777a";
+	public static String API_KEY_TESTLINK = "8b7337f008ff796cabae87cb1dda0b38";
 
 	// Substitute your Server URL Here
-	public static String SERVER_URL = "http://192.168.1.10/testlink/lib/api/xmlrpc/v1/xmlrpc.php";
+	public static String SERVER_URL = "http://c-mg.vn/testlink/lib/api/xmlrpc/v1/xmlrpc.php";
 
 	// Substitute your project name Here
 	public static String PROJECT_NAME = "PENSIONLINE";
@@ -48,7 +48,7 @@ public class Constant {
 	public static String PLAN_NAME = "Daily Test";
 	
 	// Substitute your build name
-	public static String BUILD_NAME = "build one";
+	public static String BUILD_NAME = "not set";
 	
 
 }
