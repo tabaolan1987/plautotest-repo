@@ -6,7 +6,9 @@ import org.testng.ITestResult;
 
 
 
-import br.eti.kinoshita.testlinkjavaapi.model.ExecutionStatus;
+
+
+import br.eti.kinoshita.testlinkjavaapi.constants.ExecutionStatus;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
@@ -29,12 +31,12 @@ public class ItestListen implements ITestListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
-		String browser = DriverUtil.browserRunning;
+	/*	String browser = DriverUtil.browserRunning;
 		ExecutionStatus ex = ExecutionStatus.getExecutionStatus('P');
 		System.out.println("update result to test link : " + " platform : "
 				+ browser + "- testcase :  " + result.getName() + " PASSED");
 		TMTAction action = new TMTAction();
-		action.updateResultToTestLink(result, ex, browser, "");
+		action.updateResultToTestLink(result, ex, browser, "");*/
 	}
 
 	public void onTestFailure(ITestResult result) {
@@ -44,21 +46,21 @@ public class ItestListen implements ITestListener {
 		} catch (Exception e) {
 		}
 
-		String browser = DriverUtil.browserRunning;
+		/*String browser = DriverUtil.browserRunning;
 		ExecutionStatus ex = ExecutionStatus.getExecutionStatus('F');
 		System.out.println("update result to test link : " + " platform : "
 				+ browser + "- testcase :  " + result.getName() + " FAIL");
 		TMTAction action = new TMTAction();
-	/*	action.updateResultToTestLinkWithAttactment(result, ex, browser, result
-				.getThrowable().getMessage(), filePath);*/
-
-		try {
+		action.updateResultToTestLinkWithAttactment(result, ex, browser, result
+				.getThrowable().getMessage(), filePath);
+*/
+		/*try {
 			if (recordRunning) {
 				record.stopRecording();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	public void onTestSkipped(ITestResult result) {
@@ -67,13 +69,13 @@ public class ItestListen implements ITestListener {
 			filePath = TakeScreenShot.takeSnapShot(result.getName());
 		} catch (Exception e) {
 		}
-		String browser = DriverUtil.browserRunning;
+	/*	String browser = DriverUtil.browserRunning;
 		ExecutionStatus ex = ExecutionStatus.getExecutionStatus('B');
 		System.out.println("update result to test link : " + " platform : "
 				+ browser + "- testcase :  " + result.getName() + " Not Run");
 		TMTAction action = new TMTAction();
 		action.updateResultToTestLinkWithAttactment(result, ex, browser, result
-				.getThrowable().getMessage(), filePath);
+				.getThrowable().getMessage(), filePath);*/
 /*
 		try {
 			if (recordRunning) {
