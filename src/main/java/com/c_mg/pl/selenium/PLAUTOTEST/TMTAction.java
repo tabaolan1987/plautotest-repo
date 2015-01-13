@@ -9,6 +9,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.testng.ITestResult;
 
+
 import testlink.api.java.client.TestLinkAPIClient;
 import testlink.api.java.client.TestLinkAPIException;
 import br.eti.kinoshita.testlinkjavaapi.TestLinkAPI;
@@ -16,7 +17,9 @@ import br.eti.kinoshita.testlinkjavaapi.model.Build;
 import br.eti.kinoshita.testlinkjavaapi.model.Execution;
 import br.eti.kinoshita.testlinkjavaapi.model.ExecutionStatus;
 import br.eti.kinoshita.testlinkjavaapi.model.Platform;
+import br.eti.kinoshita.testlinkjavaapi.model.TestCase;
 import br.eti.kinoshita.testlinkjavaapi.model.TestPlan;
+import br.eti.kinoshita.testlinkjavaapi.model.TestSuite;
 
 public class TMTAction {
 
@@ -107,4 +110,66 @@ public class TMTAction {
 		return false;
 	}
 
+	
+	public String getPreconditionsOfTestCase(String testcaseName){
+		String pre = "";
+		try {
+			TestLinkAPI api = new TestLinkAPI(new URL(Constant.SERVER_URL),
+					Constant.API_KEY_TESTLINK);
+			TestPlan testPlan = util.getTestPlanIDByName(Constant.PROJECT_NAME,
+					Constant.PLAN_NAME);
+			TestSuite[] suites = api.getTestSuitesForTestPlan(testPlan.getId());
+			for(TestSuite suite : suites){
+				TestCaseDetails details = TestCaseDetails.valueOf("FULL");
+				TestCase[] cases = api.getTestCasesForTestSuite(suite.getId(), true, details);
+				for(TestCase tcase : cases){
+					String name = tcase.getName().trim();
+					if(name.equalsIgnoreCase(testcaseName)){
+						String temp = tcase.getPreconditions();
+						temp = temp.replaceAll("<p>", "");
+						temp = temp.replaceAll("</p>", "");
+						pre = temp.trim();
+						break;
+					}
+				}
+			}
+			
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+		return pre;
+	}
+	
+	public String getPreconditionsOfTestCase(String tcName, String tsName){
+		String pre = "";
+		try {
+			TestLinkAPI api = new TestLinkAPI(new URL(Constant.SERVER_URL),
+					Constant.API_KEY_TESTLINK);
+			TestPlan testPlan = util.getTestPlanIDByName(Constant.PROJECT_NAME,
+					Constant.PLAN_NAME);
+			TestSuite[] suites = api.getTestSuitesForTestPlan(testPlan.getId());
+			for(TestSuite suite : suites){
+				if(suite.getName().equalsIgnoreCase(tsName)){
+					TestCaseDetails details = TestCaseDetails.valueOf("FULL");
+					TestCase[] cases = api.getTestCasesForTestSuite(suite.getId(), true, "FULL");
+					for(TestCase tcase : cases){
+						String name = tcase.getName().trim();
+						if(name.equalsIgnoreCase(tcName)){
+							String temp = tcase.getPreconditions();
+							temp = temp.replaceAll("<p>", "");
+							temp = temp.replaceAll("</p>", "");
+							pre = temp.trim();
+							break;
+						}
+					}
+				}
+			}
+			
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+		return pre;
+	}
+	
+	
 }
