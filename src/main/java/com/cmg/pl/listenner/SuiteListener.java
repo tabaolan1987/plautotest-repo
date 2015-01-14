@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -20,15 +18,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import javax.print.attribute.HashAttributeSet;
 
 import org.apache.commons.io.FileUtils;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 
-import testlink.api.java.client.TestLinkAPIException;
 
-import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.c_mg.pl.selenium.PLAUTOTEST.FolderZiper;
 import com.c_mg.pl.selenium.PLAUTOTEST.PropertiesHelper;
 import com.c_mg.pl.selenium.PLAUTOTEST.TMTAction;
@@ -80,8 +75,8 @@ public class SuiteListener implements ISuiteListener {
 			 */
 			String[] attachfiles = new String[list.size()];
 			list.toArray(attachfiles);
-			/*sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
-					subject, message, attachfiles);*/
+			sendEmailWithAttachments(host, port, mailFrom, password, mailTo,
+					subject, message, attachfiles);
 			System.out.println("Email sent.");
 			
 			

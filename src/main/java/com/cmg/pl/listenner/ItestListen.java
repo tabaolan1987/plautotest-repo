@@ -8,7 +8,6 @@ import org.testng.ITestResult;
 
 
 
-import br.eti.kinoshita.testlinkjavaapi.constants.ExecutionStatus;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.c_mg.pl.selenium.PLAUTOTEST.DriverUtil;
