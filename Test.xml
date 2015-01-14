@@ -32,7 +32,7 @@
 		</classes>
 	</test>
 	
-	<!-- <test name="ChromeTest">
+	 <test name="ChromeTest">
 		<parameter name="browser" value="chrome" />
 		<parameter name="super_user_name" value="AutoSuperuser" />
 		<parameter name="super_user_pass" value="P3nsions" />
@@ -84,7 +84,7 @@
 			<class name="com.cmg.pl.dailytest.LoadMember08_Active" />
 			<class name="com.cmg.pl.dailytest.ProduceReport" />
 		</classes>
-	</test>  -->
+	</test> 
 
 
 
