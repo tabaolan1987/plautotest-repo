@@ -32,7 +32,10 @@ public class TMTAction {
 		TestLinkAPIClient testlinkAPIClient = new TestLinkAPIClient(
 				Constant.API_KEY_TESTLINK, Constant.SERVER_URL);
 		String buildName = "Daily Test : " + new Date();
-		String buildNotes = "This is a build created auto from BAMBOO and it doing all test in daily pensionline";
+		String buildNumber = PropertiesHelper.getKey("build.number");
+		String buildPlan = PropertiesHelper.getKey("build.plan.name");
+		String buildNotes = "Bamboo - branch : " + buildPlan + " - build number : " + buildNumber;
+		System.out.println("create build with notes : " + buildNotes);
 		testlinkAPIClient.createBuild(Constant.PROJECT_NAME,
 				Constant.PLAN_NAME, buildName, buildNotes);
 		Constant.BUILD_NAME = buildName;
