@@ -1,7 +1,6 @@
 package com.c_mg.pl.selenium.PLAUTOTEST;
 
 import java.io.File;
-import java.net.InetAddress;
 import java.net.URL;
 import java.util.Date;
 
