@@ -70,9 +70,8 @@ public class LoadMember08_Active {
 		// check 'My Benefits' page and its sub-menus
 		MyBenefitPage.loadPage(driver);
 		Reporter.log("Then access to My Benefit page");
-		Assert.assertTrue(CheckMyBenefitPage
-				.checkLinkSchemeBenefits(driver, Constant.SMALL_WAITING_TIME));
-		Assert.assertTrue(CheckMyBenefitPage.checkLinkStateBenefits(driver, Constant.SMALL_WAITING_TIME));
+		CheckMyBenefitPage chMBP = new CheckMyBenefitPage();
+		chMBP.checkLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyBenefits"));
 		Reporter.log("Then check link Scheme Benefits and State Benefits should show under My Benefit");
 
 		// check 'Scheme Benefits' page

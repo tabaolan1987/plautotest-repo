@@ -63,10 +63,8 @@ public class LoadMember07_Securitylock {
 		// check 'My Benefits' page and its sub-menus
 		MyBenefitPage.loadPage(driver);
 		Reporter.log("Then access to My Benefit page");
-		Assert.assertTrue(CheckMyBenefitPage.checkLinkSchemeBenefits(driver,
-				Constant.SMALL_WAITING_TIME));
-		Assert.assertTrue(CheckMyBenefitPage.checkLinkStateBenefits(driver,Constant.SMALL_WAITING_TIME));
-		Reporter.log("Then check link Scheme Benefits and State Benefits will show under My Benefit");
+		CheckMyBenefitPage chMBP = new CheckMyBenefitPage();
+		chMBP.checkLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyBenefits"));
 
 		// check 'Scheme Benefits' page
 		SchemeBenefitsPage.loadPage(driver);
@@ -89,10 +87,10 @@ public class LoadMember07_Securitylock {
 		// Check 'My Annual Allowance' Page and its sub-menus
 		MyAnnualAllowancePage.loadPage(driver);
 		Reporter.log("Then access to My Annual Allowance page");
-		Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAPensionSavings(driver, Constant.SMALL_WAITING_TIME));
-		Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAStatementLink(driver, Constant.SMALL_WAITING_TIME));
+		CheckMyAnnualAllowancePage chkMAAP = new CheckMyAnnualAllowancePage();
+		chkMAAP.checkLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyAnnualAllowance"));
 		Reporter.log("Then check AA Pension Savings, AA Statement link should show under My Annual Allowance");
-		Assert.assertFalse(CheckMyAnnualAllowancePage.checkAAProjection(driver,Constant.SMALL_WAITING_TIME));
+		chkMAAP.checkLinkInvisible(driver, ParameterMap.getValue("invisibleLinkUnderMyAnnualAllowance"));
 		Reporter.log("Then check AA Projection should not show under My Annual Allowance");
 
 		// Check 'My Carry Forward' page
