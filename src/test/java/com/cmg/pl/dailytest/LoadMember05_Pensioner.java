@@ -58,23 +58,23 @@ public class LoadMember05_Pensioner {
 				Constant.SMALL_WAITING_TIME);
 		Reporter.log("Then check Table Personal Detail existed");
 		Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver,
-				ParameterMap.getValue("refno")));
+				ParameterMap.getValue("refno")), "Refno : " + ParameterMap.getValue("refno") + " did not exist in table personal detail");
 		Reporter.log("Then check refno : " + ParameterMap.getValue("refno")
 				+ " will existed in table");
 		// check Payslips page
 		PaySlipsPage.loadPage(driver);
 		Reporter.log("Then access to Payslips page");
 		Assert.assertTrue(CheckPaySlipsPage.checkTablePaySlipsExisted(driver,
-				Constant.SMALL_WAITING_TIME));
+				Constant.SMALL_WAITING_TIME), "Table Payslips did not exist");
 		Assert.assertTrue(CheckPaySlipsPage.checkTablePersonalDetailExisted(
-				driver, Constant.SMALL_WAITING_TIME));
+				driver, Constant.SMALL_WAITING_TIME),"Table Personal Detail did not exist");
 		Reporter.log("Then check : table payslips , table personal detail existed");
-		Assert.assertTrue(CheckPaySlipsPage.checkCurrentTaxYear(driver));
+		Assert.assertTrue(CheckPaySlipsPage.checkCurrentTaxYear(driver),"Current Tax Year did not exist");
 		Assert.assertTrue(CheckPaySlipsPage.checkRefno(driver,
-				ParameterMap.getValue("refno")));
-		Assert.assertTrue(CheckPaySlipsPage.checkNiNo(driver));
+				ParameterMap.getValue("refno")),"Refno : " + ParameterMap.getValue("refno") + " did not exist");
+		Assert.assertTrue(CheckPaySlipsPage.checkNiNo(driver), "Nino number did not exist");
 		Assert.assertTrue(CheckPaySlipsPage.checkBttPreviousExisted(driver,
-				Constant.SMALL_WAITING_TIME));
+				Constant.SMALL_WAITING_TIME),"Button Previous did not exist");
 		Reporter.log("Then check : current tax year and refno and nino and button previous existed");
 		// logout
 		Authenticate.LogOut(driver, Constant.SMALL_WAITING_TIME);

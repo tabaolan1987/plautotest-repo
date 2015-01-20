@@ -64,7 +64,7 @@ public class LoadMember08_Active {
 		CheckThisIsMePage.checkPersonalDetailTableExisted(driver, Constant.SMALL_WAITING_TIME);
 		Reporter.log("Then check Table Personal Detail should existed in page");
 		Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver,
-				ParameterMap.getValue("refno")));
+				ParameterMap.getValue("refno")),"Refno : " + ParameterMap.getValue("refno") + " did not exist");
 		Reporter.log("Then check refno : " + ParameterMap.getValue("refno") + " should existed in table");
 
 		// check 'My Benefits' page and its sub-menus
@@ -78,12 +78,12 @@ public class LoadMember08_Active {
 		SchemeBenefitsPage.loadPage(driver);
 		Reporter.log("Then access to Scheme Benefits page");
 		Assert.assertTrue(CheckSchemeBenefitsPage
-				.checkTablePersonalDetailsExisted(driver, Constant.SMALL_WAITING_TIME));
+				.checkTablePersonalDetailsExisted(driver, Constant.SMALL_WAITING_TIME),"Table Personal detail did not exist");
 		Reporter.log("Then Check the table personal details should existed");
 		Assert.assertTrue(CheckSchemeBenefitsPage.checkMemberRefNumberExisted(
-				driver, ParameterMap.getValue("refno")));
+				driver, ParameterMap.getValue("refno")),"Refno : " + ParameterMap.getValue("refno") + " did not exist");
 		Assert.assertTrue(CheckSchemeBenefitsPage
-				.checkNinoNumberExisted(driver));
+				.checkNinoNumberExisted(driver),"Nino number did not exist");
 		Reporter.log("Then check refno : " + ParameterMap.getValue("refno")
 				+ " and nino number should existed in this table");
 
@@ -91,10 +91,10 @@ public class LoadMember08_Active {
 		StateBenefitsPage.loadPage(driver);
 		Reporter.log("Then access to State Benefit page");
 		Assert.assertTrue(CheckStateBenefitsPage
-				.checkTablePersonalDetailExisted(driver, Constant.SMALL_WAITING_TIME));
+				.checkTablePersonalDetailExisted(driver, Constant.SMALL_WAITING_TIME),"Table Personal details did not exist");
 		Reporter.log("Then Check the table personal details should existed");
-		Assert.assertTrue(CheckStateBenefitsPage.checkDateOfBirth(driver));
-		Assert.assertTrue(CheckStateBenefitsPage.checkNinoNumber(driver));
+		Assert.assertTrue(CheckStateBenefitsPage.checkDateOfBirth(driver),"Can not get value Date of Birth");
+		Assert.assertTrue(CheckStateBenefitsPage.checkNinoNumber(driver),"Can not get value Nino number");
 		Reporter.log("Then check nino number and date of birth should existed in this table");
 
 		// check 'My Retirement' page and model 3 options
@@ -102,38 +102,34 @@ public class LoadMember08_Active {
 		Reporter.log("Then access to My Retirement page");
 		CheckMyRetirementPage.modelRetirementAge(driver, -30);
 		Thread.sleep(2000);
-		Assert.assertFalse(PageLoading.checkDataError(driver));
+		Assert.assertFalse(PageLoading.checkDataError(driver),"Model Retirement Age have an error tag");
 		Reporter.log("Then model Retirement Age");
 		CheckMyRetirementPage.modelCashLumpSum(driver, Constant.SMALL_WAITING_TIME);
 		Thread.sleep(2000);
-		Assert.assertFalse(PageLoading.checkDataError(driver));
+		Assert.assertFalse(PageLoading.checkDataError(driver),"Model Cash Lump Sum have an error tag");
 		Reporter.log("Then model Cash Lump Sum");
 
 		CheckMyRetirementPage.modelContributoryOptions(driver, Constant.SMALL_WAITING_TIME, 2);
 		Thread.sleep(2000);
-		Assert.assertFalse(PageLoading.checkDataError(driver));
+		Assert.assertFalse(PageLoading.checkDataError(driver),"Model Contributory Options have an error tag");
 		Reporter.log("Then model Contributory Options");
 		Thread.sleep(2000);
 
 		// Check 'Redundancy' page and model a future redundancy date
 		RedundancyPage.loadPage(driver);
 		Reporter.log("Then access to Redundancy page");
-		Assert.assertFalse(PageLoading.checkDataError(driver));
+		Assert.assertFalse(PageLoading.checkDataError(driver), "Redundancy page load have an error tag");
 		RedundancyCheck.modelRedundancy(driver);
-		Assert.assertFalse(PageLoading.checkDataError(driver));
+		Assert.assertFalse(PageLoading.checkDataError(driver),"Model Redundancy have an error tag");
 		Reporter.log("Then model Redundancy");
 		// Check 'My Annual Allowance' Page and its sub-menus
 		MyAnnualAllowancePage.loadPage(driver);
 		Reporter.log("Then access to My Annual Allowance page");
-		Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAPensionSavings(
-				driver, Constant.SMALL_WAITING_TIME));
-		Assert.assertTrue(CheckMyAnnualAllowancePage.checkAAStatementLink(
-				driver, Constant.SMALL_WAITING_TIME));
+		CheckMyAnnualAllowancePage chkMyAAPage = new CheckMyAnnualAllowancePage();
+		chkMyAAPage.checkLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyAA"));
+		chkMyAAPage.checkLinkInvisible(driver, ParameterMap.getValue("invisibleLinkUnderMyAA"));
 		Reporter.log("Then check AA Pension Savings, AA Statement link should show under My Annual Allowance");
-		Assert.assertFalse(CheckMyAnnualAllowancePage.checkAAProjection(driver,
-				Constant.SMALL_WAITING_TIME));
 		Reporter.log("Then check AA Projection should not show under My Annual Allowance");
-
 		// Check 'My Carry Forward' page
 		MyCarryForwardPage.loadPage(driver);
 		Reporter.log("Then check My Carry Forward page should show");

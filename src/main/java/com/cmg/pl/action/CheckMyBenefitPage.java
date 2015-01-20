@@ -33,9 +33,9 @@ public class CheckMyBenefitPage {
 		ArrayList<String> list = getLinks(links);
 		for(String link : list){
 			if(link.equalsIgnoreCase(LINK_TEXT_SCHEME_BENEFITS)){
-				Assert.assertTrue(checkLinkSchemeBenefits(driver, Constant.SMALL_WAITING_TIME));
+				Assert.assertTrue(checkLinkSchemeBenefits(driver, Constant.SMALL_WAITING_TIME), "Scheme Benefits link is not visible");
 			}else if(link.equalsIgnoreCase(LINK_TEXT_STATE_BENEFITS)){
-				Assert.assertTrue(checkLinkStateBenefits(driver, Constant.SMALL_WAITING_TIME));
+				Assert.assertTrue(checkLinkStateBenefits(driver, Constant.SMALL_WAITING_TIME),"State Benefits link is not visible");
 			}
 		}
 	}
@@ -44,9 +44,9 @@ public class CheckMyBenefitPage {
 		ArrayList<String> list = getLinks(links);
 		for(String link : list){
 			if(link.equalsIgnoreCase(LINK_TEXT_SCHEME_BENEFITS)){
-				Assert.assertFalse(checkLinkSchemeBenefits(driver, Constant.SMALL_WAITING_TIME));
+				Assert.assertFalse(checkLinkSchemeBenefits(driver, Constant.SMALL_WAITING_TIME),"Scheme Benefits link is not invisible");
 			}else if(link.equalsIgnoreCase(LINK_TEXT_STATE_BENEFITS)){
-				Assert.assertFalse(checkLinkStateBenefits(driver, Constant.SMALL_WAITING_TIME));
+				Assert.assertFalse(checkLinkStateBenefits(driver, Constant.SMALL_WAITING_TIME),"State Benefits link is not invisible");
 			}
 		}
 	}

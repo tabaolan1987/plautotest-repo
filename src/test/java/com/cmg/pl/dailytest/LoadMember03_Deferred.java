@@ -1,6 +1,5 @@
 package com.cmg.pl.dailytest;
 
-
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -44,16 +43,21 @@ public class LoadMember03_Deferred {
 		MyDetailPage.loadPage(driver);
 		Reporter.log("Then access to My detail page");
 		MyDetailCheck mdCheck = new MyDetailCheck();
-		mdCheck.checkLinkInVisible(driver, ParameterMap.getValue("invisibleLinkUnderMyDetails"));
-		mdCheck.checkLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyDetails"));
+		mdCheck.checkLinkInVisible(driver,
+				ParameterMap.getValue("invisibleLinkUnderMyDetails"));
+		mdCheck.checkLinkVisible(driver,
+				ParameterMap.getValue("visibleLinkUnderMyDetails"));
 		// check 'This is me' page
 		ThisIsMePage.loadPage(driver);
 		Reporter.log("Then access to This is Me");
 		CheckThisIsMePage.checkPersonalDetailTableExisted(driver,
 				Constant.SMALL_WAITING_TIME);
 		Reporter.log("Then check the personal detail table will show");
-		Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver,
-				ParameterMap.getValue("refno")));
+		Assert.assertTrue(
+				CheckThisIsMePage.checkMembershipExisted(driver,
+						ParameterMap.getValue("refno")), "Refno : "
+						+ ParameterMap.getValue("refno")
+						+ " did not exist in table personal details");
 		Reporter.log("Then check the refno : " + ParameterMap.getValue("refno")
 				+ " will existed in this table");
 		// logout

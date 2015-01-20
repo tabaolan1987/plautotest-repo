@@ -1,6 +1,5 @@
 package com.cmg.pl.dailytest;
 
-
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -47,16 +46,21 @@ public class LoadMember04_Pensioner {
 		MyDetailPage.loadPage(driver);
 		Reporter.log("Then access to My detail page");
 		MyDetailCheck mdCheck = new MyDetailCheck();
-		mdCheck.checkLinkInVisible(driver, ParameterMap.getValue("invisibleLinkUnderMyDetails"));
-		mdCheck.checkLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyDetails"));
+		mdCheck.checkLinkInVisible(driver,
+				ParameterMap.getValue("invisibleLinkUnderMyDetails"));
+		mdCheck.checkLinkVisible(driver,
+				ParameterMap.getValue("visibleLinkUnderMyDetails"));
 		// check 'This is me' page
 		ThisIsMePage.loadPage(driver);
 		Reporter.log("Then access to This is Me");
 		CheckThisIsMePage.checkPersonalDetailTableExisted(driver,
 				Constant.SMALL_WAITING_TIME);
 		Reporter.log("Then check the personal detail table will show");
-		Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver,
-				ParameterMap.getValue("refno")));
+		Assert.assertTrue(
+				CheckThisIsMePage.checkMembershipExisted(driver,
+						ParameterMap.getValue("refno")), "Refno : "
+						+ ParameterMap.getValue("refno")
+						+ " did not exist in table personal details");
 		Reporter.log("Then check the refno : " + ParameterMap.getValue("refno")
 				+ " will existed in this table");
 
@@ -64,16 +68,21 @@ public class LoadMember04_Pensioner {
 		PaySlipsPage.loadPage(driver);
 		Reporter.log("Then access to PaySlips");
 		Assert.assertTrue(CheckPaySlipsPage.checkTablePaySlipsExisted(driver,
-				Constant.SMALL_WAITING_TIME));
+				Constant.SMALL_WAITING_TIME), "Table Payslips did not exist");
 		Assert.assertTrue(CheckPaySlipsPage.checkTablePersonalDetailExisted(
-				driver, Constant.SMALL_WAITING_TIME));
+				driver, Constant.SMALL_WAITING_TIME),
+				"Table personal detail did not exist");
 		Reporter.log("Then check : table payslips , table personal detail existed");
-		Assert.assertTrue(CheckPaySlipsPage.checkCurrentTaxYear(driver));
-		Assert.assertTrue(CheckPaySlipsPage.checkRefno(driver,
-				ParameterMap.getValue("refno")));
-		Assert.assertTrue(CheckPaySlipsPage.checkNiNo(driver));
+		Assert.assertTrue(CheckPaySlipsPage.checkCurrentTaxYear(driver),
+				"Current Tax Year did not exist");
+		Assert.assertTrue(
+				CheckPaySlipsPage.checkRefno(driver,
+						ParameterMap.getValue("refno")), "Refno : "
+						+ ParameterMap.getValue("refno") + " did not exist");
+		Assert.assertTrue(CheckPaySlipsPage.checkNiNo(driver),
+				"Nino number did not exist");
 		Assert.assertTrue(CheckPaySlipsPage.checkBttPreviousExisted(driver,
-				Constant.SMALL_WAITING_TIME));
+				Constant.SMALL_WAITING_TIME), "Button Previous did not existed");
 		Reporter.log("Then check : current tax year and refno and nino and button previous existed");
 		// logout
 		Authenticate.LogOut(driver, Constant.SMALL_WAITING_TIME);

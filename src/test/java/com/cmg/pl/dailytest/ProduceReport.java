@@ -45,14 +45,14 @@ public class ProduceReport {
 			Reporter.log("Then access to Reporting Tool page");
 			RunCheckingConnectionReportGroup.runReportGroupCheckingConnection(driver);
 			Assert.assertTrue(CheckAccessReportsPage
-					.CheckReportSections(driver));
+					.CheckReportSections(driver),"There are no or missing some report sections");
 			CheckAccessReportsPage.CheckSelectAllReports(driver);
 			Reporter.log("Then check all report");
 			// Thread.sleep(10000);
 			CheckAccessReportsPage.RunSelectedReports(driver);
 			Reporter.log("Then Run the report");
 			Thread.sleep(5000);
-			Assert.assertTrue(ProduceReportWithInputParam.ProduceReportWithDefaultParam(driver));
+			Assert.assertTrue(ProduceReportWithInputParam.ProduceReportWithDefaultParam(driver),"Produce Report fail");
 			Reporter.log("Then Check successful report page is shown");
 			// logout
 			Authenticate.LogOut(driver, Constant.SMALL_WAITING_TIME);

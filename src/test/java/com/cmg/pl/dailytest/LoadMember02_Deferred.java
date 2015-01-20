@@ -50,7 +50,7 @@ public class LoadMember02_Deferred {
 		Reporter.log("Then access to This is Me");
 		CheckThisIsMePage.checkPersonalDetailTableExisted(driver, Constant.SMALL_WAITING_TIME);
 		Reporter.log("Then check the personal detail table will show");
-		Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver,ParameterMap.getValue("refno")));
+		Assert.assertTrue(CheckThisIsMePage.checkMembershipExisted(driver,ParameterMap.getValue("refno")),"Refno : " + ParameterMap.getValue("refno") + " did not exist in table personal details");
 		Reporter.log("Then check the refno : " + ParameterMap.getValue("refno") + " will existed in this table");
 		// logout
 		Authenticate.LogOut(driver, Constant.SMALL_WAITING_TIME);

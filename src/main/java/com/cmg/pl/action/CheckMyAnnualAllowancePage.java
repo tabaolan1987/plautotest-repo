@@ -38,11 +38,11 @@ public class CheckMyAnnualAllowancePage {
 		ArrayList<String> list = getLinks(links);
 		for(String link : list){
 			if(link.equalsIgnoreCase(LINK_TEXT_AA_STATEMENT)){
-				Assert.assertTrue(checkAAStatementLink(driver, Constant.SMALL_WAITING_TIME));
+				Assert.assertTrue(checkAAStatementLink(driver, Constant.SMALL_WAITING_TIME),"AA Statement link is not visible");
 			}else if(link.equalsIgnoreCase(LINK_TEXT_AA_PENSION_SAVINGS)){
-				Assert.assertTrue(checkAAPensionSavings(driver, Constant.SMALL_WAITING_TIME));
+				Assert.assertTrue(checkAAPensionSavings(driver, Constant.SMALL_WAITING_TIME),"AA Pension Savings link is not visible");
 			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_AA_PROJECTION)){
-				Assert.assertTrue(checkAAProjection(driver, Constant.SMALL_WAITING_TIME));
+				Assert.assertTrue(checkAAProjection(driver, Constant.SMALL_WAITING_TIME),"AA Projection link is not visible");
 			}
 		}
 	}
@@ -51,11 +51,11 @@ public class CheckMyAnnualAllowancePage {
 		ArrayList<String> list = getLinks(links);
 		for(String link : list){
 			if(link.equalsIgnoreCase(LINK_TEXT_AA_STATEMENT)){
-				Assert.assertFalse(checkAAStatementLink(driver, Constant.SMALL_WAITING_TIME));
+				Assert.assertFalse(checkAAStatementLink(driver, Constant.SMALL_WAITING_TIME),"AA Statement link is not invisible");
 			}else if(link.equalsIgnoreCase(LINK_TEXT_AA_PENSION_SAVINGS)){
-				Assert.assertFalse(checkAAPensionSavings(driver, Constant.SMALL_WAITING_TIME));
+				Assert.assertFalse(checkAAPensionSavings(driver, Constant.SMALL_WAITING_TIME),"AA Pension Savings link is not invisible");
 			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_AA_PROJECTION)){
-				Assert.assertFalse(checkAAProjection(driver, Constant.SMALL_WAITING_TIME));
+				Assert.assertFalse(checkAAProjection(driver, Constant.SMALL_WAITING_TIME),"AA Projection link is not invisible");
 			}
 		}
 	}
