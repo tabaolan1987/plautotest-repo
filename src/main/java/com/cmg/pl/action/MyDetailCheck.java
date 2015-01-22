@@ -37,9 +37,13 @@ public class MyDetailCheck {
 	public ArrayList<String> getLinks(String data){
 		ArrayList<String> temp = new ArrayList<String>();
 		if(data!=null && data.length() > 0){
-			String[] links = data.split(",");
-			for(String link : links){
-				temp.add(link.trim());
+			if(data.contains(",")){
+				String[] links = data.split(",");
+				for(String link : links){
+					temp.add(link.trim());
+				}
+			}else{
+				temp.add(data);
 			}
 		}
 		return temp;
