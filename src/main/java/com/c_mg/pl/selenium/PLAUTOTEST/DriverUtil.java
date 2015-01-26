@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -63,6 +64,10 @@ public class DriverUtil {
 				FirefoxProfile profile = new FirefoxProfile();
 				profile.setAcceptUntrustedCertificates(true);
 				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
+				profile.setPreference("browser.download.folderList", 2);
+				profile.setPreference("browser.download.manager.showWhenStarting", false);
+				profile.setPreference("browser.download.dir", "C:\\");
+				profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/x-gzip");
 				driverFF = new FirefoxDriver(profile);
 				driverFF.manage().deleteAllCookies();
 			} catch (WebDriverException e) {

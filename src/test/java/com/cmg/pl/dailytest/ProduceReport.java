@@ -65,7 +65,7 @@ public class ProduceReport {
 	@AfterMethod(alwaysRun = true)
 	public void afterMethod() {
 		try {
-			driver.quit();
+			//driver.quit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
