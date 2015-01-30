@@ -14,25 +14,25 @@ import com.cmg.pl.pageObject.MyDetailPage;
 
 public class MyDetailCheck {
 	
-	private static String LINK_TEXT_THIS_IS_ME = "This is me";
+	public static String LINK_TEXT_THIS_IS_ME = "This is me";
 	
-	private static String XPATH_LINK_MY_BENEFIT = "//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Benefits')]";
+	public static String XPATH_LINK_MY_BENEFIT = "//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Benefits')]";
 	
-	private static String LINK_TEXT_MY_RETIREMENT = "My retirement";
+	public static String LINK_TEXT_MY_RETIREMENT = "My retirement";
 	
-	private static String LINK_TEXT_REDUNDACY = "Redundancy";
+	public static String LINK_TEXT_REDUNDACY = "Redundancy";
 	
-	private static String XPATH_ACCURATE_LINK = "//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Accrual Rate')]";
+	public static String XPATH_ACCURATE_LINK = "//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My Accrual Rate')]";
 	
-	private static String XPATH_PAYSLIPS_LINK = "//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My benefits')]";
+	public static String XPATH_PAYSLIPS_LINK = "//div[@id='menu' and @class='lefty']/ul//a[contains(text(),'My benefits')]";
 	
-	private static String LINK_TEXT_MY_ANNUAL_ALLOWANCE = "My Annual Allowance";
+	public static String LINK_TEXT_MY_ANNUAL_ALLOWANCE = "My Annual Allowance";
 	
-	private static String LINK_TEXT_MY_CARRY_FORWARD = "My Carry Forward";
+	public static String LINK_TEXT_MY_CARRY_FORWARD = "My Carry Forward";
 	
-	private static String LINK_TEXT_SCHEME_PAYS = "Scheme pays";
+	public static String LINK_TEXT_SCHEME_PAYS = "Scheme pays";
 	
-	private static String LINK_TEXT_MY_LIFETIME = "My LifeTime Allowance";
+	public static String LINK_TEXT_MY_LIFETIME = "My LifeTime Allowance";
 	
 	public ArrayList<String> getLinks(String data){
 		ArrayList<String> temp = new ArrayList<String>();
@@ -84,6 +84,18 @@ public class MyDetailCheck {
 				Assert.assertTrue(checkMyAccurateLink(driver, Constant.SMALL_WAITING_TIME),"My Accurual Rate is not visible");
 			}
 		}
+	}
+	
+	public boolean isLinkInVisible(WebDriver driver, String allLinks, String linkInvisible){
+		ArrayList<String> list = getLinks(allLinks);
+		boolean check = false;
+		for(String link : list){
+			if(link.equalsIgnoreCase(linkInvisible)){
+				check = true;
+				break;
+			}
+		}
+		return check;
 	}
 	
 	public void checkLinkInVisible(WebDriver driver, String allLinks){

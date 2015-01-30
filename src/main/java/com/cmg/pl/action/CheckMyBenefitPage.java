@@ -13,9 +13,9 @@ import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 
 public class CheckMyBenefitPage {
 	
-	private static String LINK_TEXT_SCHEME_BENEFITS= "Scheme benefits";
+	public static String LINK_TEXT_SCHEME_BENEFITS= "Scheme benefits";
 	
-	private static String LINK_TEXT_STATE_BENEFITS = "State benefits";
+	public static String LINK_TEXT_STATE_BENEFITS = "State benefits";
 	
 	public ArrayList<String> getLinks(String data){
 		ArrayList<String> temp = new ArrayList<String>();
@@ -42,6 +42,19 @@ public class CheckMyBenefitPage {
 				Assert.assertTrue(checkLinkStateBenefits(driver, Constant.SMALL_WAITING_TIME),"State Benefits link is not visible");
 			}
 		}
+	}
+	
+	
+	public boolean checkLinkVisible(WebDriver driver, String links, String linkVisible){
+		ArrayList<String> list = getLinks(links);
+		boolean check = false;
+		for(String link : list){
+			if(link.equalsIgnoreCase(linkVisible)){
+				check = true;
+				break;
+			}
+		}
+		return check;
 	}
 	
 	public void checkLinkInvisible(WebDriver driver, String links){

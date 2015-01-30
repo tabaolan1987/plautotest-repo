@@ -68,38 +68,42 @@ public class LoadMember07_Securitylock {
 						+ ParameterMap.getValue("refno") + " did not exist");
 		Reporter.log("Then check refno : " + ParameterMap.getValue("refno")
 				+ " will existed in table");
-		// check 'My Benefits' page and its sub-menus
-		MyBenefitPage.loadPage(driver);
-		Reporter.log("Then access to My Benefit page");
-		CheckMyBenefitPage chMBP = new CheckMyBenefitPage();
-		chMBP.checkLinkVisible(driver,
-				ParameterMap.getValue("visibleLinkUnderMyBenefits"));
-
-		// check 'Scheme Benefits' page
-		SchemeBenefitsPage.loadPage(driver);
-		Reporter.log("Then access to Scheme Benefits page");
-		Assert.assertTrue(CheckSchemeBenefitsPage
-				.checkTablePersonalDetailsExisted(driver,
-						Constant.SMALL_WAITING_TIME));
-		Reporter.log("Then Check the table personal details will show");
-		Assert.assertTrue(CheckSchemeBenefitsPage.checkMemberRefNumberExisted(
-				driver, ParameterMap.getValue("refno")), "Refno : "
-				+ ParameterMap.getValue("refno") + " did not exist");
-		Assert.assertTrue(
-				CheckSchemeBenefitsPage.checkNinoNumberExisted(driver),
-				"Nino number did not exist");
-		Reporter.log("Then check refno : " + ParameterMap.getValue("refno")
-				+ " and nino number will existed in this table");
-		// check 'State Benefits' page
-		StateBenefitsPage.loadPage(driver);
-		Reporter.log("Then access to State Benefit page");
-		Assert.assertTrue(CheckStateBenefitsPage
-				.checkTablePersonalDetailExisted(driver,
-						Constant.SMALL_WAITING_TIME),"Table personal detail did not exist");
-		Reporter.log("Then Check the table personal details will show");
-		Assert.assertTrue(CheckStateBenefitsPage.checkDateOfBirth(driver),"Can not get Date Of Birth");
-		Assert.assertTrue(CheckStateBenefitsPage.checkNinoNumber(driver),"Can not get Nino number");
-		Reporter.log("Then check the date of birth and the nino number should existed in table");
+		if(mdCheck.isLinkInVisible(driver, ParameterMap.getValue("invisibleLinkUnderMyDetails"), MyDetailCheck.XPATH_LINK_MY_BENEFIT)){
+			// check 'My Benefits' page and its sub-menus
+			MyBenefitPage.loadPage(driver);
+			Reporter.log("Then access to My Benefit page");
+			CheckMyBenefitPage chMBP = new CheckMyBenefitPage();
+			chMBP.checkLinkVisible(driver,
+					ParameterMap.getValue("visibleLinkUnderMyBenefits"));
+			if(chMBP.checkLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyBenefits"),CheckMyBenefitPage.LINK_TEXT_SCHEME_BENEFITS )){
+				SchemeBenefitsPage.loadPage(driver);
+				Reporter.log("Then access to Scheme Benefits page");
+				Assert.assertTrue(CheckSchemeBenefitsPage
+						.checkTablePersonalDetailsExisted(driver,
+								Constant.SMALL_WAITING_TIME));
+				Reporter.log("Then Check the table personal details will show");
+				Assert.assertTrue(CheckSchemeBenefitsPage.checkMemberRefNumberExisted(
+						driver, ParameterMap.getValue("refno")), "Refno : "
+						+ ParameterMap.getValue("refno") + " did not exist");
+				Assert.assertTrue(
+						CheckSchemeBenefitsPage.checkNinoNumberExisted(driver),
+						"Nino number did not exist");
+				Reporter.log("Then check refno : " + ParameterMap.getValue("refno")
+						+ " and nino number will existed in this table");
+			}
+			if(chMBP.checkLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyBenefits"),CheckMyBenefitPage.LINK_TEXT_STATE_BENEFITS )){
+				StateBenefitsPage.loadPage(driver);
+				Reporter.log("Then access to State Benefit page");
+				Assert.assertTrue(CheckStateBenefitsPage
+						.checkTablePersonalDetailExisted(driver,
+								Constant.SMALL_WAITING_TIME),"Table personal detail did not exist");
+				Reporter.log("Then Check the table personal details will show");
+				Assert.assertTrue(CheckStateBenefitsPage.checkDateOfBirth(driver),"Can not get Date Of Birth");
+				Assert.assertTrue(CheckStateBenefitsPage.checkNinoNumber(driver),"Can not get Nino number");
+				Reporter.log("Then check the date of birth and the nino number should existed in table");
+			}
+		}
+		
 
 		// Check 'My Annual Allowance' Page and its sub-menus
 		MyAnnualAllowancePage.loadPage(driver);
