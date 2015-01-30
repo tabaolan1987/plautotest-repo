@@ -10,16 +10,18 @@ public class ParameterMap {
 	
 	private static  HashMap<String, String> params;
 
-	
 	public static void setupParam(String pre){
 		params = new HashMap<String, String>();
-		Elements els = Jsoup.parse(pre).getElementsByTag("p");
-		for(Element el : els){
-			String param = el.text();
-			String key = param.split("=")[0];
-			String value = param.split("=")[1];
-			System.out.println("key : " + key  + " - value = " + value );
-			params.put(key, value);
+		try {
+			Elements els = Jsoup.parse(pre).getElementsByTag("p");
+			for(Element el : els){
+				String param = el.text();
+				String key = param.split("=")[0];
+				String value = param.split("=")[1];
+				System.out.println("key : " + key  + " - value = " + value );
+				params.put(key, value);
+			}
+		} catch (Exception e) {
 		}
 	}
 	
@@ -28,7 +30,6 @@ public class ParameterMap {
 		try {
 			 value = params.get(key).toString();
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		System.out.println("get value for key : " + key + " = " + value);
 		return value;

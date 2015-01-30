@@ -67,35 +67,41 @@ public class LoadMember08_Active {
 				ParameterMap.getValue("refno")),"Refno : " + ParameterMap.getValue("refno") + " did not exist");
 		Reporter.log("Then check refno : " + ParameterMap.getValue("refno") + " should existed in table");
 
-		// check 'My Benefits' page and its sub-menus
-		MyBenefitPage.loadPage(driver);
-		Reporter.log("Then access to My Benefit page");
-		CheckMyBenefitPage chMBP = new CheckMyBenefitPage();
-		chMBP.checkLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyBenefits"));
-		Reporter.log("Then check link Scheme Benefits and State Benefits should show under My Benefit");
-
-		// check 'Scheme Benefits' page
-		SchemeBenefitsPage.loadPage(driver);
-		Reporter.log("Then access to Scheme Benefits page");
-		Assert.assertTrue(CheckSchemeBenefitsPage
-				.checkTablePersonalDetailsExisted(driver, Constant.SMALL_WAITING_TIME),"Table Personal detail did not exist");
-		Reporter.log("Then Check the table personal details should existed");
-		Assert.assertTrue(CheckSchemeBenefitsPage.checkMemberRefNumberExisted(
-				driver, ParameterMap.getValue("refno")),"Refno : " + ParameterMap.getValue("refno") + " did not exist");
-		Assert.assertTrue(CheckSchemeBenefitsPage
-				.checkNinoNumberExisted(driver),"Nino number did not exist");
-		Reporter.log("Then check refno : " + ParameterMap.getValue("refno")
-				+ " and nino number should existed in this table");
-
-		// check 'State Benefits' page
-		StateBenefitsPage.loadPage(driver);
-		Reporter.log("Then access to State Benefit page");
-		Assert.assertTrue(CheckStateBenefitsPage
-				.checkTablePersonalDetailExisted(driver, Constant.SMALL_WAITING_TIME),"Table Personal details did not exist");
-		Reporter.log("Then Check the table personal details should existed");
-		Assert.assertTrue(CheckStateBenefitsPage.checkDateOfBirth(driver),"Can not get value Date of Birth");
-		Assert.assertTrue(CheckStateBenefitsPage.checkNinoNumber(driver),"Can not get value Nino number");
-		Reporter.log("Then check nino number and date of birth should existed in this table");
+		if(mdCheck.isLinkInVisible(driver, ParameterMap.getValue("invisibleLinkUnderMyDetails"), MyDetailCheck.XPATH_LINK_MY_BENEFIT)){
+			// check 'My Benefits' page and its sub-menus
+			MyBenefitPage.loadPage(driver);
+			Reporter.log("Then access to My Benefit page");
+			CheckMyBenefitPage chMBP = new CheckMyBenefitPage();
+			chMBP.checkLinkVisible(driver,
+					ParameterMap.getValue("visibleLinkUnderMyBenefits"));
+			if(chMBP.checkLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyBenefits"),CheckMyBenefitPage.LINK_TEXT_SCHEME_BENEFITS )){
+				SchemeBenefitsPage.loadPage(driver);
+				Reporter.log("Then access to Scheme Benefits page");
+				Assert.assertTrue(CheckSchemeBenefitsPage
+						.checkTablePersonalDetailsExisted(driver,
+								Constant.SMALL_WAITING_TIME));
+				Reporter.log("Then Check the table personal details will show");
+				Assert.assertTrue(CheckSchemeBenefitsPage.checkMemberRefNumberExisted(
+						driver, ParameterMap.getValue("refno")), "Refno : "
+						+ ParameterMap.getValue("refno") + " did not exist");
+				Assert.assertTrue(
+						CheckSchemeBenefitsPage.checkNinoNumberExisted(driver),
+						"Nino number did not exist");
+				Reporter.log("Then check refno : " + ParameterMap.getValue("refno")
+						+ " and nino number will existed in this table");
+			}
+			if(chMBP.checkLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyBenefits"),CheckMyBenefitPage.LINK_TEXT_STATE_BENEFITS )){
+				StateBenefitsPage.loadPage(driver);
+				Reporter.log("Then access to State Benefit page");
+				Assert.assertTrue(CheckStateBenefitsPage
+						.checkTablePersonalDetailExisted(driver,
+								Constant.SMALL_WAITING_TIME),"Table personal detail did not exist");
+				Reporter.log("Then Check the table personal details will show");
+				Assert.assertTrue(CheckStateBenefitsPage.checkDateOfBirth(driver),"Can not get Date Of Birth");
+				Assert.assertTrue(CheckStateBenefitsPage.checkNinoNumber(driver),"Can not get Nino number");
+				Reporter.log("Then check the date of birth and the nino number should existed in table");
+			}
+		}
 
 		// check 'My Retirement' page and model 3 options
 		MyRetirementPage.loadPage(driver);
