@@ -68,7 +68,7 @@ public class LoadMember07_Securitylock {
 						+ ParameterMap.getValue("refno") + " did not exist");
 		Reporter.log("Then check refno : " + ParameterMap.getValue("refno")
 				+ " will existed in table");
-		if(mdCheck.isLinkInVisible(driver, ParameterMap.getValue("invisibleLinkUnderMyDetails"), MyDetailCheck.XPATH_LINK_MY_BENEFIT)){
+		if(mdCheck.isLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyDetails"), MyDetailCheck.XPATH_LINK_MY_BENEFIT)){
 			// check 'My Benefits' page and its sub-menus
 			MyBenefitPage.loadPage(driver);
 			Reporter.log("Then access to My Benefit page");

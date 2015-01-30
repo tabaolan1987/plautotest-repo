@@ -86,7 +86,7 @@ public class MyDetailCheck {
 		}
 	}
 	
-	public boolean isLinkInVisible(WebDriver driver, String allLinks, String linkInvisible){
+	public boolean isLinkVisible(WebDriver driver, String allLinks, String linkInvisible){
 		ArrayList<String> list = getLinks(allLinks);
 		boolean check = false;
 		for(String link : list){
