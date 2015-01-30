@@ -67,7 +67,7 @@ public class LoadMember08_Active {
 				ParameterMap.getValue("refno")),"Refno : " + ParameterMap.getValue("refno") + " did not exist");
 		Reporter.log("Then check refno : " + ParameterMap.getValue("refno") + " should existed in table");
 
-		if(mdCheck.isLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyDetails"), MyDetailCheck.XPATH_LINK_MY_BENEFIT)){
+		if(mdCheck.isLinkVisible(driver, ParameterMap.getValue("visibleLinkUnderMyDetails"), "My Benefits")){
 			// check 'My Benefits' page and its sub-menus
 			MyBenefitPage.loadPage(driver);
 			Reporter.log("Then access to My Benefit page");

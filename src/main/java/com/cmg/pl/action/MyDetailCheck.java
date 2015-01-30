@@ -86,11 +86,12 @@ public class MyDetailCheck {
 		}
 	}
 	
-	public boolean isLinkVisible(WebDriver driver, String allLinks, String linkInvisible){
+	public boolean isLinkVisible(WebDriver driver, String allLinks, String linkVisible){
 		ArrayList<String> list = getLinks(allLinks);
 		boolean check = false;
 		for(String link : list){
-			if(link.equalsIgnoreCase(linkInvisible)){
+			System.out.println(link + " " + linkVisible);
+			if(link.equalsIgnoreCase(linkVisible)){
 				check = true;
 				break;
 			}
