@@ -18,6 +18,3 @@ Feature: daily test load member 01 Walled
     And I should not see "Scheme pays" link
     Then I logout
     Then I quit the browser
-
-    
-  
