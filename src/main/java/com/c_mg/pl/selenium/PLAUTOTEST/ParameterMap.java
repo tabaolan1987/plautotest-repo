@@ -11,6 +11,7 @@ public class ParameterMap {
 	private static  HashMap<String, String> params;
 
 	public static void setupParam(String pre){
+		System.out.println("data from test link : " + pre);
 		params = new HashMap<String, String>();
 		try {
 			Elements els = Jsoup.parse(pre).getElementsByTag("p");
