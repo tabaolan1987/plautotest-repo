@@ -35,6 +35,7 @@ public class LoadMember01_Walled {
 	
 	@Test(timeOut = 1200000)
 	public void LoadMember01Walled() {
+			System.out.println("begin test LoadMember01Walled");
 			LoginPage.LoadPage(driver);
 			Authenticate.Login(driver, ParameterMap.getValue("superusername"), ParameterMap.getValue("superuserpass"));
 			SuperUser.loadMember(driver, Constant.NORMAL_WAITING_TIME, ParameterMap.getValue("group"), ParameterMap.getValue("refno"));
