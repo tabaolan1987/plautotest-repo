@@ -27,6 +27,7 @@ public class LoadMember01_Walled {
 	@BeforeMethod
 	public void beforeMethod(String browser) 
 	{
+		System.out.println("come to set driver manager 0 : " + browser);
 		driver = DriverUtil.getInstance(browser);
 		Reporter.log("setup beforemethod");
 		TakeScreenShot.init(driver);
