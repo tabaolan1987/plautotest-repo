@@ -28,9 +28,9 @@ public class ProduceReportWithInputParam {
 			 String winHandle=(String) handles.iterator().next();
 			 if (winHandle!=firstWinHandle){
 				 String secondWinHandle=winHandle;
-				 System.out.println("swith to second" + secondWinHandle);
+				 System.out.println("swith to second " + secondWinHandle);
 				 driver.switchTo().window(secondWinHandle);
-				 System.out.println("title second" + driver.getTitle());
+				 System.out.println("title second " + driver.getTitle());
 			 }
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.titleIs(TITLE_DOWNLOAD_REPORT_PAGE));

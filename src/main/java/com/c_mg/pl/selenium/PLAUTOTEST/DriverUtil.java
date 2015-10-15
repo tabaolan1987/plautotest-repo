@@ -66,10 +66,6 @@ public class DriverUtil {
 				FirefoxProfile profile = new FirefoxProfile();
 				profile.setAcceptUntrustedCertificates(true);
 				profile.setPreference(FirefoxProfile.PORT_PREFERENCE, 7056);
-				profile.setPreference("browser.download.folderList", 2);
-				profile.setPreference("browser.download.manager.showWhenStarting", false);
-				profile.setPreference("browser.download.dir", "C:\\");
-				profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/x-gzip");
 				driverFF = new FirefoxDriver(profile);
 				driverFF.manage().deleteAllCookies();
 			} catch (WebDriverException e) {
