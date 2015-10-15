@@ -12,6 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Reporter;
 
 public class DriverUtil {
 	public static final String PROP_PROJECT_BASE_DIR = "project.basedir";
@@ -98,6 +99,7 @@ public class DriverUtil {
 			return driverChrome;
 		} else if (browser.equalsIgnoreCase("ie")) {
 			driverIE = null;
+			Reporter.log("come to set driver manager");
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
 			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
 			caps.setCapability(

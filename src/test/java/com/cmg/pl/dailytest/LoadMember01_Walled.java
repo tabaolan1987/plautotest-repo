@@ -28,7 +28,7 @@ public class LoadMember01_Walled {
 	public void beforeMethod(String browser) 
 	{
 		driver = DriverUtil.getInstance(browser);
-		System.out.println("setup beforemethod");
+		Reporter.log("setup beforemethod");
 		TakeScreenShot.init(driver);
 	}
 	
