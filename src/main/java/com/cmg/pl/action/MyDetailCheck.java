@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import com.c_mg.pl.selenium.PLAUTOTEST.Constant;
 import com.cmg.pl.pageObject.MyDetailPage;
@@ -103,35 +104,35 @@ public class MyDetailCheck {
 		ArrayList<String> list = getLinks(allLinks);
 		for(String link : list){
 			if(link.equalsIgnoreCase(LINK_TEXT_THIS_IS_ME)){
-				System.out.println("check link this is me");
-				Assert.assertFalse(checkThisIsMeLink(driver, Constant.SMALL_WAITING_TIME),"This is me link is not invisible");
+				Reporter.log("check link this is me");
+				Assert.assertFalse(checkThisIsMeLink(driver, Constant.NORMAL_WAITING_TIME),"This is me link is not invisible");
 			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_RETIREMENT)){
-				System.out.println("check link my retirement");
-				Assert.assertFalse(checkMyRetirementLink(driver, Constant.SMALL_WAITING_TIME),"My Retirement link is not invisible");
+				Reporter.log("check link my retirement");
+				Assert.assertFalse(checkMyRetirementLink(driver, Constant.NORMAL_WAITING_TIME),"My Retirement link is not invisible");
 			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_CARRY_FORWARD)){
-				System.out.println("check link my carry forward");
-				Assert.assertFalse(checkMyCarryForward(driver, Constant.SMALL_WAITING_TIME),"My Carry Forward link is not invisible");
+				Reporter.log("check link my carry forward");
+				Assert.assertFalse(checkMyCarryForward(driver, Constant.NORMAL_WAITING_TIME),"My Carry Forward link is not invisible");
 			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_ANNUAL_ALLOWANCE)){
-				System.out.println("check link my annual allowance");
-				Assert.assertFalse(checkMyAnnualAllowance(driver, Constant.SMALL_WAITING_TIME),"My Annual Allowance is not invisible");
+				Reporter.log("check link my annual allowance");
+				Assert.assertFalse(checkMyAnnualAllowance(driver, Constant.NORMAL_WAITING_TIME),"My Annual Allowance is not invisible");
 			}else if(link.equalsIgnoreCase(LINK_TEXT_SCHEME_PAYS)){
-				System.out.println("check link scheme pays");
-				Assert.assertFalse(checkSchemePays(driver, Constant.SMALL_WAITING_TIME),"Scheme Pays link is not invisible");
+				Reporter.log("check link scheme pays");
+				Assert.assertFalse(checkSchemePays(driver, Constant.NORMAL_WAITING_TIME),"Scheme Pays link is not invisible");
 			}else if(link.equalsIgnoreCase(LINK_TEXT_MY_LIFETIME)){
-				System.out.println("check link my lifetime allowance");
-				Assert.assertFalse(checkMyLifeTime(driver, Constant.SMALL_WAITING_TIME),"My LifeTime Allowance link is not invisible");
+				Reporter.log("check link my lifetime allowance");
+				Assert.assertFalse(checkMyLifeTime(driver, Constant.NORMAL_WAITING_TIME),"My LifeTime Allowance link is not invisible");
 			}else if(link.equalsIgnoreCase(LINK_TEXT_REDUNDACY)){
-				System.out.println("check link redundancy");
-				Assert.assertFalse(checkRedundacyLink(driver, Constant.SMALL_WAITING_TIME),"Redundancy link is not invisible");
+				Reporter.log("check link redundancy");
+				Assert.assertFalse(checkRedundacyLink(driver, Constant.NORMAL_WAITING_TIME),"Redundancy link is not invisible");
 			}else if(link.equalsIgnoreCase("My Benefits")){
-				System.out.println("check link my benefits");
-				Assert.assertFalse(checkMyBenefitsLink(driver, Constant.SMALL_WAITING_TIME),"My Benefits link is not invisible");
+				Reporter.log("check link my benefits");
+				Assert.assertFalse(checkMyBenefitsLink(driver, Constant.NORMAL_WAITING_TIME),"My Benefits link is not invisible");
 			}else if(link.equalsIgnoreCase("PaySlips")){
-				System.out.println("check link payslips");
-				Assert.assertFalse(checkPaySlips(driver, Constant.SMALL_WAITING_TIME),"Payslips link is not invisible");
+				Reporter.log("check link payslips");
+				Assert.assertFalse(checkPaySlips(driver, Constant.NORMAL_WAITING_TIME),"Payslips link is not invisible");
 			}else if(link.equalsIgnoreCase("my accrual rate")){
-				System.out.println("check link my accurual rate");
-				Assert.assertFalse(checkMyAccurateLink(driver, Constant.SMALL_WAITING_TIME),"My Accurual Rate link is not invisible");
+				Reporter.log("check link my accurual rate");
+				Assert.assertFalse(checkMyAccurateLink(driver, Constant.NORMAL_WAITING_TIME),"My Accurual Rate link is not invisible");
 			}
 		}
 	}
