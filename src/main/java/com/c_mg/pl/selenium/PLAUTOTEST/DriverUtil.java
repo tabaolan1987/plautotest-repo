@@ -59,6 +59,7 @@ public class DriverUtil {
 	}
 	
 	public static WebDriver getInstance(String browser){
+		System.out.println("get instantance : " + browser);
 		if (browser.equalsIgnoreCase("firefox")) {
 			try {
 				driverFF = null;
