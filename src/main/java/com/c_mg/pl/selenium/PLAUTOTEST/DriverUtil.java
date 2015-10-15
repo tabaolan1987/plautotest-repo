@@ -102,11 +102,11 @@ public class DriverUtil {
 			driverIE = null;
 			System.out.println("come to set driver manager");
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
-			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
+			/*DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
 			caps.setCapability(
 			    InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-			    true);
-			driverIE = new InternetExplorerDriver(caps);
+			    true);*/
+			driverIE = new InternetExplorerDriver();
 			driverIE.manage().deleteAllCookies();
 			driverIE.manage().timeouts().pageLoadTimeout(Constant.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 			browserRunning = browser;

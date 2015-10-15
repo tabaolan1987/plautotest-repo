@@ -105,6 +105,7 @@ public class ItestListen implements ITestListener {
 		String pre = ac.getPreconditionsOfTestCase(result.getName().trim(),Constant.SUITE_NAME);
 		System.out.println("coming set value for parametere");
 		ParameterMap.setupParam(pre);
+		System.out.println("done set value for parameter");
 
 	}
 
