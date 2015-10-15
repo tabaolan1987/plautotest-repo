@@ -99,7 +99,7 @@ public class DriverUtil {
 			return driverChrome;
 		} else if (browser.equalsIgnoreCase("ie")) {
 			driverIE = null;
-			Reporter.log("come to set driver manager");
+			System.out.println("come to set driver manager");
 			System.setProperty("webdriver.ie.driver", DriverUtil.getIeDriver());
 			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
 			caps.setCapability(
@@ -110,6 +110,7 @@ public class DriverUtil {
 			driverIE.manage().timeouts().pageLoadTimeout(Constant.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 			browserRunning = browser;
 			driverIE.manage().window().maximize();
+			System.out.println("come to set driver manager 2");
 			return driverIE;
 		}
 		return null;
