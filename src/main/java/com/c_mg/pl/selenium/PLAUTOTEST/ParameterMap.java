@@ -23,7 +23,7 @@ public class ParameterMap {
 				params.put(key, value);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	
@@ -32,7 +32,7 @@ public class ParameterMap {
 		try {
 			 value = params.get(key).toString();
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		System.out.println("get value for key : " + key + " = " + value);
 		return value;
