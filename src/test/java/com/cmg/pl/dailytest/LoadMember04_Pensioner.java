@@ -82,7 +82,7 @@ public class LoadMember04_Pensioner {
 		Assert.assertTrue(CheckPaySlipsPage.checkNiNo(driver),
 				"Nino number did not exist");
 		Assert.assertTrue(CheckPaySlipsPage.checkBttPreviousExisted(driver,
-				Constant.SMALL_WAITING_TIME), "Button Previous did not existed");
+				Constant.LONG_WAITING_TIME), "Button Previous did not existed");
 		Reporter.log("Then check : current tax year and refno and nino and button previous existed");
 		// logout
 		Authenticate.LogOut(driver, Constant.SMALL_WAITING_TIME);
