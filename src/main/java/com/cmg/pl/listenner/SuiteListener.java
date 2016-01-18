@@ -221,8 +221,7 @@ public class SuiteListener implements ISuiteListener {
 				"lan.ta@c-mg.com"));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 				"anh.nguyen@c-mg.com"));
-		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-				"my.vu@c-mg.com"));
+		
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 				"caroline.schofield@c-mg.com"));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
