@@ -219,7 +219,7 @@ public class SuiteListener implements ISuiteListener {
 		msg.setFrom(new InternetAddress(userName));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 				"lan.ta@c-mg.com"));
-		/*msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 				"anh.nguyen@c-mg.com"));
 		
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
@@ -229,7 +229,7 @@ public class SuiteListener implements ISuiteListener {
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
 				"xuan.bui@c-mg.com"));
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-				"hoang.nguyen@c-mg.com"));*/
+				"hoang.nguyen@c-mg.com"));
 		msg.setSubject(subject);
 		msg.setSentDate(new Date());
 
